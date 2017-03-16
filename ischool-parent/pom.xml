@@ -217,4 +217,17 @@
         </pluginManagement>
     </build>
 
+    <!-- 主要开发人员 -->
+    <developers>
+        <developer>
+            <name>penn</name>
+            <email>penn2011@126.com</email>
+        </developer>
+
+        <developer>
+            <name>tengfeng</name>
+            <email>tengfeng@qq.com</email>
+        </developer>
+    </developers>
+
 </project>
