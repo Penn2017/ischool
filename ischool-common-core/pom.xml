@@ -14,5 +14,14 @@
         <version>1.0</version>
     </parent>
 
+    <dependencies>
+        <!-- 通用Mapper -->
+        <dependency>
+            <groupId>tk.mybatis</groupId>
+            <artifactId>mapper</artifactId>
+            <version>${mapper.version}</version>
+        </dependency>
+    </dependencies>
+
 
 </project>

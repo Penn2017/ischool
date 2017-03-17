@@ -25,6 +25,7 @@
         <joda-time.version>2.5</joda-time.version>
         <commons-lang3.version>3.3.2</commons-lang3.version>
         <commons-io.version>1.3.2</commons-io.version>
+        <mapper.version>3.3.9</mapper.version>
     </properties>
 
     <!--先定义的依赖-->
@@ -107,9 +108,9 @@
 
             <!-- 通用Mapper -->
             <dependency>
-                <groupId>com.github.abel533</groupId>
+                <groupId>tk.mybatis</groupId>
                 <artifactId>mapper</artifactId>
-                <version>2.3.4</version>
+                <version>${mapper.version}</version>
             </dependency>
             <!-- MySql -->
             <dependency>
