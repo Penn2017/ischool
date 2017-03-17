@@ -7,6 +7,7 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -53,19 +54,20 @@ public final class SimpleWebUtil {
 
         HttpServletRequest request=getRequest();
 
+        String unknown = "unknown";
         String ip = request.getHeader("x-forwarded-for");
-        if (StringUtils.isBlank(ip) || "unknown".equalsIgnoreCase(ip)) {
+        if (StringUtils.isBlank(ip) ||unknown.equalsIgnoreCase(ip)) {
             ip = request.getHeader("Proxy-Client-IP");
         }
-        if (StringUtils.isBlank(ip) || "unknown".equalsIgnoreCase(ip)) {
+        if (StringUtils.isBlank(ip) || unknown.equalsIgnoreCase(ip)) {
             ip = request.getHeader("WL-Proxy-Client-IP");
         }
-        if (StringUtils.isBlank(ip) || "unknown".equalsIgnoreCase(ip)) {
+        if (StringUtils.isBlank(ip) || unknown.equalsIgnoreCase(ip)) {
             ip = request.getRemoteAddr();
         }
 
-        if (!StringUtils.isBlank(ip) && !"unknown".equalsIgnoreCase(ip) && ip.contains(",")) {
-            ip = ip.substring(0, ip.indexOf(",")); // 截取第一个
+        if (!StringUtils.isBlank(ip) && !unknown.equalsIgnoreCase(ip) && ip.contains(",")) {
+            ip = ip.substring(0, ip.indexOf(',')); // 截取第一个
         }
         return ip;
     }
@@ -86,7 +88,7 @@ public final class SimpleWebUtil {
      * @param sessionKey   .
      * @param sessionValue .
      */
-    public void putSession(String sessionKey, Object sessionValue) {
+    public void putSession(String sessionKey, Serializable sessionValue) {
         HttpServletRequest request=getRequest();
         request.getSession().setAttribute(sessionKey, sessionValue);
     }
@@ -112,6 +114,7 @@ public final class SimpleWebUtil {
     public void addCookie( String name, String value, int maxAge) {
         HttpServletResponse response = getResponse();
         Cookie cookie = new Cookie(name, value);
+        cookie.setSecure(true);
         cookie.setPath("/");
         if (maxAge > 0) {
             cookie.setMaxAge(maxAge);
@@ -142,7 +145,7 @@ public final class SimpleWebUtil {
      */
     private Map<String, Cookie> readCookieMap() {
         HttpServletRequest request=getRequest();
-        Map<String, Cookie> cookieMap = new HashMap<String, Cookie>();
+        Map<String, Cookie> cookieMap = new HashMap<>();
         Cookie[] cookies = request.getCookies();
         if (null != cookies) {
             for (int num = 0; num < cookies.length; num++) {
