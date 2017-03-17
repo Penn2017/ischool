@@ -26,6 +26,14 @@
         <commons-lang3.version>3.3.2</commons-lang3.version>
         <commons-io.version>1.3.2</commons-io.version>
         <mapper.version>3.3.9</mapper.version>
+
+        <!--common工程的版本号定义-->
+        <ischool-common-base.version>1.0</ischool-common-base.version>
+        <ischool-common-config>1.0</ischool-common-config>
+        <ischool-common-core>1.0</ischool-common-core>
+        <ischool-common-web>1.0</ischool-common-web>
+
+
     </properties>
 
     <!--先定义的依赖-->
