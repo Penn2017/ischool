@@ -25,9 +25,12 @@ public class ResponseEntity implements Serializable {
     /**
      * 响应参数
      */
-    private Map<String, Object> params = new HashMap<String, Object>();
+    private transient Map<String, Object> params = new HashMap<>();
 
     public ResponseEntity() {
+        /**
+         * empty construct
+         */
     }
 
     public ResponseEntity(int resStatus, String resMsg) {
