@@ -29,9 +29,9 @@
 
         <!--common工程的版本号定义-->
         <ischool-common-base.version>1.0</ischool-common-base.version>
-        <ischool-common-config>1.0</ischool-common-config>
-        <ischool-common-core>1.0</ischool-common-core>
-        <ischool-common-web>1.0</ischool-common-web>
+        <ischool-common-config.version>1.0</ischool-common-config.version>
+        <ischool-common-core.version>1.0</ischool-common-core.version>
+        <ischool-common-web.version>1.0</ischool-common-web.version>
 
 
     </properties>

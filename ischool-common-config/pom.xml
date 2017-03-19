@@ -12,6 +12,7 @@
     <parent>
         <groupId>com.imis.jxufe</groupId>
         <artifactId>ischool-parent</artifactId>
-        <version>1.0</version>
+        <relativePath>../ischool-parent/pom.xml</relativePath>
+        <version>${ischool-common-config.version}</version>
     </parent>
 </project>

@@ -5,15 +5,14 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.imis.jxufe</groupId>
-    <artifactId>ischool-common-base</artifactId>
-    <version>1.0</version>
-
+    <artifactId>ischool-facade-user</artifactId>
+    <version>1.0-SNAPSHOT</version>
 
     <parent>
         <groupId>com.imis.jxufe</groupId>
-        <artifactId>ischool-parent</artifactId>
-        <version>${ischool-common-base.version}</version>
-        <relativePath>../ischool-parent/pom.xml</relativePath>
+        <artifactId>ischool-common-base</artifactId>
+        <version>1.0</version>
     </parent>
+
 
 </project>
