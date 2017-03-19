@@ -6,6 +6,7 @@
 
     <groupId>com.imis.jxufe</groupId>
     <artifactId>ischool-parent</artifactId>
+    <packaging>pom</packaging>
     <version>1.0</version>
     <!-- 集中定义依赖版本号 -->
     <properties>
@@ -32,6 +33,8 @@
         <ischool-common-config.version>1.0</ischool-common-config.version>
         <ischool-common-core.version>1.0</ischool-common-core.version>
         <ischool-common-web.version>1.0</ischool-common-web.version>
+        <ischool-facade-user.version>1.0</ischool-facade-user.version>
+        <ischool-service-user.version>1.0</ischool-service-user.version>
 
 
     </properties>

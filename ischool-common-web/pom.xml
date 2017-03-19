@@ -6,13 +6,13 @@
 
     <groupId>com.imis.jxufe</groupId>
     <artifactId>ischool-common-web</artifactId>
-    <version>1.0</version>
+    <version>${ischool-common-web.version}</version>
     
     <parent>
         <groupId>com.imis.jxufe</groupId>
         <artifactId>ischool-parent</artifactId>
         <relativePath>../ischool-parent/pom.xml</relativePath>
-        <version>${ischool-common-web.version}</version>
+        <version>1.0</version>
     </parent>
 
     <dependencies>

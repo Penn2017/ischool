@@ -4,13 +4,10 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-
     <groupId>com.imis.jxufe</groupId>
-    <artifactId>ischool-facade-user</artifactId>
-    <version>${ischool-facade-user.version}</version>
+    <artifactId>ischool-service-user</artifactId>
+    <version>${ischool-service-user.version}</version>
 
-
-    <!--定义父工程-->
     <parent>
         <groupId>com.imis.jxufe</groupId>
         <artifactId>ischool-parent</artifactId>
@@ -19,16 +16,18 @@
     </parent>
 
 
-
     <dependencies>
-        <!--外部依赖-->
-        <!--内部依赖-->
+
+
+
+
+
         <dependency>
             <groupId>com.imis.jxufe</groupId>
-            <artifactId>ischool-common-base</artifactId>
-            <version>1.0</version>
+            <artifactId>ischool-facade-user</artifactId>
+            <version>${ischool-facade-user.version}</version>
         </dependency>
-
     </dependencies>
+
 
 </project>
