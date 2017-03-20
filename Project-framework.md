@@ -4,3 +4,5 @@
 <h4>ischool-common-base  : 基础类，比如常量bean，通用exception，通用param，通用utils，与“实体”有关。
 <h4>ischool-common-core：通用业务类，通用dao，通用拦截器，通用service，即除了common-base之外的通用bean的收容所。
 <h4>ischool-common-web：与web相关的通用bean。
+<h4>ischool-facade-user：user服务的接口。
+<h4>ischool-service-user：接口的相关实现
