@@ -10,11 +10,10 @@
     <packaging>jar</packaging>
 
 
-
     <parent>
         <groupId>com.imis.jxufe</groupId>
         <artifactId>ischool-parent</artifactId>
-        <version>1.0</version>
+        <version>1.2</version>
         <relativePath>../ischool-parent/pom.xml</relativePath>
     </parent>
 
