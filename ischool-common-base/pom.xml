@@ -9,6 +9,8 @@
     <version>${ischool-common-base.version}</version>
     <packaging>jar</packaging>
 
+
+
     <parent>
         <groupId>com.imis.jxufe</groupId>
         <artifactId>ischool-parent</artifactId>
