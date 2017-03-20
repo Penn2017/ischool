@@ -17,11 +17,6 @@
 
 
     <dependencies>
-
-
-
-
-
         <dependency>
             <groupId>com.imis.jxufe</groupId>
             <artifactId>ischool-facade-user</artifactId>
