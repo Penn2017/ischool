@@ -10,7 +10,7 @@
     <packaging>jar</packaging>
 
     <name>ischool-common-base</name>
-    <url>http://maven.apache.org</url>
+    <url>https://repo.maven.apache.org/maven2</url>
 
     <parent>
         <groupId>com.imis.jxufe</groupId>
