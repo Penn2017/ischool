@@ -9,9 +9,6 @@
     <version>${ischool-common-base.version}</version>
     <packaging>jar</packaging>
 
-    <name>ischool-common-base</name>
-    <url>https://repo.maven.apache.org/maven2</url>
-
     <parent>
         <groupId>com.imis.jxufe</groupId>
         <artifactId>ischool-parent</artifactId>
