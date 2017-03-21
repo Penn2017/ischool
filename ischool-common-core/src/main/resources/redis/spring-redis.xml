@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+
+    <!--导入配置文件-->
+    <context:property-placeholder location="classpath:redis/redis.properties"/>
+    <!-- 定义分片式连接池 -->
+    <bean id="shardedJedisPool" class="redis.clients.jedis.ShardedJedisPool">
+        <constructor-arg index="0">
+            <bean class="redis.clients.jedis.JedisPoolConfig">
+                <property name="maxTotal" value="${redis.maxTotal}"/>
+                <property name="testWhileIdle" value="${testWhileIdle}" />
+                <property name="minEvictableIdleTimeMillis" value="${minEvictableIdleTimeMillis}" />
+                <property name="timeBetweenEvictionRunsMillis" value="${timeBetweenEvictionRunsMillis}" />
+                <property name="numTestsPerEvictionRun" value="${numTestsPerEvictionRun}" />
+                <property name="maxIdle" value="${maxIdle}" />
+                <property name="minIdle" value="${minIdle}" />
+            </bean>
+        </constructor-arg>
+        <constructor-arg index="1">
+            <list>
+                <bean class="redis.clients.jedis.JedisShardInfo">
+                    <constructor-arg index="0" value="${redis.node1.host}"/>
+                    <constructor-arg index="1" value="${redis.node1.port}" type="int"/>
+                </bean>
+            </list>
+        </constructor-arg>
+    </bean>
+
+    <!--定义redisService-->
+    <bean  id="redisService" class="com.imis.jxufe.core.service.RedisService">
+        <property name="shardedJedisPool" ref="shardedJedisPool" />
+    </bean>
+</beans>

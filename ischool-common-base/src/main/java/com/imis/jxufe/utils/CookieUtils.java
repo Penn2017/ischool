@@ -1,15 +1,14 @@
 package com.imis.jxufe.utils;
 
-import java.io.UnsupportedEncodingException;
-import java.net.URLDecoder;
-import java.net.URLEncoder;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
+import java.net.URLEncoder;
 
 /**
  * 
@@ -19,6 +18,12 @@ import org.slf4j.LoggerFactory;
 public final class CookieUtils {
 
     protected static final Logger logger = LoggerFactory.getLogger(CookieUtils.class);
+
+    private CookieUtils(){
+        /**
+         * empty constructor
+         */
+    }
 
     /**
      * 得到Cookie的值, 不编码
