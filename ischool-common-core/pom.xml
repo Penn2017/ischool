@@ -18,12 +18,6 @@
 
     <dependencies>
 
-        <dependency>
-            <groupId>com.imis.jxufe</groupId>
-            <artifactId>ischool-common-config</artifactId>
-            <version>${ischool-common-config.version}</version>
-        </dependency>
-
 
         <!-- 连接池 -->
         <dependency>

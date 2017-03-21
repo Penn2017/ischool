@@ -37,6 +37,12 @@
         </dependency>
 
 
+        <dependency>
+            <groupId>com.imis.jxufe</groupId>
+            <artifactId>ischool-common-config</artifactId>
+            <version>${ischool-common-config.version}</version>
+        </dependency>
+
         <!--外部依赖-->
 
     </dependencies>
