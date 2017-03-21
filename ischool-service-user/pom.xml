@@ -12,16 +12,19 @@
         <groupId>com.imis.jxufe</groupId>
         <artifactId>ischool-parent</artifactId>
         <version>1.0</version>
-        <relativePath>../ischool-parent/pom.xml</relativePath>
+        <relativePath>../ischool-parent</relativePath>
     </parent>
 
 
     <dependencies>
+
+
         <dependency>
             <groupId>com.imis.jxufe</groupId>
             <artifactId>ischool-facade-user</artifactId>
             <version>${ischool-facade-user.version}</version>
         </dependency>
+
     </dependencies>
 
 

@@ -4,4 +4,8 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
 
+    <!--创建mybatis-mapper-->
+    <import resource="classpath:mybatis/spring-mybatis.xml"/>
+
+
 </beans>

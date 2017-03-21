@@ -8,6 +8,7 @@
     <groupId>com.imis.jxufe</groupId>
     <artifactId>ischool-facade-user</artifactId>
     <version>${ischool-facade-user.version}</version>
+    <packaging>jar</packaging>
 
 
     <!--定义父工程-->
@@ -21,13 +22,22 @@
 
 
     <dependencies>
-        <!--外部依赖-->
+
         <!--内部依赖-->
         <dependency>
             <groupId>com.imis.jxufe</groupId>
             <artifactId>ischool-common-base</artifactId>
             <version>${ischool-common-base.version}</version>
         </dependency>
+
+        <dependency>
+            <groupId>com.imis.jxufe</groupId>
+            <artifactId>ischool-common-core</artifactId>
+            <version>${ischool-common-core.version}</version>
+        </dependency>
+
+
+        <!--外部依赖-->
 
     </dependencies>
 

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:contxt="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <!--读入配置文件-->
+    <contxt:property-placeholder location="classpath*:db/db.properties"/>
+
+    <!--读入数据源-->
+    <import resource="classpath*:mybatis/spring-datasource.xml"/>
+
+
+    <!--配置通用的SqlSessionFactoryBean-->
+    <bean  id="factorySqlSession" class="org.mybatis.spring.SqlSessionFactoryBean" >
+        <!-- 指定数据源 -->
+        <property name="dataSource" ref="druidDataSource"/>
+        <!-- 指定mybatis的全局配置文件 -->
+        <property name="configLocation" value="classpath:mybatis/mybatis-config.xml"/>
+        <!-- 指定mapper.xml文件，扫描所有的文件 -->
+        <!--<property name="mapperLocations" value="${mapperLocations}"/>-->
+    </bean>
+
+    <!-- 定义Mapper接口的扫描器 -->
+    <bean class="tk.mybatis.spring.mapper.MapperScannerConfigurer" >
+        <property name="sqlSessionFactoryBeanName" value="factorySqlSession"/>
+        <property name="basePackage" value="com.imis.jxufe.*.mapper"/>
+    </bean>
+
+</beans>
