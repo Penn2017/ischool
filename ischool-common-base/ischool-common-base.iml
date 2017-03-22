@@ -17,6 +17,11 @@
     <orderEntry type="library" name="Maven: org.slf4j:slf4j-log4j12:1.6.4" level="project" />
     <orderEntry type="library" name="Maven: org.slf4j:slf4j-api:1.6.4" level="project" />
     <orderEntry type="library" name="Maven: log4j:log4j:1.2.16" level="project" />
+    <orderEntry type="library" name="Maven: javax.persistence:persistence-api:1.0" level="project" />
+    <orderEntry type="library" name="Maven: org.hibernate:hibernate-validator:5.2.4.Final" level="project" />
+    <orderEntry type="library" name="Maven: javax.validation:validation-api:1.1.0.Final" level="project" />
+    <orderEntry type="library" name="Maven: org.jboss.logging:jboss-logging:3.2.1.Final" level="project" />
+    <orderEntry type="library" name="Maven: com.fasterxml:classmate:1.1.0" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: junit:junit:4.12" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: org.hamcrest:hamcrest-core:1.3" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: org.springframework:spring-test:4.3.7.RELEASE" level="project" />

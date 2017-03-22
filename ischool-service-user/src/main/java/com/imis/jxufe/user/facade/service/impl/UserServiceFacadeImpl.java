@@ -1,19 +1,23 @@
 package com.imis.jxufe.user.facade.service.impl;
 
 import com.imis.jxufe.core.service.RedisService;
-import com.imis.jxufe.user.facade.UserService;
+import com.imis.jxufe.model.IschoolUser;
+import com.imis.jxufe.user.facade.UserServiceFacade;
 import com.imis.jxufe.user.mapper.UserMapper;
-import com.imis.jxufe.user.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.validation.BindingResult;
+
+import javax.validation.Valid;
 
 /**
  * 对外暴露的用户服务接口
+ *
  * @author zhongping
  * @date 2017/3/21
  */
 @Component("userService")
-public class UserServiceFacade implements UserService {
+public class UserServiceFacadeImpl implements UserServiceFacade {
 
     @Autowired
     private UserMapper userDao;
@@ -23,9 +27,19 @@ public class UserServiceFacade implements UserService {
 
     @Override
     public boolean userIsExist(String userKey) {
-        User user=new User();
-        user.setId(Integer.valueOf(userKey));
+        IschoolUser user = new IschoolUser();
 
-        return userDao.selectOne(user)==null;
+        return false;
+    }
+
+
+    @Override
+    public IschoolUser createUser(@Valid IschoolUser unStoreUser,
+                                  BindingResult errorResult) {
+
+
+        System.out.println(errorResult);
+
+        return null;
     }
 }

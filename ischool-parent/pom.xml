@@ -222,6 +222,14 @@
                 <version>${gson.version}</version>
             </dependency>
 
+            <!--hibernate验证-->
+            <!-- https://mvnrepository.com/artifact/org.hibernate/hibernate-validator -->
+            <dependency>
+                <groupId>org.hibernate</groupId>
+                <artifactId>hibernate-validator</artifactId>
+                <version>5.2.4.Final</version>
+            </dependency>
+
 
         </dependencies>
     </dependencyManagement>

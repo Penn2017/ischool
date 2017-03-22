@@ -1,4 +1,5 @@
-import com.imis.jxufe.user.facade.UserService;
+import com.imis.jxufe.core.service.RedisService;
+import com.imis.jxufe.user.facade.UserServiceFacade;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.slf4j.Logger;
@@ -23,7 +24,10 @@ public class MapperTest {
     private ApplicationContext cxt;
 
     @Resource(name = "userService")
-    private UserService userService;
+    private UserServiceFacade userService;
+
+    @Resource(name = "redisService")
+    private RedisService redis;
 
 
 
@@ -32,7 +36,6 @@ public class MapperTest {
 
     @Test
     public void test1(){
-        boolean a = userService.userIsExist("5");
-        LOGGER.debug("logger *************************" + a);
+
     }
 }

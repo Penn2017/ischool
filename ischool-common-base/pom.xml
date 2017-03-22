@@ -38,6 +38,18 @@
             <artifactId>slf4j-log4j12</artifactId>
         </dependency>
 
+        <!--持久化注解-->
+        <!-- persistence-api -->
+        <dependency>
+            <groupId>javax.persistence</groupId>
+            <artifactId>persistence-api</artifactId>
+        </dependency>
+
+        <!--验证-->
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-validator</artifactId>
+        </dependency>
 
     </dependencies>
 
