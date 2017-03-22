@@ -1,5 +1,4 @@
-import com.imis.jxufe.user.mapper.UserMapper;
-import com.imis.jxufe.user.model.User;
+import com.imis.jxufe.user.facade.UserService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.slf4j.Logger;
@@ -9,30 +8,31 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import java.util.List;
+import javax.annotation.Resource;
 
 /**
  * @author zhongping
  * @date 2017/3/21
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = "classpath:spring-main.xml")
+@ContextConfiguration(locations = "classpath:user-spring-main.xml")
 public class MapperTest {
 
 
     @Autowired
     private ApplicationContext cxt;
 
+    @Resource(name = "userService")
+    private UserService userService;
+
+
+
     private Logger LOGGER = LoggerFactory.getLogger(MapperTest.class);
 
 
     @Test
     public void test1(){
-
-        UserMapper userMapper = cxt.getBean(UserMapper.class);
-        List<User> users = userMapper.selectAll();
-        LOGGER.debug("=================="+users);
-
-
+        boolean a = userService.userIsExist("5");
+        LOGGER.debug("logger *************************" + a);
     }
 }
