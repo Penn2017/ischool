@@ -27,7 +27,9 @@
     </bean>
 
     <!--定义redisService-->
-    <bean id="redisService" class="com.imis.jxufe.core.service.RedisService">
+    <bean id="redisService" class="com.imis.jxufe.redis.facade.impl.RedisServiceFacadeImpl">
         <property name="shardedJedisPool" ref="shardedJedisPool"/>
     </bean>
+
+
 </beans>

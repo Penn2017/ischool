@@ -10,6 +10,10 @@
     <version>1.0</version>
     <!-- 集中定义依赖版本号 -->
     <properties>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+        <!--配置编译的环境-->
+
         <junit.version>4.12</junit.version>
         <spring.version>4.3.1.RELEASE</spring.version>
         <mybatis.version>3.2.8</mybatis.version>
@@ -29,6 +33,12 @@
         <mapper.version>3.3.9</mapper.version>
         <gson.version>2.2.4</gson.version>
         <persistence-api.version>1.0</persistence-api.version>
+        <jboss.version>3.2.5.Final</jboss.version>
+        <zookeeper.version>3.4.5</zookeeper.version>
+        <zkclient.version>0.3</zkclient.version>
+        <dubbo.version>2.5.3</dubbo.version>
+        <redis.clients.version>2.6.0</redis.clients.version>
+        <javassist.version>3.19.0-GA</javassist.version>
 
         <!--common工程的版本号定义-->
         <ischool-common-base.version>1.0</ischool-common-base.version>
@@ -40,6 +50,7 @@
 
 
     </properties>
+
 
     <!--先定义的依赖-->
       <dependencies>
@@ -133,7 +144,7 @@
             <dependency>
                 <groupId>redis.clients</groupId>
                 <artifactId>jedis</artifactId>
-                <version>2.6.0</version>
+                <version>${redis.clients.version}</version>
             </dependency>
 
             <!-- 通用Mapper -->
@@ -230,6 +241,38 @@
                 <version>5.2.4.Final</version>
             </dependency>
 
+            <!-- dubbo required jars start -->
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>dubbo</artifactId>
+                <version>${dubbo.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.jboss.netty</groupId>
+                <artifactId>netty</artifactId>
+                <version>${jboss.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.apache.zookeeper</groupId>
+                <artifactId>zookeeper</artifactId>
+                <version>${zookeeper.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.101tec</groupId>
+                <artifactId>zkclient</artifactId>
+                <version>${zkclient.version}</version>
+            </dependency>
+
+            <!--dubbo特供-->
+            <dependency>
+                <groupId>org.javassist</groupId>
+                <artifactId>javassist</artifactId>
+                <version>${javassist.version}</version>
+            </dependency>
+            <!-- dubbo required jars end -->
+
 
         </dependencies>
     </dependencyManagement>
@@ -258,6 +301,7 @@
                 </configuration>
             </plugin>
         </plugins>
+
         <pluginManagement>
             <plugins>
                 <!-- 配置Tomcat插件 -->

@@ -1,6 +1,7 @@
-package com.imis.jxufe.core.service;
+package com.imis.jxufe.redis.facade.impl;
 
 import com.google.gson.Gson;
+import com.imis.jxufe.redis.facade.RedisServiceFacade;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -10,8 +11,7 @@ import redis.clients.jedis.ShardedJedisPool;
 import java.util.function.Function;
 
 
-
-public class RedisService {
+public class RedisServiceFacadeImpl implements RedisServiceFacade {
 
     /**
      * 设置成功标识符
@@ -29,7 +29,7 @@ public class RedisService {
     public void setShardedJedisPool(ShardedJedisPool shardedJedisPool) {
         this.shardedJedisPool = shardedJedisPool;
     }
-    protected static final Logger logger = LoggerFactory.getLogger(RedisService.class);
+    protected static final Logger logger = LoggerFactory.getLogger(RedisServiceFacadeImpl.class);
 
 
     private <T> T execute(Function<ShardedJedis, T> fun) {
@@ -49,14 +49,7 @@ public class RedisService {
         return null;
     }
 
-
-    /**
-     * 执行SET操作
-     *
-     * @param key
-     * @param value
-     * @return
-     */
+     @Override
     public boolean set(final String key, final String value) {
         String result = this.execute((redis) -> redis.set(key, value));
         if (StringUtils.equalsIgnoreCase(SET_SUCCESS, result)) {
@@ -66,12 +59,7 @@ public class RedisService {
         return false;
     }
 
-    /**
-     * 执行GET操作
-     *
-     * @param key
-     * @return
-     */
+    @Override
     public String get(final String key) {
         String value = null;
         try {
@@ -82,37 +70,19 @@ public class RedisService {
         return value;
     }
 
-    /**
-     * 删除key
-     *
-     * @param key
-     * @return
-     */
+    @Override
     public boolean del(final String key) {
         Long updateNum = this.execute((redis) -> redis.del(key));
         return updateNum == null ? false : updateNum > 0;
     }
 
-    /**
-     * 设置生存时间，单位为：秒
-     *
-     * @param key
-     * @param seconds
-     * @return
-     */
+    @Override
     public boolean expire(final String key, final Integer seconds) {
         Long updateNum = this.execute((redis) -> redis.expire(key, seconds));
         return updateNum == null ? false : updateNum > 0;
     }
 
-    /**
-     * 设置String类型的值，并且指定生存时间，单位为：秒
-     *
-     * @param key
-     * @param value
-     * @param seconds
-     * @return
-     */
+    @Override
     public boolean setexpire(final String key, final String value, final Integer seconds) {
         String execute = this.execute((redis) -> redis.setex(key, seconds, value));
         if (StringUtils.equalsIgnoreCase(SET_SUCCESS, execute)) {
@@ -122,13 +92,7 @@ public class RedisService {
     }
 
 
-    /**
-     * 设置一个对象
-     *
-     * @param key
-     * @param src
-     * @return
-     */
+    @Override
     public boolean setObject(final String key, final Object src) {
         if (src == null) {
             logger.error("object cant be null!");
@@ -139,6 +103,7 @@ public class RedisService {
 
     }
 
+    @Override
     public boolean setObjectExpire(final String key, final Object src, Integer seconds) {
         if (src == null) {
             logger.error("object cant be null!");
@@ -148,14 +113,7 @@ public class RedisService {
         return this.setexpire(key, value, seconds);
     }
 
-    /**
-     * 从redis中获取一个对象
-     *
-     * @param key
-     * @param clazz
-     * @param <T>
-     * @return
-     */
+    @Override
     public <T> T getObject(final String key, Class<T> clazz) {
         T value = null;
         String result = this.get(key);

@@ -7,7 +7,6 @@
     <groupId>com.imis.jxufe</groupId>
     <artifactId>ischool-facade-redis</artifactId>
     <version>1.0</version>
-
     <parent>
         <groupId>com.imis.jxufe</groupId>
         <artifactId>ischool-parent</artifactId>
@@ -15,7 +14,14 @@
         <version>1.0</version>
     </parent>
 
+    <dependencies>
+        <dependency>
+            <groupId>com.imis.jxufe</groupId>
+            <artifactId>ischool-common-config</artifactId>
+            <version>${ischool-common-config.version}</version>
+        </dependency>
 
+    </dependencies>
 
 
 </project>
