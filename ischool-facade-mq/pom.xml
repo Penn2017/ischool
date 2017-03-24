@@ -5,18 +5,8 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.imis.jxufe</groupId>
-    <artifactId>ischool-facade-mail</artifactId>
+    <artifactId>ischool-facade-mq</artifactId>
     <version>1.0</version>
-    <description>mail service</description>
-    <version>1.0</version>
-
-    <parent>
-        <groupId>com.imis.jxufe</groupId>
-        <artifactId>ischool-parent</artifactId>
-        <relativePath>../ischool-parent</relativePath>
-        <version>1.0</version>
-    </parent>
-
 
 
 </project>
