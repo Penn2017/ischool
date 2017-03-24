@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+    <!-- a pooling based JMS provider -->
+    <bean id="pooledConnectionFactory" class="org.apache.activemq.pool.PooledConnectionFactory" destroy-method="stop">
+        <property name="connectionFactory">
+            <bean class="org.apache.activemq.ActiveMQConnectionFactory">
+                <property name="brokerURL">
+                    <value>${mq.url}</value>
+                </property>
+            </bean>
+        </property>
+    </bean>
+
+
+    <!-- Spring用于管理真正的ConnectionFactory的ConnectionFactory -->
+    <bean id="singleConnectionFactory" class="org.springframework.jms.connection.SingleConnectionFactory">
+        <!-- 目标ConnectionFactory对应真实的可以产生JMS Connection的ConnectionFactory -->
+        <property name="targetConnectionFactory" ref="pooledConnectionFactory" />
+    </bean>
+
+
+    <!-- Spring JMS Template -->
+    <bean id="myJmsTemplate" class="org.springframework.jms.core.JmsTemplate">
+        <!--定义连接工厂-->
+        <property name="connectionFactory" ref="singleConnectionFactory"/>
+        <!--定义目标的队列-->
+        <property name="defaultDestinationName" value="${mq.mail.queueName}"/>
+    </bean>
+
+
+</beans>
