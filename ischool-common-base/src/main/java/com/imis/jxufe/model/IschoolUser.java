@@ -13,6 +13,7 @@ import java.util.Date;
 @Table(name = "ischool_users")
 public class IschoolUser  implements Serializable{
 
+    private static final long serialVersionUID = -14830131226462605L;
     @Id
     private Integer id;
 

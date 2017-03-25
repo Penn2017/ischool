@@ -14,6 +14,7 @@ import java.io.Serializable;
  */
 public class MailParam  implements Serializable{
 
+	private static final long serialVersionUID = -14830122646260435L;
 	/** 发件人 **/
 	private String from;
 	/** 收件人 **/
