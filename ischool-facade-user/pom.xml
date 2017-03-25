@@ -23,24 +23,10 @@
 
     <dependencies>
 
-        <!--内部依赖-->
         <dependency>
             <groupId>com.imis.jxufe</groupId>
             <artifactId>ischool-common-base</artifactId>
             <version>${ischool-common-base.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>com.imis.jxufe</groupId>
-            <artifactId>ischool-common-core</artifactId>
-            <version>${ischool-common-core.version}</version>
-        </dependency>
-
-
-        <dependency>
-            <groupId>com.imis.jxufe</groupId>
-            <artifactId>ischool-common-config</artifactId>
-            <version>${ischool-common-config.version}</version>
         </dependency>
 
         <!--外部依赖-->
