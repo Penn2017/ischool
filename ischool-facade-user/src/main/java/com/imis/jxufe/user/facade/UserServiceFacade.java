@@ -32,7 +32,7 @@ public interface UserServiceFacade {
      * @param passwd
      * @return
      */
-     String preCreateUser(String email, String name, String passwd);
+     String preCreateUser(String email, String name, String passwd,Integer type);
 
 
 

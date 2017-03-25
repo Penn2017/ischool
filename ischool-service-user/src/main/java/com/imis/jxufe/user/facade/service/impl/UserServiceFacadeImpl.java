@@ -54,7 +54,7 @@ public class UserServiceFacadeImpl implements UserServiceFacade {
         return count > 0;
     }
 
-    public String preCreateUser(String email, String name, String passwd) {
+    public String preCreateUser(String email, String name, String passwd,Integer type) {
         Map<String, Object> resutl = new HashMap();
 
         //验证邮箱
@@ -67,6 +67,8 @@ public class UserServiceFacadeImpl implements UserServiceFacade {
         Date now = new Date();
         //创建user
         IschoolUser ischoolUser = new IschoolUser(email, name, encodingPasswd, now, now);
+        //设置用户类型
+        ischoolUser.setType(type);
         //设置账户未激活
         ischoolUser.setState(0);
         //生成激活key
