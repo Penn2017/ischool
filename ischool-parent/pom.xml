@@ -319,6 +319,13 @@
                 <version>3.16</version>
             </dependency>
 
+            <!-- Jackson Json处理工具包 -->
+            <dependency>
+                <groupId>com.fasterxml.jackson.core</groupId>
+                <artifactId>jackson-databind</artifactId>
+                <version>${jackson.version}</version>
+            </dependency>
+
             <!-- activemq -->
             <dependency>
                 <groupId>org.apache.activemq</groupId>
