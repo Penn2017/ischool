@@ -118,12 +118,6 @@
       <artifactId>javassist</artifactId>
     </dependency>
     <!-- dubbo required jars end -->
-
-    <dependency>
-      <groupId>com.fasterxml.jackson.module</groupId>
-      <artifactId>jackson-module-jaxb-annotations</artifactId>
-
-    </dependency>
   </dependencies>
 
   <!--构建方式-->
