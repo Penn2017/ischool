@@ -1,5 +1,9 @@
 package com.imis.jxufe.user.facade;
 
+import com.imis.jxufe.model.IschoolUser;
+
+import java.util.Map;
+
 /**
  * @author zhongping
  * @date 2017/3/21
@@ -15,15 +19,20 @@ public interface UserServiceFacade {
     boolean userEmailIsExist(String email);
 
     /**
-     * 创建一个用户
+     * 插入数据库
+     * @param user
+     * @return
+     */
+    Map<String ,Object> createUser(IschoolUser user);
+
+    /**
+     * 预创建用户
      * @param email
      * @param name
      * @param passwd
      * @return
      */
-    boolean createUser(String email,String name,String passwd);
-
-
+     String preCreateUser(String email, String name, String passwd);
 
 
 

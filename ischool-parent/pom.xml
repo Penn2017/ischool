@@ -260,7 +260,12 @@
                 <artifactId>gson</artifactId>
                 <version>${gson.version}</version>
             </dependency>
-
+            <!-- 加密解密的工具 -->
+            <dependency>
+            <groupId>commons-codec</groupId>
+            <artifactId>commons-codec</artifactId>
+            <version>1.9</version>
+            </dependency>
             <!--hibernate验证-->
             <!-- https://mvnrepository.com/artifact/org.hibernate/hibernate-validator -->
             <dependency>

@@ -6,7 +6,7 @@ import org.hibernate.validator.constraints.NotEmpty;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.Past;
-import java.util.Date;
+import java.time.LocalDateTime;
 
 
 @Table(name = "ischool_users")
@@ -26,12 +26,36 @@ public class IschoolUser {
     private String image;
 
     @Past
-    private Date createTime;
+    private LocalDateTime createTime;
 
 
-    private Date modifyTime;
+    private LocalDateTime modifyTime;
 
     private Integer type;
+    private Integer state;
+
+
+    public IschoolUser(){}
+    public IschoolUser(String email, String name, String passwd, LocalDateTime createTime, LocalDateTime modifyTime) {
+        this.email = email;
+        this.name = name;
+        this.passwd = passwd;
+        this.createTime = createTime;
+        this.modifyTime = modifyTime;
+    }
+
+    public IschoolUser(String email) {
+        this.email = email;
+
+    }
+
+    public Integer getState() {
+        return state;
+    }
+
+    public void setState(Integer state) {
+        this.state = state;
+    }
 
     public Integer getId() {
         return id;
@@ -73,19 +97,19 @@ public class IschoolUser {
         this.image = image == null ? null : image.trim();
     }
 
-    public Date getCreateTime() {
+    public LocalDateTime getCreateTime() {
         return createTime;
     }
 
-    public void setCreateTime(Date createTime) {
+    public void setCreateTime(LocalDateTime createTime) {
         this.createTime = createTime;
     }
 
-    public Date getModifyTime() {
+    public LocalDateTime getModifyTime() {
         return modifyTime;
     }
 
-    public void setModifyTime(Date modifyTime) {
+    public void setModifyTime(LocalDateTime modifyTime) {
         this.modifyTime = modifyTime;
     }
 
