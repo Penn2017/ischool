@@ -42,9 +42,5 @@ public class ListenerTest {
         senderMailService.send(mailParam);
         logger.debug("============================ok!:" + gson.toJson(mailParam));
 
-
-
-        Thread.sleep(40000L);
-
     }
 }
