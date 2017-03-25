@@ -30,6 +30,7 @@
             <version>1.0</version>
         </dependency>
 
+
         <!--redis-->
         <dependency>
             <groupId>redis.clients</groupId>
@@ -120,13 +121,10 @@
             <artifactId>javassist</artifactId>
         </dependency>
         <!-- dubbo required jars end -->
-
-
     </dependencies>
 
 
     <!--构建-->
-
     <build>
         <!--定义资源-->
         <finalName>ischool-service-redis</finalName>
@@ -151,7 +149,6 @@
                 </includes>
             </resource>
         </resources>
-
 
         <!--定义打包插件-->
         <plugins>
@@ -197,6 +194,4 @@
             </plugin>
         </plugins>
     </build>
-
-
 </project>

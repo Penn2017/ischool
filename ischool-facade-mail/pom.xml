@@ -8,7 +8,7 @@
     <artifactId>ischool-facade-mail</artifactId>
     <version>1.0</version>
     <description>mail service</description>
-    <version>1.0</version>
+    
 
     <parent>
         <groupId>com.imis.jxufe</groupId>
