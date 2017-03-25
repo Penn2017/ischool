@@ -6,14 +6,12 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
 
     <!--统一读入配置文件-->
+    <context:property-placeholder location="classpath:db/db.properties,classpath*:dubbo/dubbo.properties" file-encoding="UTF-8"  />
 
-    <context:property-placeholder location="classpath:db/db.properties,classpath:redis/redis.properties" file-encoding="UTF-8"  />
-
+    <!--导入duboo服务 redis服务，mail服务-->
+    <import resource="classpath*:dubbo-consumer.xml"/>
     <!--创建mybatis-dao-->
     <import resource="classpath:mybatis/spring-mybatis.xml"/>
-
-    <!--引入redisservice-->
-    <import resource="classpath*:redis/spring-redis.xml"/>
 
 
     <!--配置扫描包扫描组件other -->

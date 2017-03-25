@@ -21,6 +21,6 @@
 
 
 
-    <!-- 暴露redis接口 -->
-    <dubbo:service retries="0" interface="com.imis.jxufe.mail.facade.impl.SenderMailServiceImpl" ref="SenderMailService" />
+    <!-- 暴露mail接口 -->
+    <dubbo:service retries="0" interface="com.imis.jxufe.facade.SenderMailServiceFacade" ref="SenderMailService" />
 </beans>

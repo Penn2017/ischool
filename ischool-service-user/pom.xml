@@ -22,6 +22,52 @@
             <artifactId>ischool-facade-user</artifactId>
             <version>${ischool-facade-user.version}</version>
         </dependency>
+
+
+        <!--引入redis服务！-->
+        <dependency>
+            <groupId>com.imis.jxufe</groupId>
+            <artifactId>ischool-facade-redis</artifactId>
+            <version>1.0</version>
+        </dependency>
+        <!--引入邮件服务！-->
+        <dependency>
+            <groupId>com.imis.jxufe</groupId>
+            <artifactId>ischool-facade-mail</artifactId>
+            <version>1.0</version>
+        </dependency>
+
+
+
+        <!-- dubbo 需要的jar start -->
+        <dependency>
+            <groupId>org.jboss.netty</groupId>
+            <artifactId>netty</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>dubbo</artifactId>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.springframework</groupId>
+                    <artifactId>spring</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.zookeeper</groupId>
+            <artifactId>zookeeper</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.101tec</groupId>
+            <artifactId>zkclient</artifactId>
+        </dependency>
+        <!-- dubbo 需要的jar end -->
+
+
+
     </dependencies>
 
 
