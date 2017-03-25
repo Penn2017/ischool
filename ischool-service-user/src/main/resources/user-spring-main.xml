@@ -24,5 +24,7 @@
     <!--开启基于注解的事务驱动-->
     <tx:annotation-driven transaction-manager="transactionManager"/>
 
+    <!--暴露服务-->
+    <import resource="classpath*:dubbo-provider.xml"/>
 
 </beans>
