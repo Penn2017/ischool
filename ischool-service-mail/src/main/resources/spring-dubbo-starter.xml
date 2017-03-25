@@ -19,6 +19,8 @@
     <!-- 当ProtocolConfig和ServiceConfig某属性没有配置时,采用此缺省值 -->
     <dubbo:provider timeout="10000" threadpool="fixed" threads="100" accepts="1000" />
 
+
+
     <!-- 暴露redis接口 -->
-    <dubbo:service retries="0" interface="com.imis.jxufe.facade.SenderMailServiceFacade" ref="SenderMailService" />
+    <dubbo:service retries="0" interface="com.imis.jxufe.mail.facade.impl.SenderMailServiceImpl" ref="SenderMailService" />
 </beans>
