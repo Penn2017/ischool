@@ -1,10 +1,12 @@
 package com.imis.jxufe.model;
 
+import java.io.Serializable;
+
 /**
  * @author zhongping
  * @date 2017/3/25
  */
-public class Constant {
+public class Constant  implements Serializable {
 
     //所有已经注册人的邮箱
     public static final String ALL_MAIL_SET ="all_mail_set" ;
