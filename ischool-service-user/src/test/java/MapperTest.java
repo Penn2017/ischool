@@ -1,7 +1,4 @@
 import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 /**
  * @author zhongping
@@ -9,8 +6,8 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
  */
 
 
-@RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = "classpath:user-spring-main.xml")
+//@RunWith(SpringJUnit4ClassRunner.class)
+//@ContextConfiguration(locations = "classpath:user-spring-main.xml")
 public class MapperTest {
 
 
