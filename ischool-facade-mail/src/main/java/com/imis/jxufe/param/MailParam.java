@@ -3,6 +3,8 @@
  */
 package com.imis.jxufe.param;
 
+import java.io.Serializable;
+
 /**
  * 
  * @描述: 邮件参数封装类 .
@@ -10,7 +12,7 @@ package com.imis.jxufe.param;
  * @创建时间:  now
  * @版本号: V1.0 .
  */
-public class MailParam {
+public class MailParam  implements Serializable{
 
 	/** 发件人 **/
 	private String from;
