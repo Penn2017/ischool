@@ -7,15 +7,12 @@ import com.imis.jxufe.user.facade.UserServiceFacade;
 import com.imis.jxufe.user.mapper.UserMapper;
 import com.imis.jxufe.utils.IdWorker;
 import org.apache.commons.codec.digest.DigestUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
-import java.time.LocalDateTime;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 /**
  * 用户服务接口实现
@@ -33,7 +30,7 @@ public class UserServiceFacadeImpl implements UserServiceFacade {
      * reids服务
      */
 
-    @Resource
+   @Autowired
     private UserMapper userMapper;
 
     /**
@@ -67,7 +64,7 @@ public class UserServiceFacadeImpl implements UserServiceFacade {
         }
         //密码加密
         String encodingPasswd = new String(DigestUtils.md5(passwd));
-        LocalDateTime now = LocalDateTime.now();
+        Date now = new Date();
         //创建user
         IschoolUser ischoolUser = new IschoolUser(email, name, encodingPasswd, now, now);
         //设置账户未激活

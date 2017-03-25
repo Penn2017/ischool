@@ -8,7 +8,7 @@
     <!--统一读入配置文件-->
     <context:property-placeholder location="classpath:db/db.properties,classpath*:dubbo/dubbo.properties" file-encoding="UTF-8"  />
 
-    <!--导入duboo服务 redis服务，mail服务-->
+    <!--&lt;!&ndash;导入duboo服务 redis服务，mail服务&ndash;&gt;-->
     <import resource="classpath*:dubbo-consumer.xml"/>
     <!--创建mybatis-dao-->
     <import resource="classpath:mybatis/spring-mybatis.xml"/>
@@ -24,7 +24,7 @@
     <!--开启基于注解的事务驱动-->
     <tx:annotation-driven transaction-manager="transactionManager"/>
 
-    <!--暴露服务-->
+    <!--&lt;!&ndash;暴露服务&ndash;&gt;-->
     <import resource="classpath*:dubbo-provider.xml"/>
 
 </beans>
