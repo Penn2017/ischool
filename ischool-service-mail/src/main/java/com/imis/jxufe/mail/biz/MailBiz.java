@@ -97,6 +97,7 @@ public class MailBiz {
                 Session session = Session.getDefaultInstance(p, new Authenticator() {
                     @Override
                     protected PasswordAuthentication getPasswordAuthentication() {
+                        passwordAuthentication = new PasswordAuthentication("penn2017@163.com","callme49tj");
                         logger.debug("-----------------passwordAuthentication:"+(passwordAuthentication==null));
                         return passwordAuthentication;
                     }

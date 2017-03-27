@@ -1,4 +1,5 @@
 import com.sun.mail.util.MailSSLSocketFactory;
+import org.junit.Test;
 
 import javax.activation.DataHandler;
 import javax.activation.FileDataSource;
@@ -20,7 +21,7 @@ import java.util.Properties;
  */
 public class DemoTest {
 
-   // @Test//发送没有附件的邮件
+    @Test//发送没有附件的邮件
     public void send1() throws Exception{
         //跟smtp服务器建立一个连接
         Properties p = new Properties();
