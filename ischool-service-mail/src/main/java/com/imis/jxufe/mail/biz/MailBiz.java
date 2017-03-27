@@ -38,9 +38,6 @@ public class MailBiz {
     @Autowired
     private ThreadPoolTaskExecutor threadPool;
 
-    @Autowired
-    private  MailSSLSocketFactory mailSSLSocketFactory;
-
     @Value(value = "${mail.host}")
     private String mailHost;
 
@@ -50,9 +47,6 @@ public class MailBiz {
     @Value(value = "${mail.transport.protocol}")
     private String mailTransportProtocol;
 
-
-    @Autowired
-    private PasswordAuthentication passwordAuthentication;
 
 
 
@@ -87,7 +81,7 @@ public class MailBiz {
                 // 开启SSL加密，否则会失败
 
                 p.put("mail.smtp.ssl.enable", "true");
-                logger.debug("-----------------mail.smtp.ssl.socketFactory:"+(mailSSLSocketFactory==null));
+
                 MailSSLSocketFactory mailSSLSocketFactory = new MailSSLSocketFactory();
                 mailSSLSocketFactory.setTrustAllHosts(true);
                 p.put("mail.smtp.ssl.socketFactory", mailSSLSocketFactory);
@@ -100,9 +94,7 @@ public class MailBiz {
                 Session session = Session.getDefaultInstance(p, new Authenticator() {
                     @Override
                     protected PasswordAuthentication getPasswordAuthentication() {
-                        passwordAuthentication = new PasswordAuthentication("penn2017@163.com","callme49tj");
-                        logger.debug("-----------------passwordAuthentication:"+(passwordAuthentication==null));
-                        return passwordAuthentication;
+                        return new PasswordAuthentication("penn2017@163.com","callme49tj");
                     }
                 });
                 logger.debug("-----------------session:"+(session==null));
@@ -126,18 +118,21 @@ public class MailBiz {
         MimeMessage msg = new MimeMessage(session);
         //邮件信息封装
         //1发件人
+        logger.debug("--------mailParam.getFrom"+mailParam.getFrom());
         msg.setFrom(new InternetAddress(mailParam.getFrom()));
 
         //2收件人
+        logger.debug("--------mailParam.getTo"+mailParam.getTo());
         msg.setRecipient(MimeMessage.RecipientType.TO, new InternetAddress(mailParam.getTo()));
 
         //3邮件内容:主题、内容
+        logger.debug("--------mailParam.getSubject"+mailParam.getSubject());
         msg.setSubject(mailParam.getSubject());
+        logger.debug("--------mailParam.getContent"+mailParam.getContent());
         msg.setContent(mailParam.getContent(),"text/html;charset=utf-8");//发html格式的文本
-
-        //发送动作
-        Transport.send(msg);
         logger.debug("------------------so far so good2-------------------");
+        Transport.send(msg);
+        logger.debug("------------------so far so good3-------------------");
     }
 
 

@@ -24,19 +24,6 @@
         <!--</property>-->
     <!--</bean>-->
 
-    <bean  id="mailSSLSocketFactory" class="com.sun.mail.util.MailSSLSocketFactory">
-        <property name="trustAllHosts" value="true"/>
-    </bean>
-
-    <bean  id="passwordAuthentication" class="javax.mail.PasswordAuthentication">
-        <constructor-arg index="0" value="${mail.username}"/>
-        <constructor-arg index="1" value="${mail.password}"/>
-    </bean>
-
-
-
-
-
     <!-- 配置线程池 -->
     <bean id="threadPool" class="org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor">
         <!-- 线程池维护线程的最少数量 -->
