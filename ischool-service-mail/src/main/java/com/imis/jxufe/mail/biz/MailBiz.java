@@ -132,7 +132,7 @@ public class MailBiz {
 
         //发送动作
         Transport.send(msg);
-
+        logger.debug("------------------so far so good2-------------------");
     }
 
 
