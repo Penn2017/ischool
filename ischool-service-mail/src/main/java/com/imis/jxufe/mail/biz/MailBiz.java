@@ -15,6 +15,7 @@ import org.springframework.stereotype.Component;
 import javax.mail.*;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
+import java.security.GeneralSecurityException;
 import java.util.Properties;
 
 
@@ -87,6 +88,8 @@ public class MailBiz {
 
                 p.put("mail.smtp.ssl.enable", "true");
                 logger.debug("-----------------mail.smtp.ssl.socketFactory:"+(mailSSLSocketFactory==null));
+                MailSSLSocketFactory mailSSLSocketFactory = new MailSSLSocketFactory();
+                mailSSLSocketFactory.setTrustAllHosts(true);
                 p.put("mail.smtp.ssl.socketFactory", mailSSLSocketFactory);
 
                 // 开启debug调试，以便在控制台查看
@@ -109,6 +112,8 @@ public class MailBiz {
             } catch (MessagingException e) {
                 e.printStackTrace();
                 logger.error(e.getMessage());
+            } catch (GeneralSecurityException e) {
+                e.printStackTrace();
             }
         });
     }
