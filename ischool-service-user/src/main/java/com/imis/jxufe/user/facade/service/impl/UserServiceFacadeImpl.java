@@ -73,6 +73,7 @@ public class UserServiceFacadeImpl implements UserServiceFacade {
         //密码加密
         String encodingPasswd = null;
         try {
+            logger.debug("===================> passwd:"+passwd);
             encodingPasswd = new String(DigestUtils.md5(passwd),"UTF-8");
         } catch (UnsupportedEncodingException e) {
             logger.error(e.getMessage());
