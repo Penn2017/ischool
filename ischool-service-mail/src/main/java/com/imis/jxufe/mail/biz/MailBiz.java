@@ -12,10 +12,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 import org.springframework.stereotype.Component;
 
-import javax.mail.Authenticator;
-import javax.mail.PasswordAuthentication;
-import javax.mail.Session;
-import javax.mail.Transport;
+import javax.mail.*;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import java.util.Properties;
@@ -104,15 +101,16 @@ public class MailBiz {
                 //发送邮件
                  doSendMail(session,mailParam);
 
-            } catch (Exception e) {
+            } catch (MessagingException e) {
                 e.printStackTrace();
                 logger.error(e.getMessage());
             }
         });
     }
 
-    private void doSendMail(Session session, MailParam mailParam) throws Exception {
+    private void doSendMail(Session session, MailParam mailParam) throws MessagingException {
         logger.debug("------------------so far so good-------------------");
+        logger.debug("------------------mail:-------------------"+mailParam);
         session.setDebug(true);//设置打开调试状态
         //声明一个Message对象(代表一封邮件),从session中创建
         MimeMessage msg = new MimeMessage(session);
