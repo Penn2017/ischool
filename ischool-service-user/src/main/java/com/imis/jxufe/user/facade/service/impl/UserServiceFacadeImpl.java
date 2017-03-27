@@ -7,6 +7,7 @@ import com.imis.jxufe.redis.facade.RedisServiceFacade;
 import com.imis.jxufe.user.facade.UserServiceFacade;
 import com.imis.jxufe.user.mapper.UserMapper;
 import com.imis.jxufe.utils.IdWorker;
+import com.imis.jxufe.utils.NickImageUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -83,6 +84,9 @@ public class UserServiceFacadeImpl implements UserServiceFacade {
         IschoolUser ischoolUser = new IschoolUser(email, name, encodingPasswd, now, now);
         //设置用户类型
         ischoolUser.setType(type);
+        //TODO:头像问题
+        //设置随机头像
+        ischoolUser.setImage(NickImageUtils.getRandomNickPic());
         //设置账户未激活
         ischoolUser.setState(0);
         //生成激活key
@@ -122,7 +126,7 @@ public class UserServiceFacadeImpl implements UserServiceFacade {
             user.setPasswd(null);
             //存入redis
             //30分钟有效期
-            redisServiceFacade.setexpire(userKey, gson.toJson(user), 60 * 30);
+            redisServiceFacade.setexpire(userKey, gson.toJson(user), Constant.USER_LOGIN_VALIDTE_TIME);
             return userKey;
         }
         return Constant.USERNAME_OR_PASSWD_ERRO;

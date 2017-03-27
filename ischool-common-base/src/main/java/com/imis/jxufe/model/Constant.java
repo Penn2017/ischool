@@ -8,6 +8,7 @@ import java.io.Serializable;
  */
 public class Constant  implements Serializable {
 
+
     private Constant() {
         /***
          * empty private constant.
@@ -18,6 +19,10 @@ public class Constant  implements Serializable {
     public static final String ALL_MAIL_SET ="all_mail_set" ;
     public static final String USERNAME_OR_PASSWD_ERRO = "username_or_passwd_erro";
     public static String USER_IS_EXIST="user_is_exist";
+    public static Integer USER_LOGIN_VALIDTE_TIME = 60 * 30;
+
+
+    private static String LOG_URL = "http://oli0puuwc.bkt.clouddn.com/logo.png";
 
 
     public static String URL_PLACEHOLDER = "urlpalceholder9988";
@@ -25,7 +30,7 @@ public class Constant  implements Serializable {
             "<html>欢迎您注册ischool，请在2天内点击下面链接激活账号。<br/><a href=\""
                     + URL_PLACEHOLDER
                     + "\">"+URL_PLACEHOLDER+"</a><br/><br/><br/>"
-                    +"<img src=\"http://oli0puuwc.bkt.clouddn.com/logo.png\"/><br/>"
+                    +"<img src=\""+LOG_URL+"\"/><br/>"
                     +"【<b>Join class anytime ,anywhere | ISchool.</b>】</html>";
 
     /**
@@ -33,4 +38,5 @@ public class Constant  implements Serializable {
      */
     public static Long USER_KEY_LIVE_TIME=60 * 60 * 24 * 2L;
 
+    public static String USER_TOKEN="userToken";
 }

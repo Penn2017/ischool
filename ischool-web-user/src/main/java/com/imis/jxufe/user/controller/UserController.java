@@ -125,7 +125,7 @@ public class UserController {
 
             IschoolUser user=redisService.getObject(userToken, IschoolUser.class);
             Map<String, Object> params = result.getParams();
-            params.put("userToken", userToken);
+            params.put(Constant.USER_TOKEN, userToken);
             user.setPasswd(null);
             params.put("user", user);
         }

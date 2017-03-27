@@ -11,6 +11,18 @@
         <context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
     </context:component-scan>
 
+    <!-- 自定义拦截链配置 -->
+    <mvc:interceptors>
+        <mvc:interceptor>
+            <mvc:mapping path="/user/**"/>
+            <mvc:exclude-mapping path="/user/login"/>
+            <mvc:exclude-mapping path="/user/preRegist"/>
+            <mvc:exclude-mapping path="/user/enableUser"/>
+            <mvc:exclude-mapping path="/user/userIsLogin"/>
+            <bean class="com.imis.jxufe.interceptors.LoginValidateInterceptor"></bean>
+        </mvc:interceptor>
+    </mvc:interceptors>
+
     <!-- MVC注解驱动 -->
     <mvc:annotation-driven>
         <!-- 采用自定义方案 -->
