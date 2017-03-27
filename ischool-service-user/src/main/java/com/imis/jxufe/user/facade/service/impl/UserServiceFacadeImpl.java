@@ -15,6 +15,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
+import java.io.UnsupportedEncodingException;
 import java.util.*;
 
 /**
@@ -70,7 +71,12 @@ public class UserServiceFacadeImpl implements UserServiceFacade {
             return Constant.USER_IS_EXIST;
         }
         //密码加密
-        String encodingPasswd = new String(DigestUtils.md5(passwd));
+        String encodingPasswd = null;
+        try {
+            encodingPasswd = new String(DigestUtils.md5(passwd),"UTF-8");
+        } catch (UnsupportedEncodingException e) {
+            logger.error(e.getMessage());
+        }
         logger.debug("===================>encoding passwd:"+encodingPasswd);
         Date now = new Date();
         //创建user
