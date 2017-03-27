@@ -75,8 +75,10 @@ public class MailBiz {
                 //跟smtp服务器建立一个连接
                 Properties p = new Properties();
                 // 设置邮件服务器主机名
+                logger.debug("-----------------mail.host:"+mailHost);
                 p.setProperty("mail.host", mailHost);//指定邮件服务器，默认端口 25
                 // 发送服务器需要身份验证
+                logger.debug("-----------------mail.smtp.auth:"+mailSmtpAuth);
                 p.setProperty("mail.smtp.auth", mailSmtpAuth);//要采用指定用户名密码的方式去认证
                 // 发送邮件协议名称
                 p.setProperty("mail.transport.protocol", mailTransportProtocol);
@@ -84,6 +86,7 @@ public class MailBiz {
                 // 开启SSL加密，否则会失败
 
                 p.put("mail.smtp.ssl.enable", "true");
+                logger.debug("-----------------mail.smtp.ssl.socketFactory:"+(mailSSLSocketFactory==null));
                 p.put("mail.smtp.ssl.socketFactory", mailSSLSocketFactory);
 
                 // 开启debug调试，以便在控制台查看
@@ -94,6 +97,7 @@ public class MailBiz {
                 Session session = Session.getDefaultInstance(p, new Authenticator() {
                     @Override
                     protected PasswordAuthentication getPasswordAuthentication() {
+                        logger.debug("-----------------passwordAuthentication:"+(passwordAuthentication==null));
                         return passwordAuthentication;
                     }
                 });
