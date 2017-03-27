@@ -8,6 +8,8 @@ import com.imis.jxufe.user.facade.UserServiceFacade;
 import com.imis.jxufe.user.mapper.UserMapper;
 import com.imis.jxufe.utils.IdWorker;
 import org.apache.commons.codec.digest.DigestUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
@@ -41,6 +43,7 @@ public class UserServiceFacadeImpl implements UserServiceFacade {
      * id生成器
      */
     private IdWorker idWorker = new IdWorker(1, 0);
+    private static Logger logger = LoggerFactory.getLogger(UserServiceFacadeImpl.class);
 
 
     @Override
@@ -68,6 +71,7 @@ public class UserServiceFacadeImpl implements UserServiceFacade {
         }
         //密码加密
         String encodingPasswd = new String(DigestUtils.md5(passwd));
+        logger.debug("===================>encoding passwd:"+encodingPasswd);
         Date now = new Date();
         //创建user
         IschoolUser ischoolUser = new IschoolUser(email, name, encodingPasswd, now, now);
