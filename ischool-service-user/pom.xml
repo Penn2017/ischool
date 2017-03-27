@@ -51,6 +51,12 @@
             <artifactId>commons-codec</artifactId>
         </dependency>
 
+        <!-- gson -->
+        <dependency>
+            <groupId>com.google.code.gson</groupId>
+            <artifactId>gson</artifactId>
+        </dependency>
+
         <!-- dubbo 需要的jar start -->
         <!-- 连接池 -->
         <dependency>

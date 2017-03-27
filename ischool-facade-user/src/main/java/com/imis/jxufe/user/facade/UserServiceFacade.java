@@ -34,7 +34,11 @@ public interface UserServiceFacade {
      */
      String preCreateUser(String email, String name, String passwd,Integer type);
 
-
-
-
+    /**
+     * 用户登录接口
+     * @param userName
+     * @param passwd
+     * @return
+     */
+     String login(String userName, String passwd);
 }

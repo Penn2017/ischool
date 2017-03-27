@@ -1,5 +1,6 @@
 package com.imis.jxufe.user.facade.service.impl;
 
+import com.google.gson.Gson;
 import com.imis.jxufe.model.Constant;
 import com.imis.jxufe.model.IschoolUser;
 import com.imis.jxufe.redis.facade.RedisServiceFacade;
@@ -26,6 +27,9 @@ public class UserServiceFacadeImpl implements UserServiceFacade {
 
     @Resource(name = "redisServiceFacade")
     private RedisServiceFacade redisServiceFacade;
+
+    private Gson gson=new Gson();
+
     /**
      * reids服务
      */
@@ -89,4 +93,26 @@ public class UserServiceFacadeImpl implements UserServiceFacade {
         return resutl;
     }
 
+    @Override
+    @Transactional(readOnly = true)
+    public String login(String email, String passwd) {
+        //密码加密
+        String encodingPasswd = new String(DigestUtils.md5(passwd));
+
+        IschoolUser user = new IschoolUser();
+        user.setEmail(email);
+        user.setPasswd(encodingPasswd);
+
+        user = userMapper.selectOne(user);
+        if (user!=null) {
+            String userKey="LOGIN_USER_"+idWorker.nextId();
+            //序列化,
+            user.setPasswd(null);
+            //存入redis
+            //30分钟有效期
+            redisServiceFacade.setexpire(userKey,gson.toJson(user), 60 * 30);
+            return userKey;
+        }
+        return Constant.USERNAME_OR_PASSWD_ERRO;
+    }
 }
