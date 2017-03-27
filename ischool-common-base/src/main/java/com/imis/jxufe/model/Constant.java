@@ -22,7 +22,11 @@ public class Constant  implements Serializable {
 
     public static String URL_PLACEHOLDER = "urlpalceholder9988";
     public static String MAIL_CONTENT=
-            "<html>欢迎您注册ischool，请在2天内点击链接激活账号。<br/>" + URL_PLACEHOLDER + "<br/>【<b>Join class anytime ,anywhere | ISchool.</b>】<img src=\"http://oli0puuwc.bkt.clouddn.com/logo.png\"/></html>";
+            "<html>欢迎您注册ischool，请在2天内点击下面链接激活账号。<br/><a href=\""
+                    + URL_PLACEHOLDER
+                    + "\">"+URL_PLACEHOLDER+"</a><br/><br/><br/>"
+                    +"<img src=\"http://oli0puuwc.bkt.clouddn.com/logo.png\"/><br/>"
+                    +"【<b>Join class anytime ,anywhere | ISchool.</b>】</html>";
 
     /**
      * 用户预注册时候key存活时间

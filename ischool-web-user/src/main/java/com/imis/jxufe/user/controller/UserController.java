@@ -100,6 +100,8 @@ public class UserController {
             //创建用户
             userService.createUser(user);
             result = new ResponseEntity(200,"用户已经激活");
+
+            redisService.del(enableKey);
         }
         return result;
     }
