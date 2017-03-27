@@ -117,6 +117,7 @@ public class RedisServiceFacadeImpl implements RedisServiceFacade {
     public <T> T getObject(final String key, Class<T> clazz) {
         T value = null;
         String result = this.get(key);
+        logger.debug("=============redis key-value:" + key + "--->" + result);
         if (result != null) {
             value = gson.fromJson(result, clazz);
         }
