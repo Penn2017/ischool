@@ -21,7 +21,8 @@ public class Constant  implements Serializable {
 
 
     public static String URL_PLACEHOLDER = "urlpalceholder9988";
-    public static String MAIL_CONTENT = "欢迎您注册ischool，请在2天内点击链接激活账号。 \n \n"+URL_PLACEHOLDER+"\n \n【Join class anytime ,anywhere | ISchool.】";
+    public static String MAIL_CONTENT=
+            "<html>欢迎您注册ischool，请在2天内点击链接激活账号。<br/>" + URL_PLACEHOLDER + "<br/>【<b>Join class anytime ,anywhere | ISchool.</b>】<img src=\"http://oli0puuwc.bkt.clouddn.com/logo.png\"/></html>";
 
     /**
      * 用户预注册时候key存活时间
