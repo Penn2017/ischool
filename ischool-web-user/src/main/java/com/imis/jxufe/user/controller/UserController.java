@@ -1,9 +1,9 @@
 package com.imis.jxufe.user.controller;
 
 import com.imis.jxufe.facade.SenderMailServiceFacade;
-import com.imis.jxufe.model.Constant;
-import com.imis.jxufe.model.IschoolUser;
-import com.imis.jxufe.model.ResponseEntity;
+import com.imis.jxufe.base.model.Constant;
+import com.imis.jxufe.base.model.IschoolUser;
+import com.imis.jxufe.base.model.ResponseEntity;
 import com.imis.jxufe.param.MailParam;
 import com.imis.jxufe.redis.facade.RedisServiceFacade;
 import com.imis.jxufe.user.facade.UserServiceFacade;

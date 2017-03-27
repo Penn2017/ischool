@@ -1,4 +1,4 @@
-package com.imis.jxufe.model;
+package com.imis.jxufe.base.model;
 
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;

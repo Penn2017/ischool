@@ -1,6 +1,6 @@
 package com.imis.jxufe.user.mapper;
 
-import com.imis.jxufe.model.IschoolUser;
+import com.imis.jxufe.base.model.IschoolUser;
 import tk.mybatis.mapper.common.Mapper;
 
 /**

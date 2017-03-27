@@ -32,7 +32,7 @@
                 <constructor-arg index="0" value="UTF-8"/>
             </bean>
             <!-- 定义json转化器，支持json跨域 -->
-            <bean class="com.imis.jxufe.utils.CallbackMappingJackson2HttpMessageConverter">
+            <bean class="com.imis.jxufe.base.utils.CallbackMappingJackson2HttpMessageConverter">
                 <!-- 跨域请求中的请求参数名 -->
                 <property name="callbackName" value="callback"></property>
             </bean>

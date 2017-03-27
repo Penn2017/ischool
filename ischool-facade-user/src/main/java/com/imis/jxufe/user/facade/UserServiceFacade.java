@@ -1,6 +1,6 @@
 package com.imis.jxufe.user.facade;
 
-import com.imis.jxufe.model.IschoolUser;
+import com.imis.jxufe.base.model.IschoolUser;
 
 import java.util.Map;
 

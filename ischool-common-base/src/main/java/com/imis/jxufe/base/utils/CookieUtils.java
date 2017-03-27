@@ -1,4 +1,4 @@
-package com.imis.jxufe.utils;
+package com.imis.jxufe.base.utils;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

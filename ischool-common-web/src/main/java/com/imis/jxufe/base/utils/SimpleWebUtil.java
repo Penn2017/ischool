@@ -1,4 +1,4 @@
-package com.imis.jxufe.utils;
+package com.imis.jxufe.base.utils;
 
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.web.context.request.RequestContextHolder;

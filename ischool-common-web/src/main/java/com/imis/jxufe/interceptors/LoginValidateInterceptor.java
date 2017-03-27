@@ -1,8 +1,8 @@
 package com.imis.jxufe.interceptors;
 
 import com.google.gson.Gson;
-import com.imis.jxufe.model.Constant;
-import com.imis.jxufe.model.ResponseEntity;
+import com.imis.jxufe.base.model.Constant;
+import com.imis.jxufe.base.model.ResponseEntity;
 import com.imis.jxufe.redis.facade.RedisServiceFacade;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.servlet.HandlerInterceptor;

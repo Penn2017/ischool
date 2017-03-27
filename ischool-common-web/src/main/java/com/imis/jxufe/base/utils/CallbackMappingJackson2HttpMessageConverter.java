@@ -1,4 +1,4 @@
-package com.imis.jxufe.utils;
+package com.imis.jxufe.base.utils;
 
 import com.fasterxml.jackson.core.JsonEncoding;
 import com.fasterxml.jackson.core.JsonProcessingException;

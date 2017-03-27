@@ -1,13 +1,13 @@
 package com.imis.jxufe.user.facade.service.impl;
 
 import com.google.gson.Gson;
-import com.imis.jxufe.model.Constant;
-import com.imis.jxufe.model.IschoolUser;
+import com.imis.jxufe.base.model.Constant;
+import com.imis.jxufe.base.model.IschoolUser;
 import com.imis.jxufe.redis.facade.RedisServiceFacade;
 import com.imis.jxufe.user.facade.UserServiceFacade;
 import com.imis.jxufe.user.mapper.UserMapper;
-import com.imis.jxufe.utils.IdWorker;
-import com.imis.jxufe.utils.NickImageUtils;
+import com.imis.jxufe.base.utils.IdWorker;
+import com.imis.jxufe.base.utils.NickImageUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

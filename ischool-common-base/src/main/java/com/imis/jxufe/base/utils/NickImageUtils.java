@@ -1,4 +1,4 @@
-package com.imis.jxufe.utils;
+package com.imis.jxufe.base.utils;
 
 import java.util.Random;
 
