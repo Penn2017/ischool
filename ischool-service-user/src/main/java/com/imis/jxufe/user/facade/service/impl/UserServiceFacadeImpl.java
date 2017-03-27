@@ -15,7 +15,6 @@ import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
-import java.io.UnsupportedEncodingException;
 import java.util.*;
 
 /**
@@ -31,13 +30,13 @@ public class UserServiceFacadeImpl implements UserServiceFacade {
     @Resource(name = "redisServiceFacade")
     private RedisServiceFacade redisServiceFacade;
 
-    private Gson gson=new Gson();
+    private Gson gson = new Gson();
 
     /**
      * reids服务
      */
 
-   @Autowired
+    @Autowired
     private UserMapper userMapper;
 
     /**
@@ -62,7 +61,7 @@ public class UserServiceFacadeImpl implements UserServiceFacade {
         return count > 0;
     }
 
-    public String preCreateUser(String email, String name, String passwd,Integer type) {
+    public String preCreateUser(String email, String name, String passwd, Integer type) {
         Map<String, Object> resutl = new HashMap();
 
         //验证邮箱
@@ -72,13 +71,10 @@ public class UserServiceFacadeImpl implements UserServiceFacade {
         }
         //密码加密
         String encodingPasswd = null;
-        try {
-            logger.debug("===================> passwd:"+passwd);
-            encodingPasswd = new String(DigestUtils.md5(passwd),"UTF-8");
-        } catch (UnsupportedEncodingException e) {
-            logger.error(e.getMessage());
-        }
-        logger.debug("===================>encoding passwd:"+encodingPasswd);
+
+        logger.debug("===================> passwd:" + passwd);
+        encodingPasswd = DigestUtils.md5Hex(passwd);
+        logger.debug("===================>encoding passwd:" + encodingPasswd);
         Date now = new Date();
         //创建user
         IschoolUser ischoolUser = new IschoolUser(email, name, encodingPasswd, now, now);
@@ -115,13 +111,13 @@ public class UserServiceFacadeImpl implements UserServiceFacade {
         user.setPasswd(encodingPasswd);
 
         user = userMapper.selectOne(user);
-        if (user!=null) {
-            String userKey="LOGIN_USER_"+idWorker.nextId();
+        if (user != null) {
+            String userKey = "LOGIN_USER_" + idWorker.nextId();
             //序列化,
             user.setPasswd(null);
             //存入redis
             //30分钟有效期
-            redisServiceFacade.setexpire(userKey,gson.toJson(user), 60 * 30);
+            redisServiceFacade.setexpire(userKey, gson.toJson(user), 60 * 30);
             return userKey;
         }
         return Constant.USERNAME_OR_PASSWD_ERRO;
