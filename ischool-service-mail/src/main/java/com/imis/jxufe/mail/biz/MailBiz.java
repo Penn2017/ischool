@@ -112,6 +112,7 @@ public class MailBiz {
     }
 
     private void doSendMail(Session session, MailParam mailParam) throws Exception {
+        logger.debug("------------------so far so good-------------------");
         session.setDebug(true);//设置打开调试状态
         //声明一个Message对象(代表一封邮件),从session中创建
         MimeMessage msg = new MimeMessage(session);
