@@ -101,7 +101,7 @@ public class MailBiz {
                         return passwordAuthentication;
                     }
                 });
-
+                logger.debug("-----------------session:"+(session==null));
                 //发送邮件
                  doSendMail(session,mailParam);
 
