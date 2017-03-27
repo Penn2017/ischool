@@ -15,7 +15,6 @@ import org.springframework.stereotype.Component;
 import javax.mail.*;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
-import java.security.GeneralSecurityException;
 import java.util.Properties;
 
 
@@ -38,6 +37,9 @@ public class MailBiz {
     @Autowired
     private ThreadPoolTaskExecutor threadPool;
 
+    @Autowired
+    private  MailSSLSocketFactory mailSSLSocketFactory;
+
     @Value(value = "${mail.host}")
     private String mailHost;
 
@@ -47,6 +49,9 @@ public class MailBiz {
     @Value(value = "${mail.transport.protocol}")
     private String mailTransportProtocol;
 
+
+    @Autowired
+    private PasswordAuthentication passwordAuthentication;
 
 
 
@@ -81,9 +86,7 @@ public class MailBiz {
                 // 开启SSL加密，否则会失败
 
                 p.put("mail.smtp.ssl.enable", "true");
-
-                MailSSLSocketFactory mailSSLSocketFactory = new MailSSLSocketFactory();
-                mailSSLSocketFactory.setTrustAllHosts(true);
+                logger.debug("-----------------mail.smtp.ssl.socketFactory:"+(mailSSLSocketFactory==null));
                 p.put("mail.smtp.ssl.socketFactory", mailSSLSocketFactory);
 
                 // 开启debug调试，以便在控制台查看
@@ -94,18 +97,17 @@ public class MailBiz {
                 Session session = Session.getDefaultInstance(p, new Authenticator() {
                     @Override
                     protected PasswordAuthentication getPasswordAuthentication() {
-                        return new PasswordAuthentication("penn2017@163.com","callme49tj");
+                        logger.debug("-----------------mail.smtp.ssl.socketFactory:"+(passwordAuthentication==null));
+                        return passwordAuthentication;
                     }
                 });
-                logger.debug("-----------------session:"+(session==null));
+
                 //发送邮件
                  doSendMail(session,mailParam);
 
             } catch (MessagingException e) {
                 e.printStackTrace();
                 logger.error(e.getMessage());
-            } catch (GeneralSecurityException e) {
-                e.printStackTrace();
             }
         });
     }
@@ -118,21 +120,18 @@ public class MailBiz {
         MimeMessage msg = new MimeMessage(session);
         //邮件信息封装
         //1发件人
-        logger.debug("--------mailParam.getFrom"+mailParam.getFrom());
-        msg.setFrom(new InternetAddress(mailParam.getFrom()));
+        msg.setFrom(new InternetAddress(passwordAuthentication.getUserName()));
 
         //2收件人
-        logger.debug("--------mailParam.getTo"+mailParam.getTo());
         msg.setRecipient(MimeMessage.RecipientType.TO, new InternetAddress(mailParam.getTo()));
 
         //3邮件内容:主题、内容
-        logger.debug("--------mailParam.getSubject"+mailParam.getSubject());
         msg.setSubject(mailParam.getSubject());
-        logger.debug("--------mailParam.getContent"+mailParam.getContent());
         msg.setContent(mailParam.getContent(),"text/html;charset=utf-8");//发html格式的文本
-        logger.debug("------------------so far so good2-------------------");
+
+        //发送动作
         Transport.send(msg);
-        logger.debug("------------------so far so good3-------------------");
+
     }
 
 

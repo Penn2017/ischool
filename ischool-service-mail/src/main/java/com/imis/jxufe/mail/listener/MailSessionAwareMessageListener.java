@@ -22,10 +22,7 @@ import javax.jms.Session;
 @Component("mailSessionAwareMessageListener")
 public class MailSessionAwareMessageListener implements SessionAwareMessageListener {
     private static final Log LOGGER = LogFactory.getLog(MailSessionAwareMessageListener.class);
-
     private Gson gson = new Gson();
-
-
     @Autowired
     private MailBiz bailBiz;
 
