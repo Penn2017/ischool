@@ -3,22 +3,19 @@ package com.imis.jxufe.user.facade.service.impl;
 import com.google.gson.Gson;
 import com.imis.jxufe.base.model.Constant;
 import com.imis.jxufe.base.model.IschoolUser;
+import com.imis.jxufe.base.utils.IdWorker;
+import com.imis.jxufe.base.utils.MD5Utils;
+import com.imis.jxufe.base.utils.NickImageUtils;
 import com.imis.jxufe.redis.facade.RedisServiceFacade;
 import com.imis.jxufe.user.facade.UserServiceFacade;
 import com.imis.jxufe.user.mapper.UserMapper;
-import com.imis.jxufe.base.utils.IdWorker;
-import com.imis.jxufe.base.utils.NickImageUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
-import sun.misc.BASE64Encoder;
 
 import javax.annotation.Resource;
-import java.io.UnsupportedEncodingException;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
 import java.util.*;
 
 /**
@@ -77,7 +74,7 @@ public class UserServiceFacadeImpl implements UserServiceFacade {
         String encodingPasswd = null;
 
         logger.debug("===================> passwd:" + passwd);
-        encodingPasswd=encodMD5(passwd);
+        encodingPasswd=MD5Utils.encodMD5(passwd);
         logger.debug("===================>encoding passwd:" + encodingPasswd);
         Date now = new Date();
         //创建user
@@ -113,7 +110,7 @@ public class UserServiceFacadeImpl implements UserServiceFacade {
     @Transactional(readOnly = true)
     public String login(String email, String passwd) {
         //密码加密
-        String encodingPasswd = new String(encodMD5(passwd));
+        String encodingPasswd = new String(MD5Utils.encodMD5(passwd));
 
         IschoolUser user = new IschoolUser();
         user.setEmail(email);
@@ -132,27 +129,5 @@ public class UserServiceFacadeImpl implements UserServiceFacade {
         return Constant.USERNAME_OR_PASSWD_ERRO;
     }
 
-    /**
-     * 密码加密
-     * @param passwd
-     * @return
-     */
-    private String encodMD5(String passwd) {
-        String encodingPasswd=null;
-        //确定计算方法
-        MessageDigest md5= null;
-        try {
-            md5 = MessageDigest.getInstance("MD5");
-        } catch (NoSuchAlgorithmException e) {
-            logger.debug(e.getMessage());
-        }
-        BASE64Encoder base64en = new BASE64Encoder();
-        //加密后的字符串
-        try {
-            encodingPasswd=base64en.encode(md5.digest(passwd.getBytes("utf-8")));
-        } catch (UnsupportedEncodingException e) {
-            logger.debug(e.getMessage());
-        }
-        return encodingPasswd;
-    }
+
 }
