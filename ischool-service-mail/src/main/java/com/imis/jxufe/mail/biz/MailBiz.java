@@ -105,6 +105,7 @@ public class MailBiz {
                  doSendMail(session,mailParam);
 
             } catch (Exception e) {
+                e.printStackTrace();
                 logger.error(e.getMessage());
             }
         });
