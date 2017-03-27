@@ -110,6 +110,7 @@ public class RedisServiceFacadeImpl implements RedisServiceFacade {
             return false;
         }
         String value = gson.toJson(src);
+        logger.debug("===============序列化之后的json"+value);
         return this.setexpire(key, value, seconds);
     }
 
