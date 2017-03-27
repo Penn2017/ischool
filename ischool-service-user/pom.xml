@@ -37,7 +37,11 @@
             <artifactId>ischool-facade-user</artifactId>
             <version>${ischool-facade-user.version}</version>
         </dependency>
-
+        <dependency>
+            <groupId>com.imis.jxufe</groupId>
+            <artifactId>ischool-common-base</artifactId>
+            <version>1.0</version>
+        </dependency>
 
         <!--引入redis服务！-->
         <dependency>
