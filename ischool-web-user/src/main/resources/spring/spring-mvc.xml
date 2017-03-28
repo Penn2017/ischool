@@ -23,6 +23,13 @@
         </mvc:interceptor>
     </mvc:interceptors>
 
+    <!--配置视图解析器-->
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="prefix" value="/WEB-INF/content/" />
+        <property name="suffix" value=".jsp" />
+    </bean>
+
+
     <!-- MVC注解驱动 -->
     <mvc:annotation-driven>
         <!-- 采用自定义方案 -->

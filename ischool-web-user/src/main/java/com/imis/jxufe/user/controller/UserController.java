@@ -1,16 +1,18 @@
 package com.imis.jxufe.user.controller;
 
-import com.imis.jxufe.facade.SenderMailServiceFacade;
 import com.imis.jxufe.base.model.Constant;
 import com.imis.jxufe.base.model.IschoolUser;
 import com.imis.jxufe.base.model.ResponseEntity;
+import com.imis.jxufe.facade.SenderMailServiceFacade;
 import com.imis.jxufe.param.MailParam;
 import com.imis.jxufe.redis.facade.RedisServiceFacade;
 import com.imis.jxufe.user.facade.UserServiceFacade;
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.annotation.Resource;
 import java.time.LocalDateTime;
@@ -23,7 +25,7 @@ import java.util.function.Function;
  * @author zhongping
  * @date 2017/3/25
  */
-@RestController
+@Controller
 public class UserController {
 
 
@@ -44,6 +46,7 @@ public class UserController {
 
 
     @RequestMapping("/preRegist")
+    @ResponseBody
     public ResponseEntity preRegist(@RequestParam(name = "email")String email,
                                     @RequestParam(name = "name") String name,
                                     @RequestParam(name = "passwd")String passwd,Integer type){
@@ -64,7 +67,7 @@ public class UserController {
                 mail.setContent(StringUtils.replace(
                         Constant.MAIL_CONTENT,
                         Constant.URL_PLACEHOLDER,
-                        "http://baidu.com?enableKey="+enableKey));
+                        "https://app.jxufe-ischool.top/user/enableUser?enableKey="+enableKey));
 
                 //发送邮件
                 senderMailService.send(mail);
@@ -88,22 +91,24 @@ public class UserController {
      * @return
      */
     @RequestMapping("/enableUser")
-    public ResponseEntity  enableUser(@RequestParam(name = "enableKey")String enableKey){
-        ResponseEntity result=null;
+    public ModelAndView enableUser(@RequestParam(name = "enableKey")String enableKey){
+        ModelAndView modelAndView = new ModelAndView("enableSuccess");
+
         IschoolUser user = redisService.getObject(enableKey, IschoolUser.class);
         if (user==null) {
-            result = new ResponseEntity(404,"用户已经是激活状态");
+            //result = new ResponseEntity(404,"用户已经是激活状态");
+            modelAndView.addObject("data", "用户已经是激活状态");
         }else{
             //可用状态
             user.setState(1);
             user.setModifyTime(new Date());
             //创建用户
             userService.createUser(user);
-            result = new ResponseEntity(200,"用户已经激活");
-
+           //result = new ResponseEntity(200,"用户已经激活");
+            modelAndView.addObject("data", "用户激活成功！请移步到小程序或者后台管理页面");
             redisService.del(enableKey);
         }
-        return result;
+        return modelAndView;
     }
 
 
@@ -111,6 +116,7 @@ public class UserController {
      *用户登录
      */
     @RequestMapping("/login")
+    @ResponseBody
     public ResponseEntity login(@RequestParam(name = "email")String email ,
                                 @RequestParam(name = "passwd")String  passwd){
         ResponseEntity result =null;
@@ -138,6 +144,7 @@ public class UserController {
      * @return
      */
     @RequestMapping("/userIsLogin")
+    @ResponseBody
     public ResponseEntity userIsLogin(@RequestParam(name = "userToken")
                                                   String userToken){
         ResponseEntity result=null;
@@ -157,6 +164,7 @@ public class UserController {
      * @return
      */
     @RequestMapping("/getUserLoginInfo")
+    @ResponseBody
     public ResponseEntity getUserLoginInfo(@RequestParam(name = "userToken")
                                                        String userToken){
         ResponseEntity result = new ResponseEntity();
