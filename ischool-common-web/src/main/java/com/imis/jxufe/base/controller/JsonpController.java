@@ -1,4 +1,4 @@
-package com.imis.jxufe.user.controller;
+package com.imis.jxufe.base.controller;
 
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.servlet.mvc.method.annotation.AbstractJsonpResponseBodyAdvice;
