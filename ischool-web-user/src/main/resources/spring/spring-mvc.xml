@@ -6,7 +6,6 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd">
 
     <!--配置扫描的包-->
-
     <context:component-scan base-package="com.imis.jxufe.*.controller" use-default-filters="false">
         <context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
     </context:component-scan>
@@ -30,20 +29,23 @@
     </bean>
 
 
-    <!-- MVC注解驱动 -->
-    <mvc:annotation-driven>
-        <!-- 采用自定义方案 -->
-        <mvc:message-converters register-defaults="true">
-            <!-- 定义文本转化器 -->
-            <bean class="org.springframework.http.converter.StringHttpMessageConverter">
-                <constructor-arg index="0" value="UTF-8"/>
-            </bean>
-            <!-- 定义json转化器，支持json跨域 -->
-            <bean class="com.imis.jxufe.base.utils.CallbackMappingJackson2HttpMessageConverter">
-                <!-- 跨域请求中的请求参数名 -->
-                <property name="callbackName" value="callback"></property>
-            </bean>
-        </mvc:message-converters>
-    </mvc:annotation-driven>
+    <mvc:annotation-driven/>
+
+
+    <!--&lt;!&ndash; MVC注解驱动 &ndash;&gt;-->
+    <!--<mvc:annotation-driven>-->
+        <!--&lt;!&ndash; 采用自定义方案 &ndash;&gt;-->
+        <!--<mvc:message-converters register-defaults="true">-->
+            <!--&lt;!&ndash; 定义文本转化器 &ndash;&gt;-->
+            <!--<bean class="org.springframework.http.converter.StringHttpMessageConverter">-->
+                <!--<constructor-arg index="0" value="UTF-8"/>-->
+            <!--</bean>-->
+            <!--&lt;!&ndash; 定义json转化器，支持json跨域 &ndash;&gt;-->
+            <!--<bean class="com.imis.jxufe.base.utils.CallbackMappingJackson2HttpMessageConverter">-->
+                <!--&lt;!&ndash; 跨域请求中的请求参数名 &ndash;&gt;-->
+                <!--<property name="callbackName" value="callback"></property>-->
+            <!--</bean>-->
+        <!--</mvc:message-converters>-->
+    <!--</mvc:annotation-driven>-->
 
 </beans>
