@@ -1,8 +1,9 @@
 package com.imis.jxufe.course.model;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class PostTopic {
+public class PostTopic  implements Serializable {
     private Integer id;
 
     private String title;

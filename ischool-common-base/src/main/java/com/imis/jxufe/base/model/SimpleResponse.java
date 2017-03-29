@@ -1,11 +1,13 @@
 package com.imis.jxufe.base.model;
 
+import java.io.Serializable;
+
 /**
  * 服务于各个service层的简单的响应载体
  * @author zhongping
  * @date 2017/3/29
  */
-public class SimpleResponse {
+public class SimpleResponse  implements Serializable {
     private int status;
     private String Msg;
 

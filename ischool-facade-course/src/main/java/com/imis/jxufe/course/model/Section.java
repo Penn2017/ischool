@@ -1,8 +1,9 @@
 package com.imis.jxufe.course.model;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class Section {
+public class Section  implements Serializable {
     private Integer id;
 
     private String name;

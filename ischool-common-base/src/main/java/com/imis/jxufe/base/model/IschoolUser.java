@@ -1,8 +1,9 @@
 package com.imis.jxufe.base.model;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class IschoolUser {
+public class IschoolUser implements Serializable{
     private Integer id;
 
     private String email;
