@@ -23,6 +23,24 @@ public class IschoolUser {
 
     private Integer type;
 
+    public IschoolUser(){
+        /***
+         * empty
+         */
+    }
+
+    public IschoolUser(String email) {
+        this.email = email;
+    }
+
+    public IschoolUser(String email, String name, String encodingPasswd, Date now, Date now1) {
+        this.email = email;
+        this.name = name;
+        this.passwd = encodingPasswd;
+        this.createTime = now;
+        this.modifyTime = now;
+    }
+
     public Integer getId() {
         return id;
     }
