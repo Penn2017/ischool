@@ -108,13 +108,18 @@ public class UserServiceFacadeImpl implements UserServiceFacade {
 
     @Override
     @Transactional(readOnly = true)
-    public String login(String email, String passwd) {
+    public String login(String email, String passwd, Integer type) {
         //密码加密
         String encodingPasswd = new String(MD5Utils.encodMD5(passwd));
 
         IschoolUser user = new IschoolUser();
         user.setEmail(email);
         user.setPasswd(encodingPasswd);
+        if (type == null) {
+            type=0;
+        }
+        //设置用户登录的类型
+        user.setType(type);
 
         user = userMapper.selectOne(user);
         if (user != null) {

@@ -118,10 +118,10 @@ public class UserController {
     @RequestMapping("/login")
     @ResponseBody
     public ResponseEntity login(@RequestParam(name = "email")String email ,
-                                @RequestParam(name = "passwd")String  passwd){
+                                @RequestParam(name = "passwd")String  passwd,Integer type){
         ResponseEntity result =null;
 
-        String userToken=userService.login(email,passwd);
+        String userToken=userService.login(email,passwd,type);
 
         if (StringUtils.equals(userToken, Constant.USERNAME_OR_PASSWD_ERRO)) {
             //用户名或者密码错误

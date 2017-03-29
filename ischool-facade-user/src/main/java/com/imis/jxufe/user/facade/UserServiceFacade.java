@@ -38,7 +38,8 @@ public interface UserServiceFacade {
      * 用户登录接口
      * @param userName
      * @param passwd
+     * @param type
      * @return
      */
-     String login(String userName, String passwd);
+     String login(String userName, String passwd, Integer type);
 }
