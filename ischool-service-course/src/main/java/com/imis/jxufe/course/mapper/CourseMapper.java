@@ -1,6 +1,6 @@
 package com.imis.jxufe.course.mapper;
 
-import com.imis.jxufe.course.facade.model.Course;
+import com.imis.jxufe.course.model.Course;
 import tk.mybatis.mapper.common.Mapper;
 
 /**

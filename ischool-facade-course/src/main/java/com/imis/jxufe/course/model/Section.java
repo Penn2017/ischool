@@ -1,4 +1,4 @@
-package com.imis.jxufe.course.facade.model;
+package com.imis.jxufe.course.model;
 
 import java.util.Date;
 
