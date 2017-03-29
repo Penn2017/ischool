@@ -82,6 +82,17 @@
       <artifactId>spring-aop</artifactId>
     </dependency>
 
+    <!-- Jackson Json处理工具包 -->
+    <dependency>
+      <groupId>com.fasterxml.jackson.core</groupId>
+      <artifactId>jackson-databind</artifactId>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-core -->
+    <dependency>
+      <groupId>com.fasterxml.jackson.core</groupId>
+      <artifactId>jackson-core</artifactId>
+    </dependency>
+
 
     <!-- gson -->
     <dependency>

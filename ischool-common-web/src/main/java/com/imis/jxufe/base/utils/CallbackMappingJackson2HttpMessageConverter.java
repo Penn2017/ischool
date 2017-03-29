@@ -28,6 +28,8 @@ public class CallbackMappingJackson2HttpMessageConverter extends MappingJackson2
 		// 从threadLocal中获取当前的Request对象
 		HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.currentRequestAttributes()).getRequest();
 		String callbackParam = request.getParameter(callbackName);
+		THIS_LOGGER.debug("=============================request"+request);
+		THIS_LOGGER.debug("=============================callbackParam"+callbackParam);
 		if(StringUtils.isEmpty(callbackParam)){
 			THIS_LOGGER.debug("=============没有json跨域问题===========================");
 			// 没有找到callback参数，直接返回json数据
