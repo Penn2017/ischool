@@ -17,7 +17,7 @@ import java.util.List;
  * @author zhongping
  * @date 2017/3/29
  */
-@Service("courseService")
+@Service("courseServiceFacade")
 public class CourseServiceFacadeImpl implements CourseServiceFacade {
 
 
