@@ -1,9 +1,13 @@
 package com.imis.jxufe.course.model;
 
+import javax.persistence.Id;
+import javax.persistence.Table;
 import java.io.Serializable;
 import java.util.Date;
 
+@Table(name = "post_topic")
 public class PostTopic  implements Serializable {
+    @Id
     private Integer id;
 
     private String title;
