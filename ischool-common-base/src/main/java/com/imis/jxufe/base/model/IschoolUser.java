@@ -1,63 +1,27 @@
 package com.imis.jxufe.base.model;
 
-import org.hibernate.validator.constraints.Email;
-import org.hibernate.validator.constraints.NotEmpty;
-
-import javax.persistence.Id;
-import javax.persistence.Table;
-import javax.validation.constraints.Past;
-import java.io.Serializable;
 import java.util.Date;
 
-
-@Table(name = "ischool_users")
-public class IschoolUser  implements Serializable{
-
-    private static final long serialVersionUID = -14830131226462605L;
-    @Id
+public class IschoolUser {
     private Integer id;
 
-    @Email
     private String email;
 
     private String name;
 
-    @NotEmpty
     private String passwd;
 
     private String image;
 
-    @Past
     private Date createTime;
-
 
     private Date modifyTime;
 
-    private Integer type;
+    private String classId;
+
     private Integer state;
 
-
-    public IschoolUser(){}
-    public IschoolUser(String email, String name, String passwd, Date createTime, Date modifyTime) {
-        this.email = email;
-        this.name = name;
-        this.passwd = passwd;
-        this.createTime = createTime;
-        this.modifyTime = modifyTime;
-    }
-
-    public IschoolUser(String email) {
-        this.email = email;
-
-    }
-
-    public Integer getState() {
-        return state;
-    }
-
-    public void setState(Integer state) {
-        this.state = state;
-    }
+    private Integer type;
 
     public Integer getId() {
         return id;
@@ -113,6 +77,22 @@ public class IschoolUser  implements Serializable{
 
     public void setModifyTime(Date modifyTime) {
         this.modifyTime = modifyTime;
+    }
+
+    public String getClassId() {
+        return classId;
+    }
+
+    public void setClassId(String classId) {
+        this.classId = classId == null ? null : classId.trim();
+    }
+
+    public Integer getState() {
+        return state;
+    }
+
+    public void setState(Integer state) {
+        this.state = state;
     }
 
     public Integer getType() {
