@@ -1,6 +1,7 @@
 package com.imis.jxufe.course.facade.impl;
 
 import com.imis.jxufe.base.model.SimpleResponse;
+import com.imis.jxufe.base.utils.IdWorker;
 import com.imis.jxufe.course.facade.CourseServiceFacade;
 import com.imis.jxufe.course.model.Course;
 import com.imis.jxufe.course.mapper.CourseMapper;
@@ -23,12 +24,16 @@ public class CourseServiceFacadeImpl implements CourseServiceFacade {
 
     @Autowired
     private CourseMapper courseMapper;
+    private static IdWorker idWorker = new IdWorker(2017, 1017);
 
     @Override
     @Transactional
     public boolean addCourse(Course course) {
         if (course!=null) {
             course.setId(null);
+             //生成邀请码
+            course.setInviteCode(String.valueOf(idWorker.nextId()));
+
             int insert = courseMapper.insert(course);
             return insert > 0;
         }
