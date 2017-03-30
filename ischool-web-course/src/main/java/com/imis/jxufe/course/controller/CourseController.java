@@ -86,10 +86,9 @@ public class CourseController {
      */
     @RequestMapping("/queryall/{teacherId}")
     public List<Course> queryCourses(@PathVariable("teacherId") Integer teacherId){
-        ResponseEntity responseEntity=null;
+        ResponseEntity responseEntity = new ResponseEntity();
         List<Course> courses = courseService.allCourses(teacherId);
-
+        responseEntity.getParams().put("rows", courses);
         return courses;
     }
-
 }
