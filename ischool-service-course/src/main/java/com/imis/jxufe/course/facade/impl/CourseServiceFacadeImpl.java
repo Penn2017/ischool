@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -24,7 +25,7 @@ public class CourseServiceFacadeImpl implements CourseServiceFacade {
 
     @Autowired
     private CourseMapper courseMapper;
-    private static IdWorker idWorker = new IdWorker(2017, 1017);
+    private static IdWorker idWorker = new IdWorker(10, 10);
 
     @Override
     @Transactional
@@ -33,7 +34,7 @@ public class CourseServiceFacadeImpl implements CourseServiceFacade {
             course.setId(null);
              //生成邀请码
             course.setInviteCode(String.valueOf(idWorker.nextId()));
-
+            course.setCreateTime(new Date());
             int insert = courseMapper.insert(course);
             return insert > 0;
         }
