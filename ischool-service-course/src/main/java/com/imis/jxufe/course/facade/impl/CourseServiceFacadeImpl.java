@@ -35,6 +35,7 @@ public class CourseServiceFacadeImpl implements CourseServiceFacade {
              //生成邀请码
             course.setInviteCode(String.valueOf(idWorker.nextId()));
             course.setCreateTime(new Date());
+            course.setStuNum(0);
             int insert = courseMapper.insert(course);
             return insert > 0;
         }
@@ -63,7 +64,7 @@ public class CourseServiceFacadeImpl implements CourseServiceFacade {
     @Transactional
     public boolean updateCourse(Course course) {
         if (course!=null&&course.getId()!=null) {
-            int i = courseMapper.updateByPrimaryKey(course);
+            int i = courseMapper.updateByPrimaryKeySelective(course);
             return i>0;
         }
         return false;

@@ -4,7 +4,6 @@ import com.imis.jxufe.base.model.ResponseEntity;
 import com.imis.jxufe.base.model.SimpleResponse;
 import com.imis.jxufe.course.facade.CourseServiceFacade;
 import com.imis.jxufe.course.model.Course;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -30,7 +29,7 @@ public class CourseController {
      * @return
      */
     @RequestMapping("/create")
-    public ResponseEntity  createCourse(@ModelAttribute("course") Course course){
+    public ResponseEntity  createCourse(Course course){
         ResponseEntity responseEntity=null;
         boolean success = courseService.addCourse(course);
         if (success) {
@@ -68,7 +67,7 @@ public class CourseController {
      * @return
      */
     @RequestMapping("/update")
-    public ResponseEntity updateCourse(@ModelAttribute("course") Course course){
+    public ResponseEntity updateCourse(Course course){
         ResponseEntity responseEntity=null;
         boolean success = courseService.updateCourse(course);
         if (success) {
@@ -92,6 +91,5 @@ public class CourseController {
 
         return courses;
     }
-
 
 }
