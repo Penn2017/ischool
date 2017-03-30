@@ -67,7 +67,7 @@ public class UserController {
                 mail.setContent(StringUtils.replace(
                         Constant.MAIL_CONTENT,
                         Constant.URL_PLACEHOLDER,
-                        "https://app.jxufe-ischool.top/user/enableUser?enableKey="+enableKey));
+                        "https://www.jxufe-ischool.top/user/enableUser?enableKey="+enableKey));
 
                 //发送邮件
                 senderMailService.send(mail);
