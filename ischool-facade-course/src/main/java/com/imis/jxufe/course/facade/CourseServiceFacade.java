@@ -50,8 +50,17 @@ public interface CourseServiceFacade {
     List<Course>  allCourses(Integer teacherId);
 
 
+    /**
+     * 根据邀请码查询课程
+     * @param joinId
+     * @return
+     */
+    Course getCourseByInviteId(String joinId);
 
-
-
-
+    /**
+     * 根据一门课程的id查询一门课程
+     * @param courseId
+     * @return
+     */
+    Course selectOneCourseById(String courseId);
 }

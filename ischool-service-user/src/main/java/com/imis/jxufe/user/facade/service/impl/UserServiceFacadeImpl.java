@@ -135,4 +135,18 @@ public class UserServiceFacadeImpl implements UserServiceFacade {
     }
 
 
+    @Override
+    @Transactional(readOnly = true)
+    public IschoolUser selectOneUser(Integer stuId) {
+        IschoolUser ischoolUser =
+                userMapper.selectByPrimaryKey(stuId);
+        return ischoolUser;
+    }
+
+
+    @Override
+    @Transactional
+    public int updateUser(IschoolUser student) {
+        return userMapper.updateByPrimaryKeySelective(student);
+    }
 }

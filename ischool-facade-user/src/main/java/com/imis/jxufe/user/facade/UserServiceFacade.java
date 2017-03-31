@@ -42,4 +42,17 @@ public interface UserServiceFacade {
      * @return
      */
      String login(String userName, String passwd, Integer type);
+
+    /**
+     * 根据id返回单个用户的信息
+     * @param stuId
+     * @return
+     */
+    IschoolUser selectOneUser(Integer stuId);
+
+    /**
+     * 更新用户
+     * @param student
+     */
+    int updateUser(IschoolUser student);
 }

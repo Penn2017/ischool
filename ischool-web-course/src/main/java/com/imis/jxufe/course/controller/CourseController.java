@@ -4,6 +4,8 @@ import com.imis.jxufe.base.model.ResponseEntity;
 import com.imis.jxufe.base.model.SimpleResponse;
 import com.imis.jxufe.course.facade.CourseServiceFacade;
 import com.imis.jxufe.course.model.Course;
+import com.imis.jxufe.redis.facade.RedisServiceFacade;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -22,6 +24,9 @@ public class CourseController {
     @Resource(name = "courseServiceFacade")
     private CourseServiceFacade courseService;
 
+    @Autowired
+    private RedisServiceFacade redisService;
+
 
     /***
      * 创建课程
@@ -33,6 +38,8 @@ public class CourseController {
         ResponseEntity responseEntity=null;
         boolean success = courseService.addCourse(course);
         if (success) {
+            //加入到缓存中，以便后面的查看使用。
+            redisService.setObject(course.getInviteCode(), course);
             responseEntity = new ResponseEntity(200,"添加课程成功");
         }else{
             responseEntity = new ResponseEntity(400, "添加课程失败");

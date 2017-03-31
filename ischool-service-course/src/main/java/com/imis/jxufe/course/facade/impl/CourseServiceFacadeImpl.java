@@ -32,8 +32,12 @@ public class CourseServiceFacadeImpl implements CourseServiceFacade {
     public boolean addCourse(Course course) {
         if (course!=null) {
             course.setId(null);
-             //生成邀请码
-            course.setInviteCode(String.valueOf(idWorker.nextId()));
+            //判断课程类型
+            Integer type = course.getType();
+            if (type.intValue()==2) {
+                //生成邀请码
+                course.setInviteCode(String.valueOf(idWorker.nextId()));
+            }
             course.setCreateTime(new Date());
             course.setStuNum(0);
             int insert = courseMapper.insert(course);
@@ -80,6 +84,7 @@ public class CourseServiceFacadeImpl implements CourseServiceFacade {
     }
 
     @Override
+    @Transactional(readOnly = true)
     public List<Course> allCourses(Integer teacherId) {
         Course course = new Course();
         course.setTeacherId(teacherId);
@@ -89,5 +94,24 @@ public class CourseServiceFacadeImpl implements CourseServiceFacade {
         }
 
         return select;
+    }
+
+
+    @Override
+    @Transactional(readOnly = true)
+    public Course getCourseByInviteId(String joinId) {
+        Course course = new Course();
+        course.setInviteCode(joinId);
+
+        //查询指定课程
+        course = courseMapper.selectOne(course);
+
+        return course;
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public Course selectOneCourseById(String courseId) {
+        return  courseMapper.selectByPrimaryKey(courseId);
     }
 }
