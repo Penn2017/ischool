@@ -99,14 +99,21 @@ public class StudentController {
             return new ResponseEntity(405, "没有该学生");
         }
 
-        //更新学生信息（学生自己选修的课程id，构成为：courseid:0,0代表未审核通过，id代表选修的课程数）
+        //更新学生信息（学生自己选修的课程id，构成为：courseid:type:state,0代表未审核通过，id代表选修的课程数）
         String sStr = student.getClassId();
         String sClassIds=(sStr==null)?"":sStr;
-        String sNewStr = sClassIds + course.getId() + ":" + "0";
+
+        Integer courseType = course.getType();
+        String applyState="1";
+        if (courseType==2) {
+            applyState = "0";
+        }
+
+        String sNewStr = sClassIds + course.getId() +":"+courseType+ ":" + applyState;
         student.setClassId(sNewStr);
         //更新
         userService.updateUser(student);
-        //更新课程信息（课程下面的学生数，课程选修的人数，构成为：stuId:0,0代表未审核，studId时学生的id）
+        //更新课程信息（课程下面的学生数，课程选修的人数，构成为：stuId:state,0代表未审核，studId时学生的id）
         String cStr = course.getStuId();
         String cStuids=(cStr==null)?"":cStr;
         String cNewStr = cStuids + student.getId() + ":" + "0";
@@ -133,24 +140,42 @@ public class StudentController {
         }
 
         String cids=user.getClassId();
+
+        if (StringUtils.isEmpty(cids)) {
+            return new ResponseEntity(405, "没有任何课程");
+        }
+
         String[] split = cids.split(",");
 
         if (split!=null&&split.length>0) {
             //对结果进行处理
-            List<CourseView> myCourses = Stream.of(split).map((e) -> {
+            List<CourseView> myCourses = Stream.of(split).filter((k)->{
 
-                CourseView courseView = new CourseView();
+                String[] mixId = k.split(":");
+                String courseType = mixId[1];
+                if (StringUtils.equals(courseType,"2")) {
+                    return true;
+                }
+                return false;
 
-                String[] mixId = e.split(":");
-                String courseId = mixId[0];
-                Course course = courseService.selectOneCourseById(courseId);
-                courseView.setCourseId(course.getId());
-                courseView.setCourseName(course.getName());
-                courseView.setCourseNotice(course.getNotice());
-                courseView.setImageUrl(course.getImageUrl());
+            }).map((e) -> {
 
-                courseView.setMyState(mixId[1]);
-                return courseView;
+                   CourseView courseView = new CourseView();
+                   String[] mixId = e.split(":");
+
+                   //查询该课程
+                    Course course = courseService.selectOneCourseById(mixId[0]);
+                    courseView.setCourseId(course.getId());
+                    courseView.setCourseName(course.getName());
+                    courseView.setCourseNotice(course.getNotice());
+                    courseView.setImageUrl(course.getImageUrl());
+
+                    //设置当前我对于当前课程的状态
+                    courseView.setMyState(mixId[2]);
+                    return courseView;
+
+
+
 
             }).collect(Collectors.toList());
 
