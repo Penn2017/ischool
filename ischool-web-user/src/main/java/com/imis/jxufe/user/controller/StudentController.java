@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -103,17 +104,37 @@ public class StudentController {
         String sStr = student.getClassId();
 
 
+        boolean notEmpty = StringUtils.isNotEmpty(sStr);
+
+        //拼接
+        if (notEmpty) {
+            final String[][] isExistId = {null};
+            //判断这个课程是否已经申请过了
+            Arrays.stream(sStr.split(",")).forEach((e)->{
+                String[] mixId = e.split(":");
+                if (StringUtils.equals(mixId[0], String.valueOf(course.getId()))) {
+                    isExistId[0] =mixId;
+                }
+
+            });
+
+            if (isExistId[0]!=null) {
+                  //不允许添加
+                return new ResponseEntity(405, "您已经申请过此课程，请不要重复申请");
+            }
+
+        }
+        String sNewStr=null;
+        //新生成一门课
         Integer courseType = course.getType();
         String applyState="1";
         if (courseType==2) {
             applyState = "0";
         }
-        //新生成一门课
         String middleStr=course.getId() +":"+courseType+ ":" + applyState;;
-        String sNewStr=null;
 
         //拼接
-        if (StringUtils.isEmpty(sStr)) {
+        if (notEmpty) {
             sNewStr=middleStr;
         }else{
             sNewStr= sStr+","+ middleStr;
