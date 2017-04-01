@@ -6,6 +6,7 @@ import com.imis.jxufe.course.facade.CourseServiceFacade;
 import com.imis.jxufe.course.model.Course;
 import com.imis.jxufe.redis.facade.RedisServiceFacade;
 import com.imis.jxufe.user.facade.UserServiceFacade;
+import com.imis.jxufe.user.model.CourseView;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -131,16 +132,20 @@ public class StudentController {
 
         if (split!=null&&split.length>0) {
             //对结果进行处理
-            List<Course> myCourses = Stream.of(split).map((e) -> {
+            List<CourseView> myCourses = Stream.of(split).map((e) -> {
+
+                CourseView courseView = new CourseView();
 
                 String[] mixId = e.split(":");
                 String courseId = mixId[0];
                 Course course = courseService.selectOneCourseById(courseId);
-                //置空选修学生
-                course.setStuNum(null);
-                course.setStuId(null);
+                courseView.setCourseId(course.getId());
+                courseView.setCourseName(course.getName());
+                courseView.setCourseNotice(course.getNotice());
+                courseView.setImageUrl(course.getImageUrl());
 
-                return course;
+                courseView.setMyState(mixId[1]);
+                return courseView;
 
             }).collect(Collectors.toList());
 
