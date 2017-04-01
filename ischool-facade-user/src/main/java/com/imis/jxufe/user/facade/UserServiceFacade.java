@@ -48,7 +48,7 @@ public interface UserServiceFacade {
      * @param stuId
      * @return
      */
-    IschoolUser selectOneUser(Integer stuId);
+    IschoolUser selectOneUser(String stuId);
 
     /**
      * 更新用户

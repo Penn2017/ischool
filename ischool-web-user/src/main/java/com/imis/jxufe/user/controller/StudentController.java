@@ -77,7 +77,7 @@ public class StudentController {
      */
     @RequestMapping("/joinClass/{joinCode}/{stuId}")
     public ResponseEntity joinClass(@PathVariable("joinCode") String joinCode,
-                                    @PathVariable("stuId")Integer stuId){
+                                    @PathVariable("stuId")String stuId){
 
         //查询是否有该课程
         Course course = courseService.getCourseByInviteId(joinCode);
@@ -119,7 +119,7 @@ public class StudentController {
      * @return
      */
     @RequestMapping("/queryClass/{stuId}")
-    public  ResponseEntity queryMyClass( @PathVariable("stuId")Integer stuId){
+    public  ResponseEntity queryMyClass( @PathVariable("stuId")String stuId){
         ResponseEntity result=null;
         IschoolUser  user=userService.selectOneUser(stuId);
 
