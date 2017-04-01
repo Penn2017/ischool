@@ -101,15 +101,24 @@ public class StudentController {
 
         //更新学生信息（学生自己选修的课程id，构成为：courseid:type:state,0代表未审核通过，id代表选修的课程数）
         String sStr = student.getClassId();
-        String sClassIds=(sStr==null)?"":sStr;
+
 
         Integer courseType = course.getType();
         String applyState="1";
         if (courseType==2) {
             applyState = "0";
         }
+        //新生成一门课
+        String middleStr=course.getId() +":"+courseType+ ":" + applyState;;
+        String sNewStr=null;
 
-        String sNewStr = sClassIds+","+ course.getId() +":"+courseType+ ":" + applyState;
+        //拼接
+        if (StringUtils.isEmpty(sStr)) {
+            sNewStr=middleStr;
+        }else{
+            sNewStr= sStr+","+ middleStr;
+        }
+
         student.setClassId(sNewStr);
         //更新
         userService.updateUser(student);
