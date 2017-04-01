@@ -7,6 +7,7 @@ import com.imis.jxufe.course.facade.CourseServiceFacade;
 import com.imis.jxufe.redis.facade.RedisServiceFacade;
 import com.imis.jxufe.user.facade.UserServiceFacade;
 import com.imis.jxufe.user.model.CourseView;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -44,6 +45,10 @@ public class StudentController {
     @RequestMapping("/queryPrimaryClass/{joinCode}")
     public ResponseEntity queryPrimaryClass(@PathVariable("joinCode") String joinCode){
         ResponseEntity result=null;
+
+        if (StringUtils.isEmpty(joinCode)) {
+            return new ResponseEntity(500,"请求出错");
+        }
 
         //根据邀请码找到对应的课堂
         Course course = redisService.getObject(joinCode, Course.class);
