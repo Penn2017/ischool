@@ -1,9 +1,9 @@
 package com.imis.jxufe.course.facade.impl;
 
 import com.imis.jxufe.base.model.SimpleResponse;
+import com.imis.jxufe.base.model.course.Course;
 import com.imis.jxufe.base.utils.IdWorker;
 import com.imis.jxufe.course.facade.CourseServiceFacade;
-import com.imis.jxufe.course.model.Course;
 import com.imis.jxufe.course.mapper.CourseMapper;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,4 +1,4 @@
-package com.imis.jxufe.course.model;
+package com.imis.jxufe.base.model.course;
 
 import javax.persistence.Id;
 import javax.persistence.Table;
@@ -6,7 +6,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 @Table(name = "course_video")
-public class CourseVideo   implements Serializable {
+public class CourseVideo implements Serializable {
     @Id
     private Integer id;
 

@@ -1,7 +1,7 @@
 package com.imis.jxufe.course.facade;
 
 import com.imis.jxufe.base.model.SimpleResponse;
-import com.imis.jxufe.course.model.Course;
+import com.imis.jxufe.base.model.course.Course;
 
 import java.util.List;
 

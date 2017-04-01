@@ -2,8 +2,8 @@ package com.imis.jxufe.user.controller;
 
 import com.imis.jxufe.base.model.IschoolUser;
 import com.imis.jxufe.base.model.ResponseEntity;
+import com.imis.jxufe.base.model.course.Course;
 import com.imis.jxufe.course.facade.CourseServiceFacade;
-import com.imis.jxufe.course.model.Course;
 import com.imis.jxufe.redis.facade.RedisServiceFacade;
 import com.imis.jxufe.user.facade.UserServiceFacade;
 import com.imis.jxufe.user.model.CourseView;

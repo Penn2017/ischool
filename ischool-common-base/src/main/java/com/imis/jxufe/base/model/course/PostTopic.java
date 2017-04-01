@@ -1,4 +1,4 @@
-package com.imis.jxufe.course.model;
+package com.imis.jxufe.base.model.course;
 
 import javax.persistence.Id;
 import javax.persistence.Table;
