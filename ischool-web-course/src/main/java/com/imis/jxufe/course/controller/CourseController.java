@@ -2,8 +2,8 @@ package com.imis.jxufe.course.controller;
 
 import com.imis.jxufe.base.model.ResponseEntity;
 import com.imis.jxufe.base.model.SimpleResponse;
+import com.imis.jxufe.base.model.course.Course;
 import com.imis.jxufe.course.facade.CourseServiceFacade;
-import com.imis.jxufe.course.model.Course;
 import com.imis.jxufe.redis.facade.RedisServiceFacade;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
