@@ -139,7 +139,7 @@ public class UserServiceFacadeImpl implements UserServiceFacade {
     @Transactional(readOnly = true)
     public IschoolUser selectOneUser(String stuId) {
         IschoolUser ischoolUser =
-                userMapper.selectByPrimaryKey(stuId);
+                userMapper.selectByPrimaryKey(Integer.valueOf(stuId));
         return ischoolUser;
     }
 
