@@ -60,8 +60,14 @@ public class CourseController {
         Course course = new Course();
         course.setId(courseId);
 
+        //删除缓存课程
+        Course course1 = courseService.selectOneCourseById(String.valueOf(courseId));
+        redisService.del(course1.getInviteCode());
+
         SimpleResponse simpleResponse = courseService.deleteCourse(course);
         ResponseEntity responseEntity = new ResponseEntity(simpleResponse.getStatus(), simpleResponse.getMsg());
+
+
 
         return responseEntity;
 
@@ -78,6 +84,10 @@ public class CourseController {
         ResponseEntity responseEntity=null;
         boolean success = courseService.updateCourse(course);
         if (success) {
+            //删除缓存课程
+            Course course1 = courseService.selectOneCourseById(String.valueOf(course.getId()));
+            redisService.del(course1.getInviteCode());
+
             responseEntity = new ResponseEntity(200,"修改成功");
         }else{
             responseEntity = new ResponseEntity(400,"修改失败");
