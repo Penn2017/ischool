@@ -134,7 +134,7 @@ public class StudentController {
         String middleStr=course.getId() +":"+courseType+ ":" + applyState;;
 
         //拼接
-        if (notEmpty) {
+        if (!notEmpty) {
             sNewStr=middleStr;
         }else{
             sNewStr= sStr+","+ middleStr;
