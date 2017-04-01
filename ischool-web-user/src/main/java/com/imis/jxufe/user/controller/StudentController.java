@@ -109,7 +109,7 @@ public class StudentController {
             applyState = "0";
         }
 
-        String sNewStr = sClassIds + course.getId() +":"+courseType+ ":" + applyState;
+        String sNewStr = sClassIds+","+ course.getId() +":"+courseType+ ":" + applyState;
         student.setClassId(sNewStr);
         //更新
         userService.updateUser(student);
