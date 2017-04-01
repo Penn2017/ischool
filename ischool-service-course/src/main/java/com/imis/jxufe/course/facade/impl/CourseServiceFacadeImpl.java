@@ -112,6 +112,6 @@ public class CourseServiceFacadeImpl implements CourseServiceFacade {
     @Override
     @Transactional(readOnly = true)
     public Course selectOneCourseById(String courseId) {
-        return  courseMapper.selectByPrimaryKey(courseId);
+        return  courseMapper.selectByPrimaryKey(Integer.valueOf(courseId));
     }
 }
