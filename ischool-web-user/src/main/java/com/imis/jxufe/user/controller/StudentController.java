@@ -56,7 +56,7 @@ public class StudentController {
         if (course==null) {
             //继续去数据库中查找
             course=courseService.getCourseByInviteId(joinCode);
-            if (course==null||course.getInviteCode()!=null) {
+            if (course==null||course.getInviteCode()==null) {
                 result = new ResponseEntity(404,"没有找到课程，请在检查邀请码是否有误！");
                 return result;
             }
