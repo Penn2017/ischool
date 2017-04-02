@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
-import java.util.Map;
 
 /**
  * 管理课程中跟学生有关的controller
@@ -37,7 +36,7 @@ public class CourseStudentController {
             return new ResponseEntity(404,"该教师不存在");
         }
 
-         Map<String,Object> idNamesMaps= courseService.getSimpleMapForTeacher(teacherId);
+         List idNamesMaps= courseService.getSimpleMapForTeacher(teacherId);
 
         if (idNamesMaps==null||idNamesMaps.isEmpty()) {
             return new ResponseEntity(405, "没有任何课程");
