@@ -16,11 +16,6 @@
 
   <dependencies>
 
-    <dependency>
-      <groupId>com.imis.jxufe</groupId>
-      <artifactId>ischool-common-web</artifactId>
-      <version>1.0</version>
-    </dependency>
     <!--redis服务-->
     <dependency>
       <groupId>com.imis.jxufe</groupId>
