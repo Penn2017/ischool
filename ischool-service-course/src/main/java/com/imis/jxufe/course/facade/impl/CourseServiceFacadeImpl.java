@@ -201,15 +201,16 @@ public class CourseServiceFacadeImpl implements CourseServiceFacade {
             String[] mixMeans = e.split(":");
             String stuId=mixMeans[0];
 
-            IschoolUser student = userService.selectOneUser(stuId);
+            if (StringUtils.isNotEmpty(stuId)) {
+                IschoolUser student = userService.selectOneUser(stuId);
 
-            StudentView studentView = new StudentView(student.getId(),
-                    student.getEmail(),
-                    student.getName(),
-                    student.getImage(),
-                    Integer.valueOf(mixMeans[1]));
-            returnList.add(studentView);
-
+                StudentView studentView = new StudentView(student.getId(),
+                        student.getEmail(),
+                        student.getName(),
+                        student.getImage(),
+                        Integer.valueOf(mixMeans[1]));
+                returnList.add(studentView);
+            }
         });
 
 
