@@ -1,9 +1,12 @@
 package com.imis.jxufe.course.facade;
 
+import com.imis.jxufe.base.model.IschoolUser;
 import com.imis.jxufe.base.model.SimpleResponse;
 import com.imis.jxufe.base.model.course.Course;
+import com.imis.jxufe.base.model.course.StudentView;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * 课程接口
@@ -63,4 +66,35 @@ public interface CourseServiceFacade {
      * @return
      */
     Course selectOneCourseById(String courseId);
+
+    /**
+     * 将学生加入课堂
+     * @param student
+     * @param course
+     */
+    void applyOneCourse(IschoolUser student, Course course);
+
+    /***
+     * 获取课程的下拉框
+     * @param teacherId
+     * @return
+     */
+    Map<String,Object> getSimpleMapForTeacher(Integer teacherId);
+
+    /**
+     * 查询课程有哪些学生
+     * @param courseId
+     * @return
+     */
+    List<StudentView> queryCourseStuents(Integer courseId);
+
+
+    /**
+     * 更新课程下面学生的状态
+     * @param courseId
+     * @param studId
+     * @param i
+     * @return
+     */
+    int updateCourseStuent(Integer courseId, Integer studId, int i);
 }

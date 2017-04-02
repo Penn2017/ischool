@@ -124,32 +124,9 @@ public class StudentController {
             }
 
         }
-        String sNewStr=null;
-        //新生成一门课
-        Integer courseType = course.getType();
-        String applyState="1";
-        if (courseType==2) {
-            applyState = "0";
-        }
-        String middleStr=course.getId() +":"+courseType+ ":" + applyState;;
 
-        //拼接
-        if (!notEmpty) {
-            sNewStr=middleStr;
-        }else{
-            sNewStr= sStr+","+ middleStr;
-        }
-
-        student.setClassId(sNewStr);
-        //更新
-        userService.updateUser(student);
-        //更新课程信息（课程下面的学生数，课程选修的人数，构成为：stuId:state,0代表未审核，studId时学生的id）
-        String cStr = course.getStuId();
-        String cStuids=(cStr==null)?"":cStr;
-        String cNewStr = cStuids + student.getId() + ":" + "0";
-        course.setStuId(cNewStr);
-
-        courseService.updateCourse(course);
+        //将学生加入课堂
+        courseService.applyOneCourse(student,course);
 
         return new ResponseEntity(200,"您已经成功申请，请关注申请进度！");
     }

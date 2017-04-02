@@ -26,4 +26,7 @@
     <!--&lt;!&ndash;暴露服务&ndash;&gt;-->
     <import resource="classpath*:dubbo-provider.xml"/>
 
+    <!--导入服务-->
+    <import resource="dubbo-consumer.xml"/>
+
 </beans>
