@@ -42,7 +42,7 @@ public class CourseStudentController {
             return new ResponseEntity(405, "没有任何课程");
         }
         ResponseEntity result = new ResponseEntity(405, "查询成功");
-        result.getParams().put("courses", idNamesMaps);
+        result.getParams().put("rows", idNamesMaps);
 
         return result;
 
@@ -71,7 +71,7 @@ public class CourseStudentController {
         //返回查询数据
         ResponseEntity responseEntity = new ResponseEntity(200, "查询成功");
 
-        responseEntity.getParams().put("studs", students);
+        responseEntity.getParams().put("rows", students);
         return responseEntity;
 
     }
