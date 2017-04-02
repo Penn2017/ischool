@@ -27,6 +27,6 @@
     <import resource="classpath*:dubbo-provider.xml"/>
 
     <!--导入服务-->
-    <import resource="dubbo-consumer.xml"/>
+    <import resource="classpath*:dubbo-consumer.xml"/>
 
 </beans>

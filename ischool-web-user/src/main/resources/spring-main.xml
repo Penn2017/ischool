@@ -19,7 +19,7 @@
     <dubbo:reference interface="com.imis.jxufe.facade.SenderMailServiceFacade" id="senderMailServiceFacade" check="false" />
     <!--userService -->
     <dubbo:reference interface="com.imis.jxufe.user.facade.UserServiceFacade" id="userServiceFacade" check="false" />
-    <!--userService -->
+    <!--courseService -->
     <dubbo:reference interface="com.imis.jxufe.course.facade.CourseServiceFacade" id="courseService" check="false" />
 
 </beans>
