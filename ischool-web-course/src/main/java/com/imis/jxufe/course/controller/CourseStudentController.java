@@ -39,7 +39,7 @@ public class CourseStudentController {
 
          Map<String,Object> idNamesMaps= courseService.getSimpleMapForTeacher(teacherId);
 
-        if (idNamesMaps==null) {
+        if (idNamesMaps==null||idNamesMaps.isEmpty()) {
             return new ResponseEntity(405, "没有任何课程");
         }
         ResponseEntity result = new ResponseEntity(405, "查询成功");
