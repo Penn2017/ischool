@@ -195,6 +195,10 @@ public class CourseServiceFacadeImpl implements CourseServiceFacade {
 
         //得到选了这门课的学生
         String stuIdsStr=course.getStuId();
+        if (StringUtils.isEmpty(stuIdsStr)) {
+            //没有学生选了这门课
+            return new ArrayList<>();
+        }
 
         //解析
         Arrays.stream(stuIdsStr.split(",")).forEach((e)->{
