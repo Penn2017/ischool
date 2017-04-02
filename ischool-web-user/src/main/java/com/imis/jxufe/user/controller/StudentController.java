@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
@@ -41,33 +42,34 @@ public class StudentController {
 
     /**
      * 输入邀请码申请加入课堂课堂
+     *
      * @return
      */
     @RequestMapping("/queryPrimaryClass/{joinCode}")
-    public ResponseEntity queryPrimaryClass(@PathVariable("joinCode") String joinCode){
-        ResponseEntity result=null;
+    public ResponseEntity queryPrimaryClass(@PathVariable("joinCode") String joinCode) {
+        ResponseEntity result = null;
 
         if (StringUtils.isEmpty(joinCode)) {
-            return new ResponseEntity(500,"请求出错");
+            return new ResponseEntity(500, "请求出错");
         }
 
         //根据邀请码找到对应的课堂
         Course course = redisService.getObject(joinCode, Course.class);
-        if (course==null) {
+        if (course == null) {
             //继续去数据库中查找
-            course=courseService.getCourseByInviteId(joinCode);
-            if (course==null||course.getInviteCode()==null) {
-                result = new ResponseEntity(404,"没有找到课程，请在检查邀请码是否有误！");
+            course = courseService.getCourseByInviteId(joinCode);
+            if (course == null || course.getInviteCode() == null) {
+                result = new ResponseEntity(404, "没有找到课程，请在检查邀请码是否有误！");
                 return result;
             }
             //说明不为null，加入redis
             redisService.setObject(joinCode, course);
         }
         //返回查询结果
-        result = new ResponseEntity(200,"查询成功");
+        result = new ResponseEntity(200, "查询成功");
         Map<String, Object> params = result.getParams();
         params.put("course", course);
-        params.put("joinCode",joinCode);
+        params.put("joinCode", joinCode);
 
 
         return result;
@@ -83,20 +85,20 @@ public class StudentController {
      */
     @RequestMapping("/joinClass/{joinCode}/{stuId}")
     public ResponseEntity joinClass(@PathVariable("joinCode") String joinCode,
-                                    @PathVariable("stuId")String stuId){
+                                    @PathVariable("stuId") String stuId) {
 
         //查询是否有该课程
         Course course = courseService.getCourseByInviteId(joinCode);
 
         //没有课程直接返回
-        if (course==null) {
+        if (course == null) {
             return new ResponseEntity(404, "没有该课程");
         }
 
         // 查出学生信息
         IschoolUser student = userService.selectOneUser(stuId);
         //没有学生信息直接返回
-        if (student==null) {
+        if (student == null) {
             return new ResponseEntity(405, "没有该学生");
         }
 
@@ -110,95 +112,128 @@ public class StudentController {
         if (notEmpty) {
             final String[][] isExistId = {null};
             //判断这个课程是否已经申请过了
-            Arrays.stream(sStr.split(",")).forEach((e)->{
+            Arrays.stream(sStr.split(",")).forEach((e) -> {
                 String[] mixId = e.split(":");
                 if (StringUtils.equals(mixId[0], String.valueOf(course.getId()))) {
-                    isExistId[0] =mixId;
+                    isExistId[0] = mixId;
                 }
 
             });
 
-            if (isExistId[0]!=null) {
-                  //不允许添加
+            if (isExistId[0] != null) {
+                //不允许添加
                 return new ResponseEntity(405, "您已经申请过此课程，请不要重复申请");
             }
 
         }
 
         //将学生加入课堂
-        courseService.applyOneCourse(student,course);
+        courseService.applyOneCourse(student, course);
 
-        return new ResponseEntity(200,"您已经成功申请，请关注申请进度！");
+        return new ResponseEntity(200, "您已经成功申请，请关注申请进度！");
     }
 
 
     /**
      * 查询我的课程列表
+     *
      * @param stuId
      * @return
      */
     @RequestMapping("/queryClass/{stuId}")
-    public  ResponseEntity queryMyClass( @PathVariable("stuId")String stuId){
-        ResponseEntity result=null;
-        IschoolUser  user=userService.selectOneUser(stuId);
+    public ResponseEntity queryMyClass(@PathVariable("stuId") String stuId) {
+        ResponseEntity result = null;
+        IschoolUser user = userService.selectOneUser(stuId);
 
-        if (user==null) {
+        if (user == null) {
             return new ResponseEntity(404, "该用户不存在");
         }
 
-        String cids=user.getClassId();
+        String cids = user.getClassId();
 
         if (StringUtils.isEmpty(cids)) {
             return new ResponseEntity(405, "没有任何课程");
         }
 
+        List<CourseView> myCourses = handlerCourseStr(cids,"2");
+
+        if (!myCourses.isEmpty()) {
+            result = new ResponseEntity(200, "查询成功");
+            result.getParams().put("courses", myCourses);
+            return result;
+        }
+        return new ResponseEntity(404, "没有选修任何课程");
+    }
+
+    /**
+     * 查询我的课程列表
+     *
+     * @param stuId
+     * @return
+     */
+    @RequestMapping("/queryMyOpenClass/{stuId}")
+    public ResponseEntity queryMyOpenClass(@PathVariable("stuId") String stuId) {
+        ResponseEntity result = null;
+        IschoolUser user = userService.selectOneUser(stuId);
+
+        if (user == null) {
+            return new ResponseEntity(404, "该用户不存在");
+        }
+
+        String cids = user.getClassId();
+
+        if (StringUtils.isEmpty(cids)) {
+            return new ResponseEntity(405, "没有任何课程");
+        }
+
+
+        List<CourseView> myCourses = handlerCourseStr(cids,"1");
+
+        if (!myCourses.isEmpty()) {
+            result = new ResponseEntity(200, "查询成功");
+            result.getParams().put("courses", myCourses);
+            return result;
+        }
+
+        return new ResponseEntity(404, "没有选修任何课程");
+    }
+
+
+    public List<CourseView> handlerCourseStr(String cids,String type) {
         String[] split = cids.split(",");
 
-        if (split!=null&&split.length>0) {
+        if (split != null && split.length > 0) {
             //对结果进行处理
-            List<CourseView> myCourses = Stream.of(split).filter((k)->{
+            List<CourseView> myCourses = Stream.of(split).filter((k) -> {
 
                 String[] mixId = k.split(":");
                 String courseType = mixId[1];
-                if (StringUtils.equals(courseType,"2")) {
+                if (StringUtils.equals(courseType, type)) {
                     return true;
                 }
                 return false;
 
             }).map((e) -> {
 
-                   CourseView courseView = new CourseView();
-                   String[] mixId = e.split(":");
+                CourseView courseView = new CourseView();
+                String[] mixId = e.split(":");
 
-                   //查询该课程
-                    Course course = courseService.selectOneCourseById(mixId[0]);
-                    courseView.setCourseId(course.getId());
-                    courseView.setCourseName(course.getName());
-                    courseView.setCourseNotice(course.getNotice());
-                    courseView.setImageUrl(course.getImageUrl());
+                //查询该课程
+                Course course = courseService.selectOneCourseById(mixId[0]);
+                courseView.setCourseId(course.getId());
+                courseView.setCourseName(course.getName());
+                courseView.setCourseNotice(course.getNotice());
+                courseView.setImageUrl(course.getImageUrl());
 
-                    //设置当前我对于当前课程的状态
-                    courseView.setMyState(mixId[2]);
-                    return courseView;
-
-
+                //设置当前我对于当前课程的状态
+                courseView.setMyState(mixId[2]);
+                return courseView;
 
 
             }).collect(Collectors.toList());
-
-            result = new ResponseEntity(200, "查询成功");
-            result.getParams().put("courses", myCourses);
-            return result;
-
+            return myCourses;
         }
-
-        return new ResponseEntity(404,"没有选修任何课程");
+        return new ArrayList<>();
     }
-
-
-
-
-
-
-
 }
+
