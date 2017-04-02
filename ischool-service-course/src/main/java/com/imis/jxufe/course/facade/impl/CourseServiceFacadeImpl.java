@@ -202,7 +202,7 @@ public class CourseServiceFacadeImpl implements CourseServiceFacade {
                     student.getEmail(),
                     student.getName(),
                     student.getImage(),
-                    Integer.valueOf(mixMeans[0]));
+                    Integer.valueOf(mixMeans[1]));
             returnList.add(studentView);
 
         });

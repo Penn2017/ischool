@@ -42,7 +42,7 @@ public class CourseStudentController {
         if (idNamesMaps==null) {
             return new ResponseEntity(405, "没有任何课程");
         }
-        ResponseEntity result = new ResponseEntity(405, "没有任何课程");
+        ResponseEntity result = new ResponseEntity(405, "查询成功");
         result.getParams().put("courses", idNamesMaps);
 
         return result;
@@ -99,7 +99,7 @@ public class CourseStudentController {
         //执行更新操作
         int result= courseService.updateCourseStuent(courseId,studId,1);
         if (result>0) {
-            return new ResponseEntity(200,"更新成功");
+            return new ResponseEntity(200,"成功将学生加入课堂");
         }
         return new ResponseEntity(400,"更新失败，请重试");
 
