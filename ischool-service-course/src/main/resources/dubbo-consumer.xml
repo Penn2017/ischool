@@ -8,7 +8,7 @@
 
     <!-- 使用zookeeper注册中心暴露服务地址 -->
     <!-- 注册中心地址 -->
-    <!--<dubbo:registry protocol="zookeeper" address="${dubbo.registry.address}"/>-->
+    <dubbo:registry protocol="zookeeper" address="${dubbo.registry.address}"/>
 
 
     <!-- user服务 -->
