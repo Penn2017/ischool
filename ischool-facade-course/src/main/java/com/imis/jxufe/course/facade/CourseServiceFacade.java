@@ -79,7 +79,7 @@ public interface CourseServiceFacade {
      * @param teacherId
      * @return
      */
-    Map<String,Object> getSimpleMapForTeacher(Integer teacherId);
+    List<Map<String, Object>> getSimpleMapForTeacher(Integer teacherId);
 
     /**
      * 查询课程有哪些学生

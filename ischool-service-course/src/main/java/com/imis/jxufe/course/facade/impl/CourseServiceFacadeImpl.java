@@ -165,19 +165,24 @@ public class CourseServiceFacadeImpl implements CourseServiceFacade {
 
     @Override
     @Transactional
-    public Map<String, Object> getSimpleMapForTeacher(Integer teacherId) {
+    public List<Map<String, Object>> getSimpleMapForTeacher(Integer teacherId) {
 
         Course course = new Course();
         course.setTeacherId(teacherId);
 
+        List<Map<String, Object>> returnList = new ArrayList<>();
+
         //查询出结果
         List<Course> select = courseMapper.select(course);
-        Map<String, Object> returnMap = new HashMap();
+
 
         select.stream().forEach((e) -> {
-            returnMap.put(String.valueOf(e.getId()), e.getName());
+            Map<String, Object> returnMap = new HashMap();
+            returnMap.put("id", String.valueOf(e.getId()));
+            returnMap.put("name", e.getName());
+            returnList.add(returnMap);
         });
-        return returnMap;
+        return returnList;
     }
 
 
