@@ -15,7 +15,7 @@ public class SectionNode  implements Serializable{
 
     private String name;
 
-    private List<SectionNode> rows;
+    private List<SectionNode> children;
 
 
     public SectionNode() {
@@ -27,7 +27,7 @@ public class SectionNode  implements Serializable{
     public SectionNode(Integer id, String name, List<SectionNode> rows) {
         this.id = id;
         this.name = name;
-        this.rows = rows;
+        this.children = rows;
     }
 
     public Integer getId() {
@@ -47,10 +47,10 @@ public class SectionNode  implements Serializable{
     }
 
     public List<SectionNode> getRows() {
-        return rows;
+        return children;
     }
 
     public void setRows(List<SectionNode> rows) {
-        this.rows = rows;
+        this.children = rows;
     }
 }

@@ -74,7 +74,7 @@ public class SectionController {
         List<SectionNode> sectionNodes = sectionService.queryAllSection(courseId);
         if (sectionNodes != null || !(sectionNodes.isEmpty())) {
             ResponseEntity responseEntity = new ResponseEntity(200, "查询成功");
-            responseEntity.getParams().put("children", sectionNodes);
+            responseEntity.getParams().put("rows", sectionNodes);
             return responseEntity;
         }
 
