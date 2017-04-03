@@ -21,6 +21,6 @@
     <!-- 暴露courseServiceFacade接口 -->
     <dubbo:service retries="0" interface="com.imis.jxufe.course.facade.CourseServiceFacade" ref="courseServiceFacade" />
     <!-- 暴露courseServiceFacade接口 -->
-    <dubbo:service retries="0" interface="com.imis.jxufe.course.facade.SectionServiceFacade" ref="sectionServiceFacade" />
+    <dubbo:service retries="0" interface="com.imis.jxufe.course.facade.SectionServiceFacade" ref="SectionServiceFacade" />
 
 </beans>

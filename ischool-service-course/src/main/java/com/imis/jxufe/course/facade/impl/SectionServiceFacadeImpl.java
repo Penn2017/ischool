@@ -5,6 +5,7 @@ import com.imis.jxufe.base.model.course.SectionNode;
 import com.imis.jxufe.course.facade.SectionServiceFacade;
 import com.imis.jxufe.course.mapper.SectionMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
@@ -15,6 +16,7 @@ import java.util.List;
  * @author zhongping
  * @date 2017/4/3
  */
+@Service("SectionServiceFacade")
 public class SectionServiceFacadeImpl  implements SectionServiceFacade {
 
     @Autowired
