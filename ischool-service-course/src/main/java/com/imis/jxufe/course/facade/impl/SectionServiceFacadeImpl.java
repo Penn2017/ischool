@@ -74,7 +74,7 @@ public class SectionServiceFacadeImpl  implements SectionServiceFacade {
 
                 });
                 //把小节添加到章
-                sectionNode.setRows(rows);
+                sectionNode.setChildren(rows);
                 //把章添加到返回列表中
                 retrunList.add(sectionNode);
             }
