@@ -5,9 +5,9 @@ import com.imis.jxufe.base.model.course.Section;
 import com.imis.jxufe.base.model.course.SectionNode;
 import com.imis.jxufe.course.facade.SectionServiceFacade;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
@@ -16,7 +16,7 @@ import java.util.List;
  * @author zhongping
  * @date 2017/3/30
  */
-@Controller
+@RestController
 public class SectionController {
 
 
