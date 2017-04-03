@@ -213,6 +213,9 @@ public class CourseServiceFacadeImpl implements CourseServiceFacade {
                         student.getName(),
                         student.getImage(),
                         Integer.valueOf(mixMeans[1]));
+
+                studentView.setCourseId(courseId);
+
                 returnList.add(studentView);
             }
         });

@@ -17,6 +17,8 @@ public class StudentView implements Serializable {
 
     private Integer state;//学生在这堂课上面的状态
 
+    private Integer courseId;
+
 
     public StudentView(Integer id, String email, String name, String image, Integer state) {
         this.id = id;
@@ -30,6 +32,14 @@ public class StudentView implements Serializable {
         /**
          * empty
          */
+    }
+
+    public Integer getCourseId() {
+        return courseId;
+    }
+
+    public void setCourseId(Integer courseId) {
+        this.courseId = courseId;
     }
 
     public Integer getId() {
