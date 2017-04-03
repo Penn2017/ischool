@@ -1,5 +1,6 @@
 package com.imis.jxufe.base.model.course;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -8,7 +9,7 @@ import java.util.List;
  * @author zhongping
  * @date 2017/4/3
  */
-public class SectionNode {
+public class SectionNode  implements Serializable{
 
     private Integer id;
 
