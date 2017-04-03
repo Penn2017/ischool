@@ -46,11 +46,11 @@ public class SectionNode  implements Serializable{
         this.name = name;
     }
 
-    public List<SectionNode> getRows() {
+    public List<SectionNode> getChildren() {
         return children;
     }
 
-    public void setRows(List<SectionNode> rows) {
-        this.children = rows;
+    public void setChildren(List<SectionNode> children) {
+        this.children = children;
     }
 }
