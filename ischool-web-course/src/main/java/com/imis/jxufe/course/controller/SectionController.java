@@ -30,6 +30,12 @@ public class SectionController {
      */
     @RequestMapping(value = "/section/addSection")
     public ResponseEntity addSection(Section section){
+
+        Integer parentId = section.getParentId();
+        if (parentId==null) {
+            return new ResponseEntity(405, "请指定章/节");
+        }
+
         boolean flag = sectionService.addSection(section);
         if (flag) {
             return new ResponseEntity(200, "添加章节成功");
