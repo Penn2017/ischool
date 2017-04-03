@@ -18,7 +18,9 @@
     <dubbo:provider timeout="10000" threadpool="fixed" threads="100" accepts="1000" />
 
 
-    <!-- 暴露user接口 -->
+    <!-- 暴露courseServiceFacade接口 -->
     <dubbo:service retries="0" interface="com.imis.jxufe.course.facade.CourseServiceFacade" ref="courseServiceFacade" />
+    <!-- 暴露courseServiceFacade接口 -->
+    <dubbo:service retries="0" interface="com.imis.jxufe.course.facade.SectionServiceFacade" ref="sectionServiceFacade" />
 
 </beans>

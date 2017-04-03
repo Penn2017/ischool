@@ -17,7 +17,10 @@
     <dubbo:reference interface="com.imis.jxufe.redis.facade.RedisServiceFacade" id="redisServiceFacade" check="false" />
     <!--邮件服务-->
     <dubbo:reference interface="com.imis.jxufe.facade.SenderMailServiceFacade" id="senderMailServiceFacade" check="false" />
-    <!--userService -->
+    <!--courseServiceFacade -->
     <dubbo:reference interface="com.imis.jxufe.course.facade.CourseServiceFacade" id="courseServiceFacade" check="false" />
+
+    <!--sectionFaction -->
+    <dubbo:reference interface="com.imis.jxufe.course.facade.SectionServiceFacade" id="sectionServiceFacade" check="false" />
 
 </beans>
