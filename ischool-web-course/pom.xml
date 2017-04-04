@@ -41,6 +41,12 @@
       <version>1.0</version>
     </dependency>
 
+    <dependency>
+      <groupId>com.imis.jxufe</groupId>
+      <artifactId>ischool-facade-resourse</artifactId>
+      <version>1.0</version>
+    </dependency>
+
     <!--<dependency>-->
       <!--<groupId>com.imis.jxufe</groupId>-->
       <!--<artifactId>ischool-facade-user</artifactId>-->

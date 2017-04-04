@@ -4,6 +4,7 @@ import com.imis.jxufe.base.model.ResponseEntity;
 import com.imis.jxufe.base.model.course.Section;
 import com.imis.jxufe.base.model.course.SectionNode;
 import com.imis.jxufe.course.facade.SectionServiceFacade;
+import com.imis.jxufe.resource.facade.ResourceFacade;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,6 +23,10 @@ public class SectionController {
 
     @Autowired
     private SectionServiceFacade sectionService;
+
+
+    @Autowired
+    private ResourceFacade resourceService;
 
 
     /***
@@ -86,6 +91,21 @@ public class SectionController {
 
         return new ResponseEntity(404, "没有任何章节");
     }
+
+    /***
+     * 记录已经上传的资源
+     * @param
+     * @return
+     */
+    @RequestMapping(value = "/section/recordResource")
+    public ResponseEntity recordResource(){
+
+
+        return new ResponseEntity(200, "资源上传成功");
+    }
+
+
+
 
 
 
