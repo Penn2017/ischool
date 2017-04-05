@@ -2,7 +2,7 @@ package com.imis.jxufe.resource.facade.impl;
 
 import com.imis.jxufe.base.model.resource.UserFiles;
 import com.imis.jxufe.resource.facade.ResourceFacade;
-import com.imis.jxufe.resource.facade.mapper.UserFilesMapper;
+import com.imis.jxufe.resource.mapper.UserFilesMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
