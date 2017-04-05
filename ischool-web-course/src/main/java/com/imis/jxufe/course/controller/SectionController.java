@@ -3,6 +3,7 @@ package com.imis.jxufe.course.controller;
 import com.imis.jxufe.base.model.ResponseEntity;
 import com.imis.jxufe.base.model.course.Section;
 import com.imis.jxufe.base.model.course.SectionNode;
+import com.imis.jxufe.base.model.resource.UserFiles;
 import com.imis.jxufe.course.facade.SectionServiceFacade;
 import com.imis.jxufe.resource.facade.ResourceFacade;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -92,17 +93,22 @@ public class SectionController {
         return new ResponseEntity(404, "没有任何章节");
     }
 
+
     /***
      * 记录已经上传的资源
      * @param
      * @return
      */
     @RequestMapping(value = "/section/recordResource")
-    public ResponseEntity recordResource(){
-
-
-        return new ResponseEntity(200, "资源上传成功");
+    public ResponseEntity recordResource(UserFiles userFiles){
+        boolean success=resourceService.recordResource(userFiles);
+        if (success) {
+            return new ResponseEntity(200, "资源记录成功");
+        }
+        return new ResponseEntity(400, "资源记录失败");
     }
+
+
 
 
 

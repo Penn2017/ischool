@@ -37,13 +37,6 @@
             <version>${ischool-common-config.version}</version>
         </dependency>
 
-        <dependency>
-            <groupId>com.imis.jxufe</groupId>
-            <artifactId>ischool-common-base</artifactId>
-            <version>1.0</version>
-        </dependency>
-
-
         <!-- dubbo 需要的jar start -->
         <!-- 连接池 -->
         <dependency>

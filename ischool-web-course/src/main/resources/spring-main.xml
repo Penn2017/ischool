@@ -23,7 +23,7 @@
     <!--sectionFaction -->
     <dubbo:reference interface="com.imis.jxufe.course.facade.SectionServiceFacade" id="sectionServiceFacade" check="false" />
 
-    !--sectionFaction -->
+    <!--ResourceFacade -->
     <dubbo:reference interface="com.imis.jxufe.resource.facade.ResourceFacade" id="resourceFacade" check="false" />
 
 </beans>

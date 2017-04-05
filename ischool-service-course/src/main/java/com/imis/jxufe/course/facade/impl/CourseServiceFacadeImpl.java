@@ -237,15 +237,12 @@ public class CourseServiceFacadeImpl implements CourseServiceFacade {
             String stuId=mixMeans[0];
 
             if (StringUtils.equals(stuId, String.valueOf(studId))) {
-                if (i == -1) {
-                    //删除信号
-                    e = "";
-                }else{
                     e = stuId + ":" + i;
-                }
-
             }
-            newStr[0] +=e+",";
+            if (i!=-1) {
+                //不是删除信号才做添加
+                newStr[0] +=e+",";
+            }
         });
 
         Integer lastApear = newStr[0].lastIndexOf(",");

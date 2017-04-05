@@ -15,6 +15,8 @@ public class SectionNode  implements Serializable{
 
     private String name;
 
+    private Integer type;
+
     private List<SectionNode> children;
 
 
@@ -52,5 +54,13 @@ public class SectionNode  implements Serializable{
 
     public void setChildren(List<SectionNode> children) {
         this.children = children;
+    }
+
+    public Integer getType() {
+        return type;
+    }
+
+    public void setType(Integer type) {
+        this.type = type;
     }
 }

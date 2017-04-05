@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -26,6 +27,7 @@ public class SectionServiceFacadeImpl  implements SectionServiceFacade {
     @Override
     @Transactional
     public boolean addSection(Section section) {
+        section.setCreateTime(new Date());
         return sectionMapper.insert(section)>0;
     }
 
@@ -60,6 +62,7 @@ public class SectionServiceFacadeImpl  implements SectionServiceFacade {
                 SectionNode sectionNode = new SectionNode();
                 sectionNode.setId(e.getId());
                 sectionNode.setName(e.getName());
+                sectionNode.setType(1);
 
                 List<SectionNode> rows = new ArrayList<SectionNode>();
 
@@ -69,6 +72,7 @@ public class SectionServiceFacadeImpl  implements SectionServiceFacade {
                         SectionNode child = new SectionNode();
                         child.setId(k.getId());
                         child.setName(k.getName());
+                        child.setType(2);
                         rows.add(child);
                     }
 
