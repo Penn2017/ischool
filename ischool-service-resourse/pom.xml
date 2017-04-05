@@ -72,7 +72,7 @@
 
     <build>
         <!--定义资源-->
-        <finalName>ischool-service-resource</finalName>
+        <finalName>ischool-service-resourse</finalName>
         <resources>
             <resource>
                 <targetPath>${project.build.directory}/classes</targetPath>
