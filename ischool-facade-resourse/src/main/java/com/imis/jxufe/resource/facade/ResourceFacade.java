@@ -1,6 +1,10 @@
 package com.imis.jxufe.resource.facade;
 
+import com.imis.jxufe.base.model.course.SectionNode;
 import com.imis.jxufe.base.model.resource.UserFiles;
+
+import java.util.List;
+import java.util.Map;
 
 /**
  * 资源服务接口
@@ -16,4 +20,13 @@ public interface ResourceFacade {
      * @return
      */
     boolean recordResource(UserFiles userFiles);
+
+    List<UserFiles> querySectionResources(Integer id, Integer type);
+
+    /**
+     * 加载课程-小节-视频数
+     * @param courseId
+     * @return
+     */
+    List<Map<String,Object>> queryCourseVideoTree(List<SectionNode> courseId);
 }

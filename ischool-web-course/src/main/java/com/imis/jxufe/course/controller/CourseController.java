@@ -3,8 +3,11 @@ package com.imis.jxufe.course.controller;
 import com.imis.jxufe.base.model.ResponseEntity;
 import com.imis.jxufe.base.model.SimpleResponse;
 import com.imis.jxufe.base.model.course.Course;
+import com.imis.jxufe.base.model.course.SectionNode;
 import com.imis.jxufe.course.facade.CourseServiceFacade;
+import com.imis.jxufe.course.facade.SectionServiceFacade;
 import com.imis.jxufe.redis.facade.RedisServiceFacade;
+import com.imis.jxufe.resource.facade.ResourceFacade;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author zhongping
@@ -27,6 +31,11 @@ public class CourseController {
     @Autowired
     private RedisServiceFacade redisService;
 
+    @Autowired
+    private ResourceFacade resourceService;
+
+    @Autowired
+    private SectionServiceFacade sectionService;
 
     /***
      * 创建课程
@@ -108,4 +117,26 @@ public class CourseController {
         responseEntity.getParams().put("rows", courses);
         return responseEntity;
     }
+
+
+    @RequestMapping(value = "/queryCourseVideoTree/{courseId}")
+    public ResponseEntity queryCourseVideoTree(@PathVariable("courseId") Integer courseId){
+
+        //找出所有的章
+        List<SectionNode> sectionNodes = sectionService.queryAllSection(courseId);
+
+        //根据章找出视频
+        List<Map<String,Object>> files=resourceService.queryCourseVideoTree(sectionNodes);
+        if (files==null||files.size()==0) {
+            return  new ResponseEntity(404,"没有任何资源");
+        }
+
+        ResponseEntity result = new ResponseEntity(200,"查询成功");
+        result.getParams().put("rows", files);
+        return result;
+
+    }
+
+
+
 }

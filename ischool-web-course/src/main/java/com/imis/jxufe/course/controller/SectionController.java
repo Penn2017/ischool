@@ -109,11 +109,28 @@ public class SectionController {
     }
 
 
+    /**
+     * 查询章节/课程下的资源
+     * @param id
+     * @param type
+     * @return
+     */
+    @RequestMapping(value = "/section/querySectionResources/{id}/{type}")
+    public ResponseEntity querySectionResources(@PathVariable("id") Integer id,
+                                                @PathVariable("type") Integer type){
 
 
 
+        List<UserFiles> files=resourceService.querySectionResources(id,type);
+        if (files==null||files.size()==0) {
+            return  new ResponseEntity(404,"没有任何资源");
+        }
 
+        ResponseEntity result = new ResponseEntity(200,"查询成功");
+        result.getParams().put("rows", files);
+        return result;
 
+    }
 
 
 
