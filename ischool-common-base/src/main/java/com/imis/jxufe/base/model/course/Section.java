@@ -1,5 +1,6 @@
 package com.imis.jxufe.base.model.course;
 
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import java.io.Serializable;
@@ -8,6 +9,7 @@ import java.util.Date;
 @Table(name = "section")
 public class Section  implements Serializable {
     @Id
+    @GeneratedValue(generator = "JDBC")
     private Integer id;
 
     private String name;
