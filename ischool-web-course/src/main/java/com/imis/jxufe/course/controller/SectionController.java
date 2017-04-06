@@ -44,7 +44,9 @@ public class SectionController {
 
         boolean flag = sectionService.addSection(section);
         if (flag) {
-            return new ResponseEntity(200, "添加章节成功");
+            ResponseEntity result = new ResponseEntity(200, "添加章节成功");
+            result.getParams().put("id", section.getId());
+            return result;
         }
         return new ResponseEntity(400, "操作失败，请重新操作");
     }
