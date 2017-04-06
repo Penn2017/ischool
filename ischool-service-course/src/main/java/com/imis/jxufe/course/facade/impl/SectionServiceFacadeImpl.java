@@ -26,9 +26,10 @@ public class SectionServiceFacadeImpl  implements SectionServiceFacade {
 
     @Override
     @Transactional
-    public boolean addSection(Section section) {
+    public Integer addSection(Section section) {
         section.setCreateTime(new Date());
-        return sectionMapper.insertSelective(section)>0;
+        sectionMapper.insertSelective(section);
+        return section.getId();
     }
 
     @Override

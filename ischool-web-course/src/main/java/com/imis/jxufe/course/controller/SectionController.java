@@ -42,10 +42,10 @@ public class SectionController {
             return new ResponseEntity(405, "请指定章/节");
         }
 
-        boolean flag = sectionService.addSection(section);
-        if (flag) {
+        Integer flag = sectionService.addSection(section);
+        if (flag!=null) {
             ResponseEntity result = new ResponseEntity(200, "添加章节成功");
-            result.getParams().put("id", section.getId());
+            result.getParams().put("id", flag);
             return result;
         }
         return new ResponseEntity(400, "操作失败，请重新操作");

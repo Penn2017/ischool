@@ -18,7 +18,7 @@ public interface SectionServiceFacade {
      * 添加章节
      * @return
      */
-    boolean addSection(Section section);
+    Integer addSection(Section section);
 
     /**
      * 删除章节
