@@ -20,6 +20,12 @@
 
     <dependency>
       <groupId>com.imis.jxufe</groupId>
+      <artifactId>ischool-facade-topic</artifactId>
+      <version>1.0</version>
+    </dependency>
+
+    <dependency>
+      <groupId>com.imis.jxufe</groupId>
       <artifactId>ischool-common-web</artifactId>
       <version>1.0</version>
     </dependency>

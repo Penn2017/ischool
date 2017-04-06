@@ -1,13 +1,15 @@
-package com.imis.jxufe.base.model.course;
+package com.imis.jxufe.base.model.topic;
 
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import java.io.Serializable;
 import java.util.Date;
-
 @Table(name = "topic_comment")
-public class TopicComment  implements Serializable {
+public class TopicComment implements Serializable{
+
     @Id
+    @GeneratedValue(generator = "JDBC")
     private Integer id;
 
     private Integer commentUserId;
