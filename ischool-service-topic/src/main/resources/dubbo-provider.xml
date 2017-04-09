@@ -19,6 +19,6 @@
 
 
     <!-- 暴露TopicServiceFacadeImpl接口 -->
-    <dubbo:service retries="0" interface="com.imis.jxufe.topic.facade.TopicServiceFacade" ref="TopicServiceFacadeImpl" />
+    <dubbo:service retries="0" interface="com.imis.jxufe.topic.facade.TopicServiceFacade" ref="topicServiceFacadeImpl" />
 
 </beans>
