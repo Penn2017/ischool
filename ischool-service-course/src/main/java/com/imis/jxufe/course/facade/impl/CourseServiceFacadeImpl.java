@@ -35,7 +35,7 @@ public class CourseServiceFacadeImpl implements CourseServiceFacade {
 
     @Override
     @Transactional
-    public boolean addCourse(Course course) {
+    public Integer addCourse(Course course) {
         if (course != null) {
             course.setId(null);
             //判断课程类型
@@ -47,9 +47,8 @@ public class CourseServiceFacadeImpl implements CourseServiceFacade {
             course.setCreateTime(new Date());
             course.setStuNum(0);
             int insert = courseMapper.insert(course);
-            return insert > 0;
         }
-        return false;
+        return course.getId();
     }
 
     @Override
@@ -238,6 +237,42 @@ public class CourseServiceFacadeImpl implements CourseServiceFacade {
 
             if (StringUtils.equals(stuId, String.valueOf(studId))) {
                     e = stuId + ":" + i;
+
+                //同时更新这个学生的课程状态
+                IschoolUser ischoolUser = userService.selectOneUser(String.valueOf(studId));
+                String classId = ischoolUser.getClassId();
+                String[] cids = classId.split(",");
+
+                final String[] newCidStr = {""};
+
+                Arrays.stream(cids).forEach((k)->{
+                    String[] mixcids = k.split(":");
+                    String cid = mixcids[0];
+
+
+                    if (cid.equals(String.valueOf(courseId))) {
+                        //找到了该们课程，判断
+                        k=cid+":"+ i;
+                    }
+
+                    if (i!=-1) {
+                        //不是删除信号才做添加
+                        newCidStr[0] +=k+",";
+                    }
+
+
+                });
+
+                Integer lastApear = newCidStr[0].lastIndexOf(",");
+                String finalStr = newCidStr[0].substring(0,lastApear);
+
+                IschoolUser stu = new IschoolUser();
+                stu.setId(studId);
+                stu.setClassId(finalStr);
+                //更新学生状态
+                userService.updateUser(stu);
+
+
             }
             if (i!=-1) {
                 //不是删除信号才做添加

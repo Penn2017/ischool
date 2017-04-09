@@ -21,7 +21,7 @@ public interface CourseServiceFacade {
       * @param course
      * @return
      */
-     boolean addCourse(Course course);
+    Integer addCourse(Course course);
 
 
     /**

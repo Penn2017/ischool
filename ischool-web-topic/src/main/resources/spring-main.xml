@@ -15,5 +15,7 @@
 
     <!--引入redis服务-->
     <dubbo:reference interface="com.imis.jxufe.redis.facade.RedisServiceFacade" id="redisServiceFacade" check="false" />
+    <!--引入topicService服务-->
+    <dubbo:reference interface="com.imis.jxufe.topic.facade.TopicServiceFacade" id="topicServiceFacade" check="false" />
 
 </beans>

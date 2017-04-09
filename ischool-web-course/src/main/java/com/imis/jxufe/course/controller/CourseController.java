@@ -45,11 +45,12 @@ public class CourseController {
     @RequestMapping("/create")
     public ResponseEntity  createCourse(Course course){
         ResponseEntity responseEntity=null;
-        boolean success = courseService.addCourse(course);
-        if (success) {
+        Integer  courseId= courseService.addCourse(course);
+        if (courseId!=null&&courseId!=0) {
             //加入到缓存中，以便后面的查看使用。
             redisService.setObject(course.getInviteCode(), course);
             responseEntity = new ResponseEntity(200,"添加课程成功");
+            responseEntity.getParams().put("courseId", courseId);
         }else{
             responseEntity = new ResponseEntity(400, "添加课程失败");
         }
