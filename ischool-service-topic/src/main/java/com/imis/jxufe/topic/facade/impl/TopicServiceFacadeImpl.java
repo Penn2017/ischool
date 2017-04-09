@@ -18,7 +18,7 @@ import java.util.stream.Collectors;
  * @author zhongping
  * @date 2017/4/6
  */
-@Service("TopicServiceFacadeImpl")
+@Service("topicServiceFacadeImpl")
 public class TopicServiceFacadeImpl implements TopicServiceFacade {
 
 
