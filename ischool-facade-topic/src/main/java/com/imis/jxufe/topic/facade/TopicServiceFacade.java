@@ -38,4 +38,11 @@ public interface TopicServiceFacade {
      * @return
      */
     List<CommentNode> queryTopicComment(Integer topicId);
+
+    /**
+     * 根据id查询一个帖子
+     * @param topicId
+     * @return
+     */
+    PostTopic queryOneTopicById(Integer topicId);
 }

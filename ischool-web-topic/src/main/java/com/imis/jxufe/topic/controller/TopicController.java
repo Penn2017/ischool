@@ -97,15 +97,19 @@ public class TopicController {
     public ResponseEntity  enterOpenTopic(@PathVariable("topicId") Integer topicId){
         ResponseEntity result=null;
 
+        //查询该帖子
+        PostTopic topic =topicService.queryOneTopicById(topicId);
+
          List<CommentNode>  commentNodes= topicService.queryTopicComment(topicId);
         if (commentNodes==null||commentNodes.size()>0) {
             result = new ResponseEntity(404, "该帖子还没有评论，赶紧抢沙发吧");
             return result;
         }
 
+
         result = new ResponseEntity(200, "查询成功");
         result.getParams().put("rows", commentNodes);
-
+        result.getParams().put("topic", topic);
         return result;
     }
 

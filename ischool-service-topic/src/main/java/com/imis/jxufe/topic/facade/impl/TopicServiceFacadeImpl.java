@@ -105,4 +105,9 @@ public class TopicServiceFacadeImpl implements TopicServiceFacade {
 
         return nodes;
     }
+
+    @Override
+    public PostTopic queryOneTopicById(Integer topicId) {
+        return topicMapper.selectByPrimaryKey(topicId);
+    }
 }

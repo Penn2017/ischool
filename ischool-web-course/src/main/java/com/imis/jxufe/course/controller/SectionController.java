@@ -6,6 +6,7 @@ import com.imis.jxufe.base.model.course.SectionNode;
 import com.imis.jxufe.base.model.resource.UserFiles;
 import com.imis.jxufe.course.facade.SectionServiceFacade;
 import com.imis.jxufe.resource.facade.ResourceFacade;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -103,6 +104,19 @@ public class SectionController {
      */
     @RequestMapping(value = "/section/recordResource")
     public ResponseEntity recordResource(UserFiles userFiles){
+        //对url进行解析
+        //http://files.jxufe-ischool.top/images/AXP5FyeNCi.png
+
+        //解析URL
+        String infos[] = StringUtils.split(userFiles.getUrl(), "/");
+
+        int length = infos.length;
+        String fileName = infos[length - 1].trim();
+        String path = infos[length - 2].trim();
+
+        String storeStr = "folder=" + path + "&file=" + fileName;
+        userFiles.setUrl(storeStr);
+
         boolean success=resourceService.recordResource(userFiles);
         if (success) {
             return new ResponseEntity(200, "资源记录成功");
