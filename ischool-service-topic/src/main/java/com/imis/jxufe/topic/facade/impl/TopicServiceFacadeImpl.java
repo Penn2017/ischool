@@ -1,11 +1,13 @@
 package com.imis.jxufe.topic.facade.impl;
 
+import com.imis.jxufe.base.model.IschoolUser;
 import com.imis.jxufe.base.model.topic.CommentNode;
 import com.imis.jxufe.base.model.topic.PostTopic;
 import com.imis.jxufe.base.model.topic.TopicComment;
 import com.imis.jxufe.topic.facade.TopicServiceFacade;
 import com.imis.jxufe.topic.mapper.TopicMapper;
 import com.imis.jxufe.topic.mapper.commentTopicMapper;
+import com.imis.jxufe.user.facade.UserServiceFacade;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -26,6 +28,10 @@ public class TopicServiceFacadeImpl implements TopicServiceFacade {
     private TopicMapper topicMapper;
     @Autowired
     private commentTopicMapper commentTopicMapper;
+
+    @Autowired
+    private UserServiceFacade userService;
+
 
     @Override
     @Transactional
@@ -89,6 +95,11 @@ public class TopicServiceFacadeImpl implements TopicServiceFacade {
         List<CommentNode>  nodes=majorComment.stream().map((e) -> {
             CommentNode major = new CommentNode(e.getId(), e.getCommentUserId(), e.getCommentUserName(),
                     e.getCommentContent(), e.getCommentTime(), e.getTopicId(), e.getParentId());
+
+            IschoolUser user = userService.selectOneUser(String.valueOf(e.getCommentUserId()));
+
+            //设置头像
+            major.setCommentImageUrl(user.getImage());
 
             //找出其子评论
             TopicComment sonComment = new TopicComment();

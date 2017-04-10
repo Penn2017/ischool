@@ -15,6 +15,8 @@ public class CommentNode implements Serializable{
     private Integer commentUserId;
     private String commentUserName;
 
+    private String commentImageUrl;
+
     private String  commentContent;
     private Date  commentTime;
 
@@ -32,6 +34,14 @@ public class CommentNode implements Serializable{
         this.commentTime = commentTime;
         this.topicId = topicId;
         this.parentId = parentId;
+    }
+
+    public String getCommentImageUrl() {
+        return commentImageUrl;
+    }
+
+    public void setCommentImageUrl(String commentImageUrl) {
+        this.commentImageUrl = commentImageUrl;
     }
 
     public Integer getId() {
