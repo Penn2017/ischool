@@ -1,5 +1,7 @@
 package com.imis.jxufe.course.controller;
 
+import com.imis.jxufe.homework.facade.HomeworkServiceFacade;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -9,4 +11,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class SectionHomeworkController {
+
+    @Autowired
+    private HomeworkServiceFacade homeworkService;
+
 }
