@@ -18,7 +18,8 @@
     <dubbo:provider timeout="10000" threadpool="fixed" threads="100" accepts="1000" />
 
 
-    <!-- 暴露ResourceFacade接口 -->
-    <!--<dubbo:service retries="0" interface="com.imis.jxufe." ref="" />-->
+    <!-- 暴露homeworkServiceFacadeImpl接口 -->
+    <dubbo:service retries="0" interface="com.imis.jxufe.homework.facade.HomeworkServiceFacade" ref="homeworkServiceFacadeImpl" />
+
 
 </beans>

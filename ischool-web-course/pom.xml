@@ -15,6 +15,12 @@
   </parent>
 
   <dependencies>
+    <!--作业服务-->
+    <dependency>
+      <groupId>com.imis.jxufe</groupId>
+      <artifactId>ischool-facade-homework</artifactId>
+      <version>1.0</version>
+    </dependency>
 
     <!--redis服务-->
     <dependency>

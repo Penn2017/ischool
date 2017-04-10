@@ -1,5 +1,6 @@
 package com.imis.jxufe.base.model.topic;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
@@ -8,7 +9,7 @@ import java.util.List;
  * @author zhongping
  * @date 2017/4/6
  */
-public class CommentNode {
+public class CommentNode implements Serializable{
 
     private Integer id;
     private Integer commentUserId;

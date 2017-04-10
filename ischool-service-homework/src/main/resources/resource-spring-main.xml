@@ -13,7 +13,7 @@
     <import resource="classpath:mybatis/spring-mybatis.xml"/>
 
     <!--配置扫描包扫描组件other -->
-    <context:component-scan base-package="com.imis.jxufe.resource.*"/>
+    <context:component-scan base-package="com.imis.jxufe.homework.*"/>
     <!-- 定义事务管理器 -->
     <bean id="transactionManager"
           class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
