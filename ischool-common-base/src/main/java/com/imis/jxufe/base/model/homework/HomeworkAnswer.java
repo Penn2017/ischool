@@ -1,5 +1,7 @@
 package com.imis.jxufe.base.model.homework;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import java.io.Serializable;
@@ -21,6 +23,7 @@ public class HomeworkAnswer implements Serializable{
 
     private String answerUserName;
 
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
     private Date answerTime;
 
     private Integer homeworkId;

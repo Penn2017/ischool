@@ -1,5 +1,7 @@
 package com.imis.jxufe.base.model.resource;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import java.io.Serializable;
 import java.util.Date;
 
@@ -12,6 +14,7 @@ public class UserFiles implements Serializable{
 
     private Integer type;
 
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
     private Date createTime;
 
     private Integer state;

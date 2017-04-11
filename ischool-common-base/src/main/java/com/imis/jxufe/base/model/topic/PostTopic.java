@@ -1,5 +1,7 @@
 package com.imis.jxufe.base.model.topic;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
@@ -24,8 +26,10 @@ public class PostTopic implements Serializable{
 
     private String createUserImage;
 
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
     private Date createTime;
 
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
     private Date lastJoinTime;
 
     private Integer courseId;

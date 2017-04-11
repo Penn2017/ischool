@@ -1,5 +1,7 @@
 package com.imis.jxufe.base.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import javax.persistence.Id;
 import javax.persistence.Table;
 import java.io.Serializable;
@@ -19,8 +21,10 @@ public class IschoolUser implements Serializable{
 
     private String image;
 
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
     private Date createTime;
 
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
     private Date modifyTime;
 
     private String classId;

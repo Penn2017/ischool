@@ -1,5 +1,7 @@
 package com.imis.jxufe.base.model.homework;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
@@ -23,10 +25,12 @@ public class Homework  implements Serializable{
 
     private String fileurl;
 
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
     private Date createTime;
 
     private String assignId;
 
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
     private Date completeTime;
 
     private Integer completeNum;

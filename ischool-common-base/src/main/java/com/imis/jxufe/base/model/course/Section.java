@@ -1,5 +1,7 @@
 package com.imis.jxufe.base.model.course;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
@@ -20,6 +22,7 @@ public class Section  implements Serializable {
 
     private Integer courseId;
 
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
     private Date createTime;
 
     public Integer getId() {
