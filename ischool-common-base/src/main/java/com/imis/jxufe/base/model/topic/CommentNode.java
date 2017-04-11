@@ -1,5 +1,7 @@
 package com.imis.jxufe.base.model.topic;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
@@ -18,6 +20,9 @@ public class CommentNode implements Serializable{
     private String commentImageUrl;
 
     private String  commentContent;
+
+
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
     private Date  commentTime;
 
     private Integer topicId;
