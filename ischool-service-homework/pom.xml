@@ -32,11 +32,23 @@
             <version>${ischool-common-core.version}</version>
         </dependency>
 
+        <dependency>
+            <groupId>com.imis.jxufe</groupId>
+            <artifactId>ischool-facade-user</artifactId>
+            <version>1.0</version>
+        </dependency>
+
 
         <dependency>
             <groupId>com.imis.jxufe</groupId>
             <artifactId>ischool-common-config</artifactId>
             <version>${ischool-common-config.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.imis.jxufe</groupId>
+            <artifactId>ischool-facade-course</artifactId>
+            <version>1.0</version>
         </dependency>
 
         <dependency>

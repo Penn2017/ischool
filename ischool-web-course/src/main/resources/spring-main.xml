@@ -28,6 +28,9 @@
       <!--HomeworkServiceFacade -->
     <dubbo:reference interface="com.imis.jxufe.homework.facade.HomeworkServiceFacade" id="homeworkServiceFacade" check="false" />
 
+    <!--HomeworkServiceFacade -->
+    <dubbo:reference interface="com.imis.jxufe.user.facade.UserServiceFacade" id="userServiceFacade" check="false" />
+
 
 
 </beans>

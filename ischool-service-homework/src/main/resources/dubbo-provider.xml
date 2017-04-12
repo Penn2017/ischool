@@ -22,4 +22,13 @@
     <dubbo:service retries="0" interface="com.imis.jxufe.homework.facade.HomeworkServiceFacade" ref="homeworkServiceFacadeImpl" />
 
 
+    <!--需要引入的服务-->
+    <!-- courseServiceFacade -->
+    <dubbo:reference interface="com.imis.jxufe.course.facade.CourseServiceFacade" id="courseServiceFacade"
+                     check="false"/>
+
+    <!-- courseServiceFacade -->
+    <dubbo:reference interface="com.imis.jxufe.user.facade.UserServiceFacade" id="userServiceFacade"
+                     check="false"/>
+
 </beans>

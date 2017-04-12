@@ -9,6 +9,12 @@ import java.io.Serializable;
 public class Constant  implements Serializable {
 
 
+    /**
+     * 指定作业为全部的指定人
+     */
+    public static final String HOMEWORK_ASSIGN_ALL = "HOMEWORK_ASSIGN_ALL";
+
+
     private Constant() {
         /***
          * empty private constant.
@@ -22,7 +28,7 @@ public class Constant  implements Serializable {
     public static Integer USER_LOGIN_VALIDTE_TIME = 60 * 30;
 
 
-    private static String LOG_URL = "http://oli0puuwc.bkt.clouddn.com/logo.png";
+    public static String LOG_URL = "http://oli0puuwc.bkt.clouddn.com/logo.png";
 
 
     public static String URL_PLACEHOLDER = "urlpalceholder9988";
