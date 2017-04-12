@@ -69,7 +69,7 @@ public class SectionHomeworkController {
     }
 
     /**
-     * 查询一一个作业下面所有的已经比较的答案
+     * 查询一一个作业下面所有的已经提交的答案
      * @param homeworkId
      * @return
      */
@@ -98,9 +98,10 @@ public class SectionHomeworkController {
          * @return
          */
     @RequestMapping(value = "/createCourseHomework")
-    public ResponseEntity   createCourseHomework(Homework homework){
+    public ResponseEntity   createCourseHomework(Homework homework,@RequestParam("limitDays")Integer limitDays){
 
-        Integer id=homeworkService.createHomework(homework);
+
+        Integer id=homeworkService.createHomework(homework,limitDays);
 
         if (id==null||id==0) {
             return new ResponseEntity(400, "创建失败");
@@ -231,7 +232,7 @@ public class SectionHomeworkController {
 
         Date completeTime = homework.getCompleteTime();
         Date currentTime = new Date();
-        if (currentTime.compareTo(completeTime)>0) {
+        if (currentTime.after(completeTime)) {
             //已经超过了提交时间，不允许提交了
             return new ResponseEntity(401, "您的作业已经逾期，不允许提交");
         }

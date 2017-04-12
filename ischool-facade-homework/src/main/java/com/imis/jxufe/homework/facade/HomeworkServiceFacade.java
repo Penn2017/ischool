@@ -22,9 +22,10 @@ public interface HomeworkServiceFacade {
     /**
      * 创建一个作业
      * @param homework
+     * @param limitDays
      * @return
      */
-    Integer createHomework(Homework homework);
+    Integer createHomework(Homework homework, Integer limitDays);
 
     /**
      * 提交作业

@@ -16,10 +16,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
@@ -60,15 +57,22 @@ public class HomeworkServiceFacadeImpl implements HomeworkServiceFacade {
 
     @Override
     @Transactional
-    public Integer createHomework(Homework homework) {
+    public Integer createHomework(Homework homework, Integer limitDays) {
         String assignId = homework.getAssignId();
 
         if (StringUtils.isEmpty(assignId)) {
             homework.setAssignId(Constant.HOMEWORK_ASSIGN_ALL);
         }
+        Date date = new Date();
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(date);
 
-        homework.setCreateTime(new Date());
 
+        calendar.add(Calendar.DATE, limitDays);
+        Date completeTime = calendar.getTime();
+        homework.setCreateTime(date);
+
+        homework.setCompleteTime(completeTime);
         homeworkMapper.insert(homework);
 
         return homework.getId();
