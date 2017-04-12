@@ -1,5 +1,6 @@
 package com.imis.jxufe.course.controller;
 
+import com.aliyun.oss.OSSClient;
 import com.imis.jxufe.base.model.ResponseEntity;
 import com.imis.jxufe.base.model.SimpleResponse;
 import com.imis.jxufe.base.model.course.Course;
@@ -9,13 +10,16 @@ import com.imis.jxufe.course.facade.SectionServiceFacade;
 import com.imis.jxufe.redis.facade.RedisServiceFacade;
 import com.imis.jxufe.resource.facade.ResourceFacade;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
+import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 
 import javax.annotation.Resource;
-import java.util.List;
-import java.util.Map;
+import javax.servlet.http.HttpServletRequest;
+import java.io.ByteArrayInputStream;
+import java.net.URL;
+import java.util.*;
 
 /**
  * @author zhongping
@@ -137,6 +141,47 @@ public class CourseController {
         return result;
 
     }
+
+
+    /**
+     * 上传文件接口
+     * @param request
+     * @throws Exception
+     */
+    @RequestMapping(value="/upfiles",method = RequestMethod.POST)
+    @ResponseBody
+    public void test(HttpServletRequest request) throws Exception{
+        String endpoint = "http://oss-cn-shanghai.aliyuncs.com/";
+        String accessKeyId = "LTAI4TPzfMR4o0ic";
+        String accessKeySecret = "eWjyDSHLQFSa6vA6tSoCWXSoFed0WC";
+
+
+        Date expiration = new Date(new Date().getTime() + 3600l * 1000 * 24 * 365 * 10);
+        OSSClient ossClient = new OSSClient(endpoint, accessKeyId, accessKeySecret);
+        CommonsMultipartResolver commonsMultipartResolver = new CommonsMultipartResolver(request.getSession().getServletContext());
+        if(commonsMultipartResolver.isMultipart(request)){
+            MultipartHttpServletRequest multiRequest=(MultipartHttpServletRequest)request;
+
+
+
+            Iterator<String> iter=multiRequest.getFileNames();
+            while (iter.hasNext()) {
+                MultipartFile imageFile = multiRequest.getFile(iter.next().toString());//(String) iter.next()
+                byte[] img = imageFile.getBytes();
+                Random rm = new Random();
+                double pross = (1 + rm.nextDouble()) * Math.pow(10, 5);
+                String random = String.valueOf(pross);
+                String random1 = random.substring(1, 6);
+                String filename = random1 +".png";
+                ossClient.putObject("ischool2017", filename, new ByteArrayInputStream(img));
+                URL url = ossClient.generatePresignedUrl("ischool2017", filename, expiration);
+                String url1 = url.toString();
+                System.out.println(url1);
+                ossClient.shutdown();
+            }
+        }
+    }
+
 
 
 
