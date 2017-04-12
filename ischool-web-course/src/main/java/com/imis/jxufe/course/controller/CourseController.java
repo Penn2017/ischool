@@ -5,6 +5,7 @@ import com.imis.jxufe.base.model.ResponseEntity;
 import com.imis.jxufe.base.model.SimpleResponse;
 import com.imis.jxufe.base.model.course.Course;
 import com.imis.jxufe.base.model.course.SectionNode;
+import com.imis.jxufe.base.utils.IdWorker;
 import com.imis.jxufe.course.facade.CourseServiceFacade;
 import com.imis.jxufe.course.facade.SectionServiceFacade;
 import com.imis.jxufe.redis.facade.RedisServiceFacade;
@@ -19,7 +20,10 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import java.io.ByteArrayInputStream;
 import java.net.URL;
-import java.util.*;
+import java.util.Date;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
 
 /**
  * @author zhongping
@@ -40,6 +44,8 @@ public class CourseController {
 
     @Autowired
     private SectionServiceFacade sectionService;
+
+    private IdWorker idWorker = new IdWorker(5, 4);
 
     /***
      * 创建课程
@@ -150,11 +156,12 @@ public class CourseController {
      */
     @RequestMapping(value="/upfiles",method = RequestMethod.POST)
     @ResponseBody
-    public void test(HttpServletRequest request) throws Exception{
+    public ResponseEntity upfiles(HttpServletRequest request) throws Exception{
+        /***********************************************************/
         String endpoint = "http://oss-cn-shanghai.aliyuncs.com/";
         String accessKeyId = "LTAI4TPzfMR4o0ic";
         String accessKeySecret = "eWjyDSHLQFSa6vA6tSoCWXSoFed0WC";
-
+        /***********************************************************/
 
         Date expiration = new Date(new Date().getTime() + 3600l * 1000 * 24 * 365 * 10);
         OSSClient ossClient = new OSSClient(endpoint, accessKeyId, accessKeySecret);
@@ -162,27 +169,59 @@ public class CourseController {
         if(commonsMultipartResolver.isMultipart(request)){
             MultipartHttpServletRequest multiRequest=(MultipartHttpServletRequest)request;
 
-
-
             Iterator<String> iter=multiRequest.getFileNames();
             while (iter.hasNext()) {
                 MultipartFile imageFile = multiRequest.getFile(iter.next().toString());//(String) iter.next()
                 byte[] img = imageFile.getBytes();
-                Random rm = new Random();
-                double pross = (1 + rm.nextDouble()) * Math.pow(10, 5);
-                String random = String.valueOf(pross);
-                String random1 = random.substring(1, 6);
-                String filename = random1 +".png";
+
+                String orginFileName = imageFile.getOriginalFilename();
+                String extension=getExtension(orginFileName);
+
+                String path=null;
+                if (extension.contains("jpg")||extension.contains("png")) {
+                    path = "images";
+                } else if (extension.contains("doc") || extension.contains("txt")) {
+                    path = "files";
+                }else{
+                    path = "videos";
+                }
+
+
+                //构造新的路径，新的名称
+                String newName = path + "/" + idWorker.nextId() + extension;
+
+                String filename = "" +".png";
                 ossClient.putObject("ischool2017", filename, new ByteArrayInputStream(img));
-                URL url = ossClient.generatePresignedUrl("ischool2017", filename, expiration);
-                String url1 = url.toString();
-                System.out.println(url1);
+                URL url = ossClient.generatePresignedUrl("ischool2017", newName, expiration);
+
                 ossClient.shutdown();
+                ResponseEntity result = new ResponseEntity(200,"上传成功");
+                result.getParams().put("fileUrl", url.toString());
+                return result;
             }
         }
+
+        return new ResponseEntity(400,"上传失败");
     }
 
 
+    /**
+     * 获取扩展名如 .jpg
+     *
+     * @param fileName
+     * @return
+     */
+    public static String getExtension(String fileName) {
+         String DOT = ".";
+         String SLASH_ONE = "/";
+         String SLASH_TWO = "\\";
+
+        if (org.apache.commons.lang3.StringUtils.INDEX_NOT_FOUND == org.apache.commons.lang3.StringUtils.indexOf(fileName, DOT))
+            return org.apache.commons.lang3.StringUtils.EMPTY;
+        String ext = org.apache.commons.lang3.StringUtils.substring(fileName,
+                org.apache.commons.lang3.StringUtils.lastIndexOf(fileName, DOT));
+        return org.apache.commons.lang3.StringUtils.trimToEmpty(ext);
+    }
 
 
 }
