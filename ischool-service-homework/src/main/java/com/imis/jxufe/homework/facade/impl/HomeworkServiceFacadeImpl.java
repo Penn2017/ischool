@@ -12,6 +12,8 @@ import com.imis.jxufe.homework.facade.HomeworkServiceFacade;
 import com.imis.jxufe.homework.mapper.AnswerMapper;
 import com.imis.jxufe.homework.mapper.HomeworkMapper;
 import com.imis.jxufe.user.facade.UserServiceFacade;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -40,6 +42,8 @@ public class HomeworkServiceFacadeImpl implements HomeworkServiceFacade {
     @Autowired
     private UserServiceFacade userServiceFacade;
 
+    private Logger LOGGER = LoggerFactory.getLogger(HomeworkServiceFacadeImpl.class);
+
     //全局锁
     private Lock lock = new ReentrantLock();// 锁对象
 
@@ -60,7 +64,7 @@ public class HomeworkServiceFacadeImpl implements HomeworkServiceFacade {
     public Integer createHomework(Homework homework, Integer limitDays) {
         String assignId = homework.getAssignId();
 
-       Course course= courseService.selectOneCourseById(String.valueOf(homework.getCourseid()));
+
 
         if (StringUtils.isEmpty(assignId)) {
             homework.setAssignId(Constant.HOMEWORK_ASSIGN_ALL);
@@ -80,8 +84,11 @@ public class HomeworkServiceFacadeImpl implements HomeworkServiceFacade {
 
         //设置预期完成人数
         if (StringUtils.isEquals(Constant.HOMEWORK_ASSIGN_ALL, homework.getAssignId())) {
+            Course course= courseService.selectOneCourseById(String.valueOf(homework.getCourseid()));
+            LOGGER.debug("--------------------------course stuNum :"+course.getStuNum());
             //所有人
             homework.setCompleteNum(course.getStuNum());
+
         }else {
             homework.setCompleteNum(homework.getAssignId().split(",").length);
         }
