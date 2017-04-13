@@ -63,6 +63,7 @@ public class HomeworkServiceFacadeImpl implements HomeworkServiceFacade {
     @Transactional
     public Integer createHomework(Homework homework, Integer limitDays) {
         String assignId = homework.getAssignId();
+        LOGGER.debug("--------------------------HOMEWORK_ASSIGN_ALL stuNum :"+Constant.HOMEWORK_ASSIGN_ALL);
 
         if (StringUtils.isEmpty(assignId.trim())) {
             homework.setAssignId(Constant.HOMEWORK_ASSIGN_ALL);
