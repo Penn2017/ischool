@@ -4,9 +4,11 @@ import com.alibaba.dubbo.common.utils.StringUtils;
 import com.imis.jxufe.base.model.Constant;
 import com.imis.jxufe.base.model.IschoolUser;
 import com.imis.jxufe.base.model.ResponseEntity;
+import com.imis.jxufe.base.model.course.Course;
 import com.imis.jxufe.base.model.homework.Homework;
 import com.imis.jxufe.base.model.homework.HomeworkAnswer;
 import com.imis.jxufe.base.model.homework.StudentHomeWorkView;
+import com.imis.jxufe.course.facade.CourseServiceFacade;
 import com.imis.jxufe.facade.SenderMailServiceFacade;
 import com.imis.jxufe.homework.facade.HomeworkServiceFacade;
 import com.imis.jxufe.param.MailParam;
@@ -17,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -40,6 +43,9 @@ public class SectionHomeworkController {
 
     @Autowired
     private UserServiceFacade userService;
+
+    @Autowired
+    private CourseServiceFacade courseService;
 
 
 
@@ -175,6 +181,7 @@ public class SectionHomeworkController {
         }
 
         Homework homework = homeworkService.querySpyHomeWork(homeworkId);
+        Course course = courseService.selectOneCourseById(String.valueOf(homework.getCourseid()));
 
         //循环发邮件
         Arrays.stream(stuIds).forEach((e)->{
@@ -183,8 +190,8 @@ public class SectionHomeworkController {
             MailParam mailParam = new MailParam();
             mailParam.setTo(student.getEmail());
             mailParam.setSubject("作业提交提醒通知#"+ LocalDateTime.now().getNano());
-            mailParam.setContent("<html>尊敬的：<strong>"+student.getName()+"</strong><br/>老师在催您的作业：【"+homework.getHomeworkName()+"】，快点完成提交吧！<br/>"
-                                +"请在"+homework.getCompleteTime()+"前才能提交哦"
+            mailParam.setContent("<html>尊敬的：<strong>"+student.getName()+"</strong><br/>您所在的课堂【"+course.getName()+"】,老师正在在催您的作业：【"+homework.getHomeworkName()+"】，快点完成提交吧！<br/>"
+                                +"请在"+new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(homework.getCompleteTime())+"前才能提交哦"
                                  +"<img src=\""+Constant.LOG_URL+"\"/><br/>"
                     +"【<b>Join class anytime ,anywhere | ISchool.</b>】</html>");
 
