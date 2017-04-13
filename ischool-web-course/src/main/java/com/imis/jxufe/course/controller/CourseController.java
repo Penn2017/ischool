@@ -190,8 +190,7 @@ public class CourseController {
                 //构造新的路径，新的名称
                 String newName = path + "/" + idWorker.nextId() + extension;
 
-                String filename = "" +".png";
-                ossClient.putObject("ischool2017", filename, new ByteArrayInputStream(img));
+                ossClient.putObject("ischool2017", newName, new ByteArrayInputStream(img));
                 URL url = ossClient.generatePresignedUrl("ischool2017", newName, expiration);
 
                 ossClient.shutdown();
