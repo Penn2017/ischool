@@ -217,32 +217,38 @@ public class HomeworkServiceFacadeImpl implements HomeworkServiceFacade {
     public List<StudentHomeWorkView> queryCourseHomeworkOnme(Integer stud, String cid) {
 
         List<StudentHomeWorkView> thisCourseHomeWork = new ArrayList<>();
-        String studentId = String.valueOf(stud);
 
         //查出这门课的作业
         Homework homework = new Homework();
-        homework.setCourseid(Integer.valueOf(cid));
-        List<Homework> select = homeworkMapper.select(homework);
+        String[] split = cid.split(":");
 
-        select.stream().forEach((hw)->{
-            String assignId = hw.getAssignId();
-            if (!StringUtils.isEmpty(assignId)) {
-                if (StringUtils.isEquals(assignId, Constant.HOMEWORK_ASSIGN_ALL)) {
-                    StudentHomeWorkView shk=matchHomeworkToview(hw,stud);
-                    thisCourseHomeWork.add(shk);
-                }else{
-                    //查找里面是否有该名学生
-                    if (StringUtils.isContains(assignId, String.valueOf(stud))) {
-                        //说明是作业指定人
+        if (StringUtils.isEquals(split[2], "1")) {
+            //这门课已经是通过状态，才去下面找属于自己的作业
+            String classId = split[0];
+            homework.setCourseid(Integer.valueOf(classId));
+            List<Homework> select = homeworkMapper.select(homework);
+
+            select.stream().forEach((hw)->{
+                String assignId = hw.getAssignId();
+                if (!StringUtils.isEmpty(assignId)) {
+                    if (StringUtils.isEquals(assignId, Constant.HOMEWORK_ASSIGN_ALL)) {
                         StudentHomeWorkView shk=matchHomeworkToview(hw,stud);
                         thisCourseHomeWork.add(shk);
+                    }else{
+                        //查找里面是否有该名学生
+                        if (StringUtils.isContains(assignId, String.valueOf(stud))) {
+                            //说明是作业指定人
+                            StudentHomeWorkView shk=matchHomeworkToview(hw,stud);
+                            thisCourseHomeWork.add(shk);
+                        }
                     }
+
                 }
 
-            }
 
+            });
+        }
 
-        });
 
 
         return thisCourseHomeWork;
