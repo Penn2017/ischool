@@ -12,7 +12,7 @@ public class Constant  implements Serializable {
     /**
      * 指定作业为全部的指定人
      */
-    public static final String HOMEWORK_ASSIGN_ALL = "HOMEWORK_ASSIGN_ALL";
+    public static final String HOMEWORK_ASSIGN_ALL = "0";
 
 
     private Constant() {

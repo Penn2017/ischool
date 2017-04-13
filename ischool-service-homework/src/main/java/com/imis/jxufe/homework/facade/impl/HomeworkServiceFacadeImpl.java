@@ -64,9 +64,7 @@ public class HomeworkServiceFacadeImpl implements HomeworkServiceFacade {
     public Integer createHomework(Homework homework, Integer limitDays) {
         String assignId = homework.getAssignId();
 
-
-
-        if (StringUtils.isEmpty(assignId)) {
+        if (StringUtils.isEmpty(assignId.trim())) {
             homework.setAssignId(Constant.HOMEWORK_ASSIGN_ALL);
         }
         Date date = new Date();
