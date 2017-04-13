@@ -287,10 +287,15 @@ public class CourseServiceFacadeImpl implements CourseServiceFacade {
         course.setStuId(finalStr);
         course.setId(courseId);
 
+        //如果是通过状态，还需要更新人数
         //更新学生人数：TODO:检查并发问题
-        Integer orginNum=course.getStuNum()==null?0:course.getStuNum();
 
-        course.setStuNum(orginNum+1);
+        if (i==1) {
+            Integer orginNum=course.getStuNum()==null?0:course.getStuNum();
+
+            course.setStuNum(orginNum+1);
+
+        }
 
         return courseMapper.updateByPrimaryKeySelective(course);
     }
