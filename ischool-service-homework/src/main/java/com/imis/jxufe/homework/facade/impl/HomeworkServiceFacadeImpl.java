@@ -60,6 +60,8 @@ public class HomeworkServiceFacadeImpl implements HomeworkServiceFacade {
     public Integer createHomework(Homework homework, Integer limitDays) {
         String assignId = homework.getAssignId();
 
+       Course course= courseService.selectOneCourseById(String.valueOf(homework.getCourseid()));
+
         if (StringUtils.isEmpty(assignId)) {
             homework.setAssignId(Constant.HOMEWORK_ASSIGN_ALL);
         }
@@ -68,12 +70,23 @@ public class HomeworkServiceFacadeImpl implements HomeworkServiceFacade {
         calendar.setTime(date);
 
 
+        //设置完成时间
         calendar.add(Calendar.DATE, limitDays);
         Date completeTime = calendar.getTime();
         homework.setCreateTime(date);
 
         homework.setCompleteTime(completeTime);
         homeworkMapper.insert(homework);
+
+        //设置预期完成人数
+        if (StringUtils.isEquals(Constant.HOMEWORK_ASSIGN_ALL, homework.getAssignId())) {
+            //所有人
+            homework.setCompleteNum(course.getStuNum());
+        }else {
+            homework.setCompleteNum(homework.getAssignId().split(",").length);
+        }
+
+
 
         return homework.getId();
     }
