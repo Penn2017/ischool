@@ -76,7 +76,7 @@ public class HomeworkServiceFacadeImpl implements HomeworkServiceFacade {
         homework.setCreateTime(date);
 
         homework.setCompleteTime(completeTime);
-        homeworkMapper.insert(homework);
+
 
         //设置预期完成人数
         if (StringUtils.isEquals(Constant.HOMEWORK_ASSIGN_ALL, homework.getAssignId())) {
@@ -86,7 +86,7 @@ public class HomeworkServiceFacadeImpl implements HomeworkServiceFacade {
             homework.setCompleteNum(homework.getAssignId().split(",").length);
         }
 
-
+        homeworkMapper.insert(homework);
 
         return homework.getId();
     }
