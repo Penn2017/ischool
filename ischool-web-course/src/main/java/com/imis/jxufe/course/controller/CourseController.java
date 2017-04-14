@@ -5,7 +5,6 @@ import com.imis.jxufe.base.model.ResponseEntity;
 import com.imis.jxufe.base.model.SimpleResponse;
 import com.imis.jxufe.base.model.course.Course;
 import com.imis.jxufe.base.model.course.SectionNode;
-import com.imis.jxufe.base.utils.IdWorker;
 import com.imis.jxufe.course.facade.CourseServiceFacade;
 import com.imis.jxufe.course.facade.SectionServiceFacade;
 import com.imis.jxufe.redis.facade.RedisServiceFacade;
@@ -20,10 +19,7 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import java.io.ByteArrayInputStream;
 import java.net.URL;
-import java.util.Date;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * @author zhongping
@@ -45,7 +41,6 @@ public class CourseController {
     @Autowired
     private SectionServiceFacade sectionService;
 
-    private IdWorker idWorker = new IdWorker(5, 4);
 
     /***
      * 创建课程
@@ -188,7 +183,7 @@ public class CourseController {
 
 
                 //构造新的路径，新的名称
-                String newName = path + "/" + idWorker.nextId() + extension;
+                String newName = path + "/" + UUID.randomUUID() + extension;
 
                 ossClient.putObject("ischool2017", newName, new ByteArrayInputStream(img));
                 URL url = ossClient.generatePresignedUrl("ischool2017", newName, expiration);
