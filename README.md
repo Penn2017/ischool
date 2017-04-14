@@ -15,7 +15,7 @@
                                                                                                                              
                                                                                                                              
                                                                                                                              
-   <b>官网Link :<a href="http://jxufe-school.top">jxufe-school.top</a>
+   <b>官网Link :<a href="http://jxufe-ischool.top">jxufe-school.top</a>
 
  
     <developers>
