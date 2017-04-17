@@ -46,7 +46,9 @@ public class CourseServiceFacadeImpl implements CourseServiceFacade {
             }
             course.setCreateTime(new Date());
             course.setStuNum(0);
-            int insert = courseMapper.insert(course);
+
+
+            courseMapper.insert(course);
         }
         return course.getId();
     }

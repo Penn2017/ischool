@@ -5,6 +5,7 @@ import com.imis.jxufe.base.model.ResponseEntity;
 import com.imis.jxufe.base.model.SimpleResponse;
 import com.imis.jxufe.base.model.course.Course;
 import com.imis.jxufe.base.model.course.SectionNode;
+import com.imis.jxufe.base.utils.WebUtil;
 import com.imis.jxufe.course.facade.CourseServiceFacade;
 import com.imis.jxufe.course.facade.SectionServiceFacade;
 import com.imis.jxufe.redis.facade.RedisServiceFacade;
@@ -50,6 +51,9 @@ public class CourseController {
     @RequestMapping("/create")
     public ResponseEntity  createCourse(Course course){
         ResponseEntity responseEntity=null;
+        //转换图片地址
+        course.setImageUrl(WebUtil.changeUrlToIschoolOSS(course.getImageUrl()));
+
         Integer  courseId= courseService.addCourse(course);
         if (courseId!=null&&courseId!=0) {
             //加入到缓存中，以便后面的查看使用。
@@ -97,6 +101,9 @@ public class CourseController {
     @RequestMapping("/update")
     public ResponseEntity updateCourse(Course course){
         ResponseEntity responseEntity=null;
+        //转换图片资源
+        course.setImageUrl(WebUtil.changeUrlToIschoolOSS(course.getImageUrl()));
+
         boolean success = courseService.updateCourse(course);
         if (success) {
             //删除缓存课程
@@ -190,7 +197,9 @@ public class CourseController {
 
                 ossClient.shutdown();
                 ResponseEntity result = new ResponseEntity(200,"上传成功");
-                result.getParams().put("fileUrl", url.toString());
+
+                //转换图片资源
+                result.getParams().put("fileUrl", WebUtil.changeUrlToIschoolOSS(url.toString()));
                 return result;
             }
         }

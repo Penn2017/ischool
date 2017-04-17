@@ -3,7 +3,6 @@ package com.imis.jxufe.resource.controller;
 import com.aliyun.oss.OSSClient;
 import com.aliyun.oss.model.GetObjectRequest;
 import org.apache.commons.lang3.StringUtils;
-import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -51,7 +50,7 @@ public class ResourceController {
 
 
 
-    @Test
+   //@Test
     public void test1(){
 
         //http://files.jxufe-ischool.top/images/AXP5FyeNCi.png

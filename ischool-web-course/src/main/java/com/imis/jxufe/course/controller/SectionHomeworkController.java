@@ -8,6 +8,7 @@ import com.imis.jxufe.base.model.course.Course;
 import com.imis.jxufe.base.model.homework.Homework;
 import com.imis.jxufe.base.model.homework.HomeworkAnswer;
 import com.imis.jxufe.base.model.homework.StudentHomeWorkView;
+import com.imis.jxufe.base.utils.WebUtil;
 import com.imis.jxufe.course.facade.CourseServiceFacade;
 import com.imis.jxufe.facade.SenderMailServiceFacade;
 import com.imis.jxufe.homework.facade.HomeworkServiceFacade;
@@ -106,6 +107,9 @@ public class SectionHomeworkController {
     @RequestMapping(value = "/createCourseHomework")
     public ResponseEntity   createCourseHomework(Homework homework,@RequestParam("limitDays")Integer limitDays){
 
+        //转化格式  /*为测试准备，后期可以撤销**/
+        homework.setImageUrl(WebUtil.changeUrlToIschoolOSS(homework.getImageUrl()));
+        homework.setFileurl(WebUtil.changeUrlToIschoolOSS(homework.getFileurl()));
 
         Integer id=homeworkService.createHomework(homework,limitDays);
 
@@ -231,6 +235,9 @@ public class SectionHomeworkController {
      */
     @RequestMapping(value = "/commitHomework")
     public ResponseEntity  commitHomework(HomeworkAnswer answer){
+
+        //转换图片格式
+        answer.setAnswerFile(WebUtil.changeUrlToIschoolOSS(answer.getAnswerFile()));
 
         Homework homework=homeworkService.querySpyHomeWork(answer.getHomeworkId());
         if (homework==null) {

@@ -4,6 +4,7 @@ import com.imis.jxufe.base.model.ResponseEntity;
 import com.imis.jxufe.base.model.topic.CommentNode;
 import com.imis.jxufe.base.model.topic.PostTopic;
 import com.imis.jxufe.base.model.topic.TopicComment;
+import com.imis.jxufe.base.utils.WebUtil;
 import com.imis.jxufe.topic.facade.TopicServiceFacade;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -34,6 +35,9 @@ public class TopicController {
     public ResponseEntity createTopic(PostTopic topic){
 
         ResponseEntity result=null;
+        //转换图片
+        topic.setImageUrl(WebUtil.changeUrlToIschoolOSS(topic.getImageUrl()));
+
         Integer topicId=topicService.addTopic(topic);
 
         if (topicId!=null) {

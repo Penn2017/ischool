@@ -122,4 +122,36 @@ public final class WebUtil {
 		}
 		return cookieMap;
 	}
+
+
+	/**
+	 * 对url进行改造 ，走内网
+	 * @param orginUrl
+	 * @return
+	 */
+	public static String changeUrlToIschoolOSS(String orginUrl){
+
+		if (StringUtils.isEmpty(orginUrl)) {
+			return null;
+		}
+		//判断此时的url是否已经是格式化的
+		if (StringUtils.contains(orginUrl,"&file")) {
+			return orginUrl;
+		}
+
+		//对url进行解析
+		//http://files.jxufe-ischool.top/images/AXP5FyeNCi.png
+		//解析URL
+		String infos[] = StringUtils.split(orginUrl, "/");
+
+		int length = infos.length;
+		String fileName = infos[length - 1].trim();
+		String path = infos[length - 2].trim();
+
+		String storeStr = "folder=" + path + "&file=" + fileName;
+
+		return storeStr;
+	}
+
+
 }
