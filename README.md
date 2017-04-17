@@ -15,8 +15,10 @@
                                                                                                                              
                                                                                                                              
                                                                                                                              
-   <b>官网Link :<a href="http://jxufe-ischool.top">jxufe-school.top</a>
-
+  <b>官网Link :<a href="http://jxufe-ischool.top">jxufe-school.top</a></b><br/>
+   <b>项目构建管理Link :<a href="http://jenkins.jxufe-ischool.top">jenkins.jxufe-school.top</a></b><br/>
+   <b>项目质量管理Link :<a href="http://sonarqube.jxufe-ischool.top">sonarqube.jxufe-school.top</a></b><br/>
+   ps: 如果以上网页不能访问了，没错，school的vpn挂了。<br/>
  
     <developers>
         <developer>
