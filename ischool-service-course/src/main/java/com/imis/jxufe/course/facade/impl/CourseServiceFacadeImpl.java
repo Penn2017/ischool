@@ -135,7 +135,7 @@ public class CourseServiceFacadeImpl implements CourseServiceFacade {
             applyState = "0";
         }
         String middleStr = course.getId() + ":" + courseType + ":" + applyState;
-        ;
+
 
         String sStr = student.getClassId();
         //拼接
@@ -254,7 +254,7 @@ public class CourseServiceFacadeImpl implements CourseServiceFacade {
 
                     if (cid.equals(String.valueOf(courseId))) {
                         //找到了该们课程，判断
-                        k=cid+":"+ i;
+                        k=cid+":"+mixcids[1] +i;
                     }
 
                     if (i!=-1) {
