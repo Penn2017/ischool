@@ -179,7 +179,7 @@ public class SectionHomeworkController {
      */
     @RequestMapping(value = "/warnStudent/{homeworkId}")
     public ResponseEntity  queryOneHomework(@PathVariable("homeworkId")Integer homeworkId,
-                                            @RequestParam("stuIds")String[] stuIds){
+                                            @RequestParam("stuIds[]")String[] stuIds){
         if (stuIds==null||stuIds.length==0) {
             return new ResponseEntity(400,"没有学生可以提醒！");
         }
