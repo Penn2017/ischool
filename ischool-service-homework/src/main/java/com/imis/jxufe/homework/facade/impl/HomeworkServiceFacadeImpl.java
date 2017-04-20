@@ -266,6 +266,7 @@ public class HomeworkServiceFacadeImpl implements HomeworkServiceFacade {
         shv.setHomeworkId(hw.getId());
         shv.setHomeworkName(hw.getHomeworkName());
         shv.setHomeworkContent(hw.getHomeworkContent());
+        shv.setCompleteTime(hw.getCompleteTime());
 
         //作业的图片
         shv.setImageUrl(hw.getImageUrl());
