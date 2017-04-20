@@ -24,6 +24,8 @@ public class StudentHomeWorkView implements Serializable {
 
     private String fileurl;
 
+    private String courseName;
+
     @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
     private Date createTime;//创建时间
 
@@ -43,7 +45,13 @@ public class StudentHomeWorkView implements Serializable {
     private Date answerTime;
 
 
+    public String getCourseName() {
+        return courseName;
+    }
 
+    public void setCourseName(String courseName) {
+        this.courseName = courseName;
+    }
 
     public Integer getHomeworkId() {
         return homeworkId;

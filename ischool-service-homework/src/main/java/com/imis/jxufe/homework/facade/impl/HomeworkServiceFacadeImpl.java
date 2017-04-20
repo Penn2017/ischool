@@ -268,6 +268,10 @@ public class HomeworkServiceFacadeImpl implements HomeworkServiceFacade {
         shv.setHomeworkContent(hw.getHomeworkContent());
         shv.setCompleteTime(hw.getCompleteTime());
 
+        Course course = courseService.selectOneCourseById(String.valueOf(hw.getCourseid()));
+
+        shv.setCourseName(course.getName());
+
         //作业的图片
         shv.setImageUrl(hw.getImageUrl());
         shv.setCourseid(hw.getCourseid());
