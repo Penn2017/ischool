@@ -301,5 +301,40 @@ public class CourseServiceFacadeImpl implements CourseServiceFacade {
 
         return courseMapper.updateByPrimaryKeySelective(course);
     }
+
+    @Override
+    public Map<String, Object> queryIndexData() {
+        Map<String, Object> returnMap = new HashMap<>();
+        Course course = new Course();
+        course.setType(1);
+
+        //轮播
+        course.setPosition(1);
+        List<Course> truns = courseMapper.select(course);
+        returnMap.put("truns", truns);
+
+        //2 精品
+        course.setPosition(2);
+        List<Course> boutique = courseMapper.select(course);
+        returnMap.put("boutique", boutique);
+
+        //3 热门
+        course.setPosition(3);
+        List<Course> hotCourse = courseMapper.select(course);
+        returnMap.put("hotCourse", hotCourse);
+
+
+
+        return returnMap;
+    }
+
+    @Override
+    public List<Course> queryAllOpenCourse() {
+        Course course = new Course();
+        course.setType(1);
+        List<Course> select = courseMapper.select(course);
+
+        return select;
+    }
 }
 

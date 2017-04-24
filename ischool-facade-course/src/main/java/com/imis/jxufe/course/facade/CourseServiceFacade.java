@@ -97,4 +97,17 @@ public interface CourseServiceFacade {
      * @return
      */
     int updateCourseStuent(Integer courseId, Integer studId, int i);
+
+    /***
+     * 查询首页的数据
+     * @return
+     */
+    Map<String,Object> queryIndexData();
+
+    /**
+     * 查询所有的公开课
+     * @return
+     */
+    List<Course> queryAllOpenCourse();
+
 }
