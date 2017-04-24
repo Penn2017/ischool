@@ -309,7 +309,25 @@ public class HomeworkServiceFacadeImpl implements HomeworkServiceFacade {
         HomeworkAnswer homeworkAnswer = new HomeworkAnswer();
         homeworkAnswer.setId(answerId);
         homeworkAnswer.setState(String.valueOf(state));
-        return answerMapper.updateByPrimaryKeySelective(homeworkAnswer)>0;
+        boolean successFlag = true;
+        int updateHomework = answerMapper.updateByPrimaryKeySelective(homeworkAnswer);
+        //判断作业的更新情况
+        successFlag=updateHomework>0;
+        if (state.equals(1)) {
+            //如果批改作业是通过，作业中的通过人数要加1
+            HomeworkAnswer answer = answerMapper.selectByPrimaryKey(answerId);
+
+            Homework homework = new Homework();
+            homework.setId(answer.getHomeworkId());
+
+            homework.setCopleteActullyNum((homework.getCopleteActullyNum()==null?0:homework.getCopleteActullyNum())+1);
+            homeworkMapper.updateByPrimaryKeySelective(homework);
+
+        }
+
+
+
+        return successFlag;
     }
 
 
