@@ -45,4 +45,13 @@ public interface TopicServiceFacade {
      * @return
      */
     PostTopic queryOneTopicById(Integer topicId);
+
+    /**
+     * 查询指定课程下的热帖
+     * @param courseId
+     * @return
+     */
+    List<PostTopic> queryCourseTopic(Integer courseId);
+
+
 }

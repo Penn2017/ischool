@@ -121,4 +121,18 @@ public class TopicServiceFacadeImpl implements TopicServiceFacade {
     public PostTopic queryOneTopicById(Integer topicId) {
         return topicMapper.selectByPrimaryKey(topicId);
     }
+
+    @Override
+    public List<PostTopic> queryCourseTopic(Integer courseId) {
+        List<PostTopic> topics = topicMapper.selectAll();
+        List<PostTopic> collect = topics.stream().filter((e) -> {
+            //只是查询所有的公开帖子
+            if (e.getCourseId() != null&&e.getCourseId().equals(courseId)) {
+                return false;
+            }
+            return true;
+
+        }).collect(Collectors.toList());
+        return collect;
+    }
 }

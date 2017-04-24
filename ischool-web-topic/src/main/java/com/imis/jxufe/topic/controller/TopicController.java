@@ -91,6 +91,24 @@ public class TopicController {
         return result;
     }
 
+    /**
+     * 查询一个课程下面的帖子
+     * @return
+     */
+    @RequestMapping(value = "/queryCourseTopic/{courseId}")
+    public ResponseEntity  queryCourseTopic(@PathVariable("courseId")Integer courseId){
+        /*****************只查询课程下的帖子***********************/
+        List<PostTopic> topics= topicService.queryCourseTopic(courseId);
+        if (topics==null||topics.size()==0) {
+            return new ResponseEntity(404,"很抱歉，当前课程没有任何热帖，赶快去抢沙发吧！");
+        }
+
+        ResponseEntity result = new ResponseEntity(200, "查询成功");
+        result.getParams().put("rows", topics);
+
+        return result;
+    }
+
 
 
     /**
