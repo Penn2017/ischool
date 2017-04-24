@@ -128,9 +128,9 @@ public class TopicServiceFacadeImpl implements TopicServiceFacade {
         List<PostTopic> collect = topics.stream().filter((e) -> {
             //只是查询所有的公开帖子
             if (e.getCourseId() != null&&e.getCourseId().equals(courseId)) {
-                return false;
+                return true;
             }
-            return true;
+            return false;
 
         }).collect(Collectors.toList());
         return collect;
