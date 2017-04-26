@@ -254,7 +254,7 @@ public class CourseServiceFacadeImpl implements CourseServiceFacade {
 
                     if (cid.equals(String.valueOf(courseId))) {
                         //找到了该们课程，判断
-                        k=cid+":"+mixcids[1] +i;
+                        k=cid+":"+mixcids[1] +":"+i;
                     }
 
                     if (i!=-1) {
