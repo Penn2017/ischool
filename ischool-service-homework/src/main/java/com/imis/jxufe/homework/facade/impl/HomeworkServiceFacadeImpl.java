@@ -163,7 +163,12 @@ public class HomeworkServiceFacadeImpl implements HomeworkServiceFacade {
             String str = course.getStuId();
             String[] stuIds = str.split(",");
 
-            Arrays.stream(stuIds).forEach((e)->{
+            Arrays.stream(stuIds).filter((k)->{
+                if (StringUtils.isEmpty(k)) {
+                    return false;
+                }
+                return true;
+            }).forEach((e)->{
                 //解析学生id
                 String[] mixIds = e.split(":");
 
