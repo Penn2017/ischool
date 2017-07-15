@@ -7,7 +7,7 @@
      makes youself happy ,for me ,it is also be this.<br>
     <b>at the end ,I will come back and said ,<br>
      there is always something that I will take lots of time to working it out ,but I still step on it , no matter who is or will leave .<br>
-                                                                                                                             ----    2017/3/16<br>
+<br>
                                                                                                                              
                                                                                                                              
                                                                                                                              
